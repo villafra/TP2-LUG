@@ -24,7 +24,7 @@ namespace BLL
 
         public bool Guardar(BE_Login login)
         {
-            return oMPP_Login.Guardar(login);
+           return oMPP_Login.Guardar(login);
         }
 
         public List<BE_Login> Listar()
@@ -35,6 +35,15 @@ namespace BLL
         public BE_Login ListarObjeto(BE_Login login)
         {
             throw new NotImplementedException();
+        }
+
+        private void EncriptarPass(string pass)
+        {
+            Encriptacion.EncriptarPass(pass);
+        }
+        private void DesencriptarPass(string pass)
+        {
+            Encriptacion.DesencriptarPass(pass);
         }
     }
 }

@@ -92,7 +92,7 @@
             this.grpMozos.Size = new System.Drawing.Size(826, 185);
             this.grpMozos.TabIndex = 1;
             this.grpMozos.TabStop = false;
-            this.grpMozos.Text = "Mesas";
+            this.grpMozos.Text = "Mozos";
             // 
             // lblFechaNacimiento
             // 
