@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{97846DF0-B5D5-4BED-A60C-A54E7DE53F54}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Presentación</RootNamespace>
+    <AssemblyName>Presentación</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bienvenida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bienvenida.Designer.cs">
+      <DependentUpon>Bienvenida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bebidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bebidas.Designer.cs">
+      <DependentUpon>Bebidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layout.Designer.cs">
+      <DependentUpon>Layout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mesas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mesas.Designer.cs">
+      <DependentUpon>Mesas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mozos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mozos.Designer.cs">
+      <DependentUpon>Mozos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pedidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pedidos.Designer.cs">
+      <DependentUpon>Pedidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Platos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Platos.Designer.cs">
+      <DependentUpon>Platos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reservas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reservas.Designer.cs">
+      <DependentUpon>Reservas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Turnos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Turnos.Designer.cs">
+      <DependentUpon>Turnos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Bienvenida.resx">
+      <DependentUpon>Bienvenida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bebidas.resx">
+      <DependentUpon>Bebidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layout.resx">
+      <DependentUpon>Layout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mesas.resx">
+      <DependentUpon>Mesas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mozos.resx">
+      <DependentUpon>Mozos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pedidos.resx">
+      <DependentUpon>Pedidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Platos.resx">
+      <DependentUpon>Platos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reservas.resx">
+      <DependentUpon>Reservas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Turnos.resx">
+      <DependentUpon>Turnos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Calculos\Calculo.csproj">
+      <Project>{f2f04dfb-c02c-475c-bc94-5bf158bdd3de}</Project>
+      <Name>Calculo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{d6eca80e-806e-4be1-9987-b161cf3d7865}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Estética\Estética.csproj">
+      <Project>{96a39655-6eb0-4de4-87be-95b22d6ccb5f}</Project>
+      <Name>Estética</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Negocio\Negocio.csproj">
+      <Project>{c5cee598-2cc0-4cb4-acbb-ce755afc17a6}</Project>
+      <Name>Negocio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\perfil-del-usuario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acceso.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\espiritu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\agua.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BorrarMozo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\camarero.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cordero.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mesa-de-comedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mesa-redonda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ModificarMozo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pedido-en-linea %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture19.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture21.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
