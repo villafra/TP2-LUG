@@ -76,7 +76,7 @@ namespace Presentación
             dtpHoraFin.Value = oBE_Turno.HoraFin;
             lblCantidad.Text = oBLL_Turno.CantidadMozosEnTurno(oBE_Turno).ToString();
             prgCantidad.Value = oBLL_Turno.CantidadMozosEnTurno(oBE_Turno);
-            Calculos.RefreshGrilla(dgvMozosEnturno, oBLL_Turno.ListarObjeto(oBE_Turno).Mozos);
+            //Calculos.RefreshGrilla(dgvMozosEnturno, oBLL_Turno.ListarObjeto(oBE_Turno).Mozos);
             Aspecto.DGVTurnosMozos(dgvMozosEnturno);
         }
 

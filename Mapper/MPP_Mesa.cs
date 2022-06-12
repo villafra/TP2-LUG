@@ -33,11 +33,11 @@ namespace Mapper
 
             if (Mesa.Codigo != 0)
             {
-                query = @"Update Mesa set [Nro_Mesa]= " + Mesa.NroDeMesa + ", Capacidad= " + Mesa.Capacidad + ", Estado= '" + Mesa.Estado + "' where [Id_Mesa]= " + Mesa.Codigo;
+                query = @"Update Mesa set [Nro_Mesa]= " + Mesa.ID_Mesa + ", Capacidad= " + Mesa.Capacidad + ", Estado= '" + Mesa.Status + "' where [Id_Mesa]= " + Mesa.Codigo;
             }
             else
             {
-                query = @"Insert into Mesa ([Nro_Mesa], Capacidad, Estado, CantidadComensales) values (" + Mesa.NroDeMesa + "," + Mesa.Capacidad + ",'" + Mesa.Estado + "'," + Mesa.CantidadComensales + ")";
+                query = @"Insert into Mesa ([Nro_Mesa], Capacidad, Estado, CantidadComensales) values (" + Mesa.ID_Mesa + "," + Mesa.Capacidad + ",'" + Mesa.Status + "'," + Mesa.CantidadComensales + ")";
             }
             Acceso = new ClsDataBase();
             return Acceso.EscribirTransaction(query);
@@ -57,9 +57,9 @@ namespace Mapper
                 {
                     BE_Mesa Mesa = new BE_Mesa();
                     Mesa.Codigo = Convert.ToInt32(row[0].ToString());
-                    Mesa.NroDeMesa = Convert.ToInt32(row[1].ToString());
+                    Mesa.ID_Mesa = row[1].ToString();
                     Mesa.Capacidad = Convert.ToInt32(row[2].ToString());
-                    Mesa.Estado = row[3].ToString();
+                    Mesa.Status = (BE_Mesa.Estado)Enum.Parse(typeof(BE_Mesa.Estado), row[3].ToString());
                     Mesa.CantidadComensales = Convert.ToInt32(row[4].ToString());
                     ListadeMesas.Add(Mesa);
                 }
@@ -84,9 +84,9 @@ namespace Mapper
                 {
                     BE_Mesa Mesa = new BE_Mesa();
                     Mesa.Codigo = Convert.ToInt32(row[0].ToString());
-                    Mesa.NroDeMesa = Convert.ToInt32(row[1].ToString());
+                    Mesa.ID_Mesa = row[1].ToString();
                     Mesa.Capacidad = Convert.ToInt32(row[2].ToString());
-                    Mesa.Estado = row[3].ToString();
+                    Mesa.Status = (BE_Mesa.Estado)Enum.Parse(typeof(BE_Mesa.Estado), row[3].ToString());
                     Mesa.CantidadComensales = Convert.ToInt32(row[4].ToString());
                     ListadeMesas.Add(Mesa);
                 }

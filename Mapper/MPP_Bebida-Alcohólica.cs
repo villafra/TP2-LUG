@@ -24,11 +24,11 @@ namespace Mapper
 
             if (Bebida.Codigo != 0)
             {
-                query = @"Update Bebida set Nombre= '" + Bebida.Nombre + "', Tipo= '" + Bebida.Tipo + "', Presentación= '" + Bebida.Presentación + "', Precio= " + Bebida.CostoUnitario + ", Stock= " + Bebida.Stock + ", [Graduacion Alcoholica]= " + Bebida.GraduaciónAlcoholica + " where Codigo_Bebida= " + Bebida.Codigo;
+                query = @"Update Bebida set Nombre= '" + Bebida.Nombre + "', Tipo= '" + Bebida.Tipo_Bebida.ToString() + "', Presentación= '" + Bebida.Presentación + "', Precio= " + Bebida.CostoUnitario + ", Stock= " + Bebida.Stock + ", [Graduacion Alcoholica]= " + Bebida.GraduaciónAlcoholica + " where Codigo_Bebida= " + Bebida.Codigo;
             }
             else
             {
-                query = @"Insert into Bebida (Nombre, Tipo, Presentación, Precio, Stock, [Graduacion Alcoholica]) values('" + Bebida.Nombre + "','" + Bebida.Tipo + "','" + Bebida.Presentación + "'," + Bebida.CostoUnitario + ",0," + Bebida.GraduaciónAlcoholica + ")";
+                query = @"Insert into Bebida (Nombre, Tipo, Presentación, Precio, Stock, [Graduacion Alcoholica]) values('" + Bebida.Nombre + "','" + Bebida.Tipo_Bebida.ToString() + "','" + Bebida.Presentación + "'," + Bebida.CostoUnitario + ",0," + Bebida.GraduaciónAlcoholica + ")";
             }
             Acceso = new ClsDataBase();
             return Acceso.EscribirTransaction(query);

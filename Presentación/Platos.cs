@@ -34,9 +34,9 @@ namespace Presentación
             try
             {
                 oBE_Plato.Codigo = 0;
-                oBE_Plato.Tipo = ComboTipo.SelectedItem.ToString();
-                oBE_Plato.Nombre = txtNombre.Text;
-                oBE_Plato.Clase= ComboClase.SelectedItem.ToString();
+                //oBE_Plato.Tipo = ComboTipo.SelectedItem.ToString();
+                //oBE_Plato.Nombre = txtNombre.Text;
+                //oBE_Plato.Clase= ComboClase.SelectedItem.ToString();
                 oBE_Plato.CostoUnitario = Convert.ToDecimal(txtCosto.Text);
                 oBE_Plato.Stock = 0;
 
@@ -53,9 +53,9 @@ namespace Presentación
             try
             {
                 oBE_Plato.Codigo = Convert.ToInt32(txtCodigo.Text);
-                oBE_Plato.Tipo = ComboTipo.SelectedItem.ToString();
-                oBE_Plato.Nombre = txtNombre.Text;
-                oBE_Plato.Clase = ComboClase.Text;
+                //oBE_Plato.Tipo = ComboTipo.SelectedItem.ToString();
+                //oBE_Plato.Nombre = txtNombre.Text;
+                //oBE_Plato.Clase = ComboClase.Text;
                 oBE_Plato.CostoUnitario = Convert.ToDecimal(txtCosto.Text);
                 oBE_Plato.Stock = Convert.ToInt32(txtStock.Text);
 
@@ -79,8 +79,8 @@ namespace Presentación
                 oBE_Plato = (BE_Plato)dgvPlatos.SelectedRows[0].DataBoundItem;
                 txtCodigo.Text = oBE_Plato.Codigo.ToString();
                 txtNombre.Text = oBE_Plato.Nombre;
-                ComboTipo.Text = oBE_Plato.Tipo;
-                ComboClase.Text = oBE_Plato.Clase;
+                //ComboTipo.Text = oBE_Plato.Tipo;
+                //ComboClase.Text = oBE_Plato.Clase;
                 txtCosto.Text = oBE_Plato.CostoUnitario.ToString();
                 txtStock.Text = oBE_Plato.Stock.ToString();
                 lblCantidad.Text = oBLL_Plato.PromedioPlatoEnPedido(oBE_Plato).ToString() + "%";

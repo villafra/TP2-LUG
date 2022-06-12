@@ -33,11 +33,11 @@ namespace Mapper
 
             if (Plato.Codigo != 0)
             {
-                query = @"Update Plato set Nombre= '" + Plato.Nombre + "', Tipo= '" + Plato.Tipo + "', Clase= '" + Plato.Clase + "' where Codigo_Plato= " + Plato.Codigo;
+                query = @"Update Plato set Nombre= '" + Plato.Nombre + "', Tipo= '" + Plato.Tipo_Plato.ToString() + "', Clase= '" + Plato.Clasificacion.ToString() + "' where Codigo_Plato= " + Plato.Codigo;
             }
             else
             {
-                query = @"Insert into Plato (Nombre, Tipo, Clase, Costo) values ( '" + Plato.Nombre + "','" + Plato.Tipo + "','" + Plato.Clase + "'," + Plato.CostoUnitario + ")";
+                query = @"Insert into Plato (Nombre, Tipo, Clase, Costo) values ( '" + Plato.Nombre + "','" + Plato.Tipo_Plato.ToString() + "','" + Plato.Clasificacion.ToString() + "'," + Plato.CostoUnitario + ")";
             }
             Acceso = new ClsDataBase();
             return Acceso.EscribirTransaction(query);
@@ -58,8 +58,8 @@ namespace Mapper
                     BE_Plato Plato = new BE_Plato();
                     Plato.Codigo = Convert.ToInt32(row[0].ToString());
                     Plato.Nombre = row[1].ToString();
-                    Plato.Tipo = row[2].ToString();
-                    Plato.Clase = row[3].ToString();
+                    Plato.Tipo_Plato = (BE_Plato.Tipo)Enum.Parse(typeof(BE_Plato.Tipo), row[2].ToString());
+                    Plato.Clasificacion = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), row[3].ToString());
                     if (!(row[4] is DBNull))
                     { Plato.Stock = Convert.ToInt32(row[4].ToString()); }
                     else { Plato.Stock = 0; }
@@ -88,8 +88,8 @@ namespace Mapper
                     BE_Plato Plato = new BE_Plato();
                     Plato.Codigo = Convert.ToInt32(row[3].ToString());
                     Plato.Nombre = row[4].ToString();
-                    Plato.Tipo = row[5].ToString();
-                    Plato.Clase = row[6].ToString();
+                    Plato.Tipo_Plato =  (BE_Plato.Tipo)Enum.Parse(typeof(BE_Plato.Tipo), row[5].ToString());
+                    Plato.Clasificacion = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), row[6].ToString());
                     if (!(row[7] is DBNull))
                     { Plato.Stock = Convert.ToInt32(row[7].ToString()); }
                     else { Plato.Stock = 0; }

@@ -26,11 +26,11 @@ namespace Mapper
 
             if (Bebida.Codigo != 0)
             {
-                query = @"Update Bebida set Nombre= '" + Bebida.Nombre + "', Tipo= '" + Bebida.Tipo + "', Presentación= '" + Bebida.Presentación + "', Precio= " + Bebida.CostoUnitario + ", Stock= " + Bebida.Stock + "where Codigo_Bebida= " + Bebida.Codigo;
+                query = @"Update Bebida set Nombre= '" + Bebida.Nombre + "', Tipo= '" + Bebida.Tipo_Bebida.ToString() + "', Presentación= '" + Bebida.Presentación + "', Precio= " + Bebida.CostoUnitario + ", Stock= " + Bebida.Stock + "where Codigo_Bebida= " + Bebida.Codigo;
             }
             else
             {
-                query = @"Insert into Bebida (Nombre, Tipo, Presentación, Precio,Stock) values('" + Bebida.Nombre + "','" + Bebida.Tipo + "','" + Bebida.Presentación + "'," + Bebida.CostoUnitario + ", 0)";
+                query = @"Insert into Bebida (Nombre, Tipo, Presentación, Precio,Stock) values('" + Bebida.Nombre + "','" + Bebida.Tipo_Bebida + "','" + Bebida.Presentación + "'," + Bebida.CostoUnitario + ", 0)";
             }
             Acceso = new ClsDataBase();
             return Acceso.EscribirTransaction(query);
@@ -54,7 +54,7 @@ namespace Mapper
                     {
                         Bebida.Codigo = Convert.ToInt32(row[0].ToString());
                         Bebida.Nombre = row[1].ToString();
-                        Bebida.Tipo = row[2].ToString();
+                        Bebida.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), row[2].ToString());
                         Bebida.Presentación = row[3].ToString();
                         Bebida.CostoUnitario = Convert.ToDecimal(row[4].ToString());
                         Bebida.Stock = Convert.ToInt32(row[5].ToString());
@@ -64,7 +64,7 @@ namespace Mapper
                     {
                         Bebida_Alcohólica.Codigo = Convert.ToInt32(row[0].ToString());
                         Bebida_Alcohólica.Nombre = row[1].ToString();
-                        Bebida_Alcohólica.Tipo = row[2].ToString();
+                        Bebida_Alcohólica.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), row[2].ToString());
                         Bebida_Alcohólica.Presentación = row[3].ToString();
                         Bebida_Alcohólica.CostoUnitario = Convert.ToDecimal(row[4].ToString());
                         Bebida_Alcohólica.Stock = Convert.ToInt32(row[5].ToString());
@@ -98,7 +98,7 @@ namespace Mapper
                     {
                         Bebida.Codigo = Convert.ToInt32(row[0].ToString());
                         Bebida.Nombre = row[1].ToString();
-                        Bebida.Tipo = row[2].ToString();
+                        Bebida.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), row[2].ToString());
                         Bebida.Presentación = row[3].ToString();
                         Bebida.CostoUnitario = Convert.ToDecimal(row[4].ToString());
                         Bebida.Stock = Convert.ToInt32(row[5].ToString());
@@ -108,7 +108,7 @@ namespace Mapper
                     {
                         Bebida_Alcohólica.Codigo = Convert.ToInt32(row[0].ToString());
                         Bebida_Alcohólica.Nombre = row[1].ToString();
-                        Bebida_Alcohólica.Tipo = row[2].ToString();
+                        Bebida_Alcohólica.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), row[2].ToString());
                         Bebida_Alcohólica.Presentación = row[3].ToString();
                         Bebida_Alcohólica.CostoUnitario = Convert.ToDecimal(row[4].ToString());
                         Bebida_Alcohólica.Stock = Convert.ToInt32(row[5].ToString());

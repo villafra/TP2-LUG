@@ -78,9 +78,9 @@ namespace Mapper
                             {
                                 BE_Mesa Mesa = new BE_Mesa();
                                 Mesa.Codigo = Convert.ToInt32(row1[0].ToString());
-                                Mesa.NroDeMesa = Convert.ToInt32(row1[1].ToString());
+                                Mesa.ID_Mesa = row1[1].ToString();
                                 Mesa.Capacidad = Convert.ToInt32(row1[2].ToString());
-                                Mesa.Estado = row1[3].ToString();
+                                Mesa.Status = (BE_Mesa.Estado)Enum.Parse(typeof(BE_Mesa.Estado), row1[3].ToString());
                                 Mesa.CantidadComensales = Convert.ToInt32(row1[4].ToString());
                                 Reserva.MesaReservada = Mesa;
                             }
@@ -101,7 +101,6 @@ namespace Mapper
                                 Pedido.Observaciones = row2[4].ToString();
                                 Pedido.Monto = Convert.ToDecimal(row2[5].ToString());
                                 Pedido.Activo = Convert.ToBoolean(row2[6].ToString());
-                                Pedido.Cancelado = Convert.ToBoolean(row2[7].ToString());
                                 Reserva.PedidoReservado = Pedido;
                             }
                         }

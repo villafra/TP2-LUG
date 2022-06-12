@@ -38,11 +38,11 @@ namespace Presentación
             try
             {
                 oBE_Mozo.Codigo = 0;
-                oBE_Mozo.DNI = long.Parse(txtDNI.Text);
+                oBE_Mozo.DNI = Int32.Parse(txtDNI.Text);
                 oBE_Mozo.Nombre = txtNombre.Text;
                 oBE_Mozo.Apellido = txtApellido.Text;
                 oBE_Mozo.FechaNacimiento = dtpFechaNacimiento.Value;
-                oBE_Mozo.Edad = oBE_Mozo.DevolverEdad();
+                oBE_Mozo.Edad = oBE_Mozo.CalcularAños(oBE_Mozo.FechaNacimiento);
                 oBE_Mozo.Turno = (BE_Turno)comboTurno.SelectedItem;
                 oBLL_Mozo.Guardar(oBE_Mozo);
 
@@ -58,11 +58,11 @@ namespace Presentación
               try
                 {
                     oBE_Mozo.Codigo = Convert.ToInt32(txtLegajo.Text);   
-                    oBE_Mozo.DNI = long.Parse(txtDNI.Text);
+                    oBE_Mozo.DNI = Int32.Parse(txtDNI.Text);
                     oBE_Mozo.Nombre = txtNombre.Text;
                     oBE_Mozo.Apellido = txtApellido.Text;
                     oBE_Mozo.FechaNacimiento = dtpFechaNacimiento.Value;
-                    oBE_Mozo.Edad = oBE_Mozo.DevolverEdad();
+                    oBE_Mozo.Edad = oBE_Mozo.CalcularAños(oBE_Mozo.FechaNacimiento);
                     oBE_Mozo.Turno = (BE_Turno)comboTurno.SelectedItem;
                     oBLL_Mozo.Guardar(oBE_Mozo);
 
@@ -124,8 +124,7 @@ namespace Presentación
                 dtpFechaNacimiento.Value = oBE_Mozo.FechaNacimiento;
                 txtEdad.Text = oBE_Mozo.Edad.ToString();
                 comboTurno.Text = oBE_Mozo.Turno.NombreTurno;
-                lblPuntuación.Text = oBE_Mozo.Puntuación.ToString();
-                prgBaRanking.Value = Convert.ToInt32(oBE_Mozo.Puntuación);
+                
             }
             catch { }
         }

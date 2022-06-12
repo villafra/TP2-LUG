@@ -42,7 +42,7 @@ namespace Presentación
                 {
                     oBE_Bebida.Codigo = 0;
                     oBE_Bebida.Nombre = txtNombre.Text;
-                    oBE_Bebida.Tipo = comboTipo.SelectedItem.ToString();
+                    //oBE_Bebida.Tipo_Bebida = comboTipo.SelectedItem.ToString();
                     oBE_Bebida.Presentación = txtPresentacion.Text;
                     oBE_Bebida.CostoUnitario = Convert.ToDecimal(txtPrecio.Text);
                     oBE_Bebida.Stock = 0;
@@ -51,7 +51,7 @@ namespace Presentación
                 {
                     oBE_Bebida_Alcohólica.Codigo = 0;
                     oBE_Bebida_Alcohólica.Nombre = txtNombre.Text;
-                    oBE_Bebida_Alcohólica.Tipo = comboTipo.SelectedItem.ToString();
+                    //oBE_Bebida_Alcohólica.Tipo = comboTipo.SelectedItem.ToString();
                     oBE_Bebida_Alcohólica.Presentación = txtPresentacion.Text;
                     oBE_Bebida_Alcohólica.CostoUnitario = Convert.ToDecimal(txtPrecio.Text);
                     oBE_Bebida_Alcohólica.GraduaciónAlcoholica = Convert.ToDecimal(txtABV.Text);
@@ -74,7 +74,7 @@ namespace Presentación
                 {
                     oBE_Bebida.Codigo = Convert.ToInt32(txtCodigo.Text);
                     oBE_Bebida.Nombre = txtNombre.Text;
-                    oBE_Bebida.Tipo = comboTipo.SelectedItem.ToString();
+                    //oBE_Bebida.Tipo = comboTipo.SelectedItem.ToString();
                     oBE_Bebida.Presentación = txtPresentacion.Text;
                     oBE_Bebida.CostoUnitario = Convert.ToDecimal(txtPrecio.Text);
                     oBE_Bebida.Stock = Convert.ToInt32(lblCantidad.Text);
@@ -83,7 +83,7 @@ namespace Presentación
                 {
                     oBE_Bebida_Alcohólica.Codigo = Convert.ToInt32(txtCodigo.Text);
                     oBE_Bebida_Alcohólica.Nombre = txtNombre.Text;
-                    oBE_Bebida_Alcohólica.Tipo = comboTipo.SelectedItem.ToString();
+                    //oBE_Bebida_Alcohólica.Tipo = comboTipo.SelectedItem.ToString();
                     oBE_Bebida_Alcohólica.Presentación = txtPresentacion.Text;
                     oBE_Bebida_Alcohólica.CostoUnitario = Convert.ToDecimal(txtPrecio.Text);
                     oBE_Bebida_Alcohólica.GraduaciónAlcoholica = Convert.ToDecimal(txtABV.Text);
@@ -185,7 +185,7 @@ namespace Presentación
                     txtNombre.Text = oBE_Bebida_Alcohólica.Nombre;
                     txtPrecio.Text = oBE_Bebida_Alcohólica.CostoUnitario.ToString();
                     txtABV.Text = oBE_Bebida_Alcohólica.GraduaciónAlcoholica.ToString();
-                    comboTipo.Text = oBE_Bebida_Alcohólica.Tipo.ToString();
+                    //comboTipo.Text = oBE_Bebida_Alcohólica.Tipo.ToString();
                     txtPresentacion.Text = oBE_Bebida_Alcohólica.Presentación;
                     lblCantidad.Text = oBE_Bebida_Alcohólica.Stock.ToString();
                     prgCantidad.Value = oBE_Bebida_Alcohólica.Stock;
@@ -196,7 +196,7 @@ namespace Presentación
                     txtCodigo.Text = oBE_Bebida.Codigo.ToString();
                     txtNombre.Text = oBE_Bebida.Nombre;
                     txtPrecio.Text = oBE_Bebida.CostoUnitario.ToString();
-                    comboTipo.Text = oBE_Bebida.Tipo.ToString();
+                    //comboTipo.Text = oBE_Bebida.Tipo.ToString();
                     txtPresentacion.Text = oBE_Bebida.Presentación;
                     lblCantidad.Text = oBE_Bebida.Stock.ToString();
                     txtABV.Text = "";

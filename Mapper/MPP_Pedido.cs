@@ -56,7 +56,7 @@ namespace Mapper
                     }
                     Pedido.Monto = Convert.ToDecimal(row[5].ToString());
                     Pedido.Activo = Convert.ToBoolean(row[6].ToString());
-                    Pedido.Cancelado = Convert.ToBoolean(row[7].ToString());
+                   
                     if (!(row[1] is DBNull))
                     {
                         DataSet Ds1;
@@ -68,9 +68,9 @@ namespace Mapper
                             {
                                 BE_Mesa Mesa = new BE_Mesa();
                                 Mesa.Codigo = Convert.ToInt32(row1[0].ToString());
-                                Mesa.NroDeMesa = Convert.ToInt32(row1[1].ToString());
+                                Mesa.ID_Mesa = row1[1].ToString();
                                 Mesa.Capacidad = Convert.ToInt32(row1[2].ToString());
-                                Mesa.Estado = row1[3].ToString();
+                                Mesa.Status = (BE_Mesa.Estado)Enum.Parse(typeof(BE_Mesa.Estado), row1[3].ToString());
                                 Mesa.CantidadComensales = Convert.ToInt32(row1[4].ToString());
                                 Pedido.CodigoMesa = Mesa;
                             }
@@ -92,7 +92,7 @@ namespace Mapper
                                 Mozo.Nombre = row2[2].ToString();
                                 Mozo.Apellido = row2[3].ToString();
                                 Mozo.FechaNacimiento = Convert.ToDateTime(row2[4].ToString());
-                                Mozo.Edad = Mozo.DevolverEdad();
+                                Mozo.Edad = Mozo.CalcularAños(Mozo.FechaNacimiento);
                                 BE_Turno oBE_Turno = new BE_Turno();
                                 oBE_Turno.Codigo = Convert.ToInt32(row2[7].ToString());
                                 oBE_Turno.NombreTurno = row2[8].ToString();
@@ -113,8 +113,8 @@ namespace Mapper
                             BE_Plato Plato = new BE_Plato();
                             Plato.Codigo = Convert.ToInt32(row3[0].ToString());
                             Plato.Nombre = row3[1].ToString();
-                            Plato.Tipo = row3[2].ToString();
-                            Plato.Clase = row3[3].ToString();
+                            Plato.Tipo_Plato = (BE_Plato.Tipo)Enum.Parse(typeof(BE_Plato), row3[2].ToString());
+                            Plato.Clasificacion = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), row3[3].ToString());
                             if (!(row3[4] is DBNull))
                             { Plato.Stock = Convert.ToInt32(row3[4].ToString()); }
                             else { Plato.Stock = 0; }
@@ -135,7 +135,7 @@ namespace Mapper
                             {
                                 Bebida.Codigo = Convert.ToInt32(row4[0].ToString());
                                 Bebida.Nombre = row4[1].ToString();
-                                Bebida.Tipo = row4[2].ToString();
+                                Bebida.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), row4[2].ToString());
                                 Bebida.Presentación = row4[3].ToString();
                                 Bebida.CostoUnitario = Convert.ToDecimal(row4[4].ToString());
                                 Bebida.Stock = Convert.ToInt32(row4[5].ToString());
@@ -145,7 +145,7 @@ namespace Mapper
                             {
                                 Bebida_Alcohólica.Codigo = Convert.ToInt32(row4[0].ToString());
                                 Bebida_Alcohólica.Nombre = row4[1].ToString();
-                                Bebida_Alcohólica.Tipo = row4[2].ToString();
+                                Bebida_Alcohólica.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), row4[2].ToString());
                                 Bebida_Alcohólica.Presentación = row4[3].ToString();
                                 Bebida_Alcohólica.CostoUnitario = Convert.ToDecimal(row4[4].ToString());
                                 Bebida_Alcohólica.Stock = Convert.ToInt32(row4[5].ToString());

@@ -15,16 +15,16 @@ namespace Mapper
         ClsDataBase Acceso;
         public bool Baja(BE_Turno oBE_Turno)
         {
-            if (ExisteMozoenTurno(oBE_Turno) == false)
-            {
-                string query = @"Delete from Turno where [Codigo_Turno]=" + oBE_Turno.Codigo;
-                Acceso = new ClsDataBase();
-                return Acceso.EscribirTransaction(query);
-            }
-            else
-            {
-                return false;
-            }
+            //if (ExisteMozoenTurno(oBE_Turno) == false)
+            //{
+            //    string query = @"Delete from Turno where [Codigo_Turno]=" + oBE_Turno.Codigo;
+            //    Acceso = new ClsDataBase();
+            //    return Acceso.EscribirTransaction(query);
+            //}
+            //else
+            //{
+            return false;
+            //}
         }
 
         public bool Guardar(BE_Turno Turno)
@@ -78,19 +78,19 @@ namespace Mapper
             Ds = Acceso.DevolverListado(query);
             if (Ds.Tables[0].Rows.Count > 0)
             {
-                Obe_Turno.Mozos.Clear();
-                foreach (DataRow row in Ds.Tables[0].Rows)
-                {
-                    BE_Mozo Mozo = new BE_Mozo();
-                    Mozo.Codigo = Convert.ToInt32(row[4].ToString());
-                    Mozo.DNI = long.Parse(row[5].ToString());
-                    Mozo.Nombre = row[6].ToString();
-                    Mozo.Apellido = row[7].ToString();
-                    Mozo.FechaNacimiento = Convert.ToDateTime(row[8].ToString());
-                    Mozo.Edad = Mozo.DevolverEdad();
-                    Mozo.Turno = Obe_Turno;
-                    Obe_Turno.Mozos.Add(Mozo);
-                }
+                //Obe_Turno.Mozos.Clear();
+                //foreach (DataRow row in Ds.Tables[0].Rows)
+                //{
+                //    BE_Mozo Mozo = new BE_Mozo();
+                //    Mozo.Codigo = Convert.ToInt32(row[4].ToString());
+                //    Mozo.DNI = long.Parse(row[5].ToString());
+                //    Mozo.Nombre = row[6].ToString();
+                //    Mozo.Apellido = row[7].ToString();
+                //    Mozo.FechaNacimiento = Convert.ToDateTime(row[8].ToString());
+                //    Mozo.Edad = Mozo.DevolverEdad();
+                //    Mozo.Turno = Obe_Turno;
+                //    Obe_Turno.Mozos.Add(Mozo);
+                //}
             }
             return Obe_Turno;
         }

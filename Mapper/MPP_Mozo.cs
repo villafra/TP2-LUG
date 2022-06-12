@@ -31,7 +31,7 @@ namespace Mapper
 
             if (Mozo.Codigo != 0)
             {
-                query = @"Update Mozo set DNI= " + Mozo.DNI + ", Nombre= '" + Mozo.Nombre + "', Apellido= '" + Mozo.Apellido + "', [Fecha Nacimiento]= '" + Mozo.FechaNacimiento + "', [Codigo_Turno]= " + Mozo.Turno.Codigo + ", Puntuacion= " + Mozo.Puntuación + "where [Legajo]= " + Mozo.Codigo;
+                query = @"Update Mozo set DNI= " + Mozo.DNI + ", Nombre= '" + Mozo.Nombre + "', Apellido= '" + Mozo.Apellido + "', [Fecha Nacimiento]= '" + Mozo.FechaNacimiento + "', [Codigo_Turno]= " + Mozo.Turno.Codigo + " where [Legajo]= " + Mozo.Codigo;
             }
             else
             {
@@ -64,7 +64,7 @@ namespace Mapper
                     Mozo.Nombre = row[2].ToString();
                     Mozo.Apellido = row[3].ToString();
                     Mozo.FechaNacimiento = Convert.ToDateTime(row[4].ToString());
-                    Mozo.Edad = Mozo.DevolverEdad();
+                    Mozo.Edad = Mozo.CalcularAños(Mozo.FechaNacimiento);
                     BE_Turno oBE_Turno = new BE_Turno();
                     oBE_Turno.Codigo = Convert.ToInt32(row[7].ToString());
                     oBE_Turno.NombreTurno = row[8].ToString();
