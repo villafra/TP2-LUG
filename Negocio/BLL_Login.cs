@@ -37,13 +37,26 @@ namespace BLL
             throw new NotImplementedException();
         }
 
-        private void EncriptarPass(string pass)
+        public string EncriptarPass(string pass)
         {
-            Encriptacion.EncriptarPass(pass);
+            return Encriptacion.EncriptarPass(pass);
         }
-        private void DesencriptarPass(string pass)
+        public string DesencriptarPass(string pass)
         {
-            Encriptacion.DesencriptarPass(pass);
+            return Encriptacion.DesencriptarPass(pass);
+        }
+
+        public string GenerarUsuario(BE_Empleado empleado)
+        {
+            string nombre, apellido;
+            nombre = empleado.Nombre.Substring(1, 5);
+            apellido = empleado.Apellido.Substring(1, 3);
+            return nombre.PadRight(5, '1') + apellido.PadRight(3, '1');
+        }
+        public string AutoGenerarPass()
+        {
+            Random rand = new Random(12);
+            return EncriptarPass(rand.Next().ToString());
         }
     }
 }

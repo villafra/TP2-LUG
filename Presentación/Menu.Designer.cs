@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenu));
             this.ListaImagenes = new System.Windows.Forms.ImageList(this.components);
             this.panelMenuIzq = new System.Windows.Forms.Panel();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.btnPedidos = new System.Windows.Forms.Button();
             this.btnInformes = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -41,14 +42,14 @@
             this.mStripMenu = new System.Windows.Forms.MenuStrip();
             this.principalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.MesasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MozosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TurnosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PlatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BebidasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.panelMenuIzq.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picboxPanel)).BeginInit();
             this.mStripMenu.SuspendLayout();
@@ -63,9 +64,11 @@
             this.ListaImagenes.Images.SetKeyName(2, "reserva.png");
             this.ListaImagenes.Images.SetKeyName(3, "logout.png");
             this.ListaImagenes.Images.SetKeyName(4, "restaurant.png");
+            this.ListaImagenes.Images.SetKeyName(5, "Picture2.png");
             // 
             // panelMenuIzq
             // 
+            this.panelMenuIzq.Controls.Add(this.btnLogin);
             this.panelMenuIzq.Controls.Add(this.btnPedidos);
             this.panelMenuIzq.Controls.Add(this.btnInformes);
             this.panelMenuIzq.Controls.Add(this.btnSalir);
@@ -77,6 +80,19 @@
             this.panelMenuIzq.Name = "panelMenuIzq";
             this.panelMenuIzq.Size = new System.Drawing.Size(260, 625);
             this.panelMenuIzq.TabIndex = 0;
+            // 
+            // btnLogin
+            // 
+            this.btnLogin.ImageIndex = 5;
+            this.btnLogin.ImageList = this.ListaImagenes;
+            this.btnLogin.Location = new System.Drawing.Point(26, 460);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(204, 54);
+            this.btnLogin.TabIndex = 16;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // btnPedidos
             // 
@@ -186,9 +202,18 @@
             this.toolStripMenuItem1.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(224, 28);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(213, 28);
             this.toolStripMenuItem1.Text = "Menu Principal";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.toolStripMenuItem3.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripMenuItem3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(213, 28);
+            this.toolStripMenuItem3.Text = "Usuarios";
             // 
             // toolStripMenuItem2
             // 
@@ -196,9 +221,14 @@
             this.toolStripMenuItem2.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripMenuItem2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(224, 28);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 28);
             this.toolStripMenuItem2.Text = "Salir";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(210, 6);
             // 
             // MesasToolStripMenuItem
             // 
@@ -234,20 +264,6 @@
             this.BebidasToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
             this.BebidasToolStripMenuItem.Text = "Bebidas";
             this.BebidasToolStripMenuItem.Click += new System.EventHandler(this.BebidasToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.toolStripMenuItem3.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripMenuItem3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(224, 28);
-            this.toolStripMenuItem3.Text = "Usuarios";
             // 
             // frmMenu
             // 
@@ -291,5 +307,6 @@
         private System.Windows.Forms.Button btnPedidos;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.Button btnLogin;
     }
 }

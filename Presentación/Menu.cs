@@ -176,6 +176,22 @@ namespace Presentación
             }
         }
 
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmUsuarios);
+            if (frm != null)
+            {
+
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmUsuarios();
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+
 
         //private void btnInformes_Click(object sender, EventArgs e)
         //{

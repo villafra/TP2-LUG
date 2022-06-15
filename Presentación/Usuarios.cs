@@ -18,10 +18,13 @@ namespace Presentación
     {
         BLL_Login oBLL_Login;
         BE_Login oBE_Login;
+        BE_Empleado oBE_Empleado;
+        BLL_Mozo oBLL_Mozo;
         public frmUsuarios()
         {
             InitializeComponent();
             oBLL_Login = new BLL_Login();
+            oBLL_Mozo = new BLL_Mozo();
             ActualizarListado();
             Aspecto.FormatearDGV(dgvUsuarios);
             Aspecto.FormatearGRP(grpUsuarios);
@@ -31,8 +34,8 @@ namespace Presentación
         {
             try
             {
-              
-
+                oBE_Login = new BE_Login(oBE_Empleado, oBLL_Login.GenerarUsuario(oBE_Empleado), oBLL_Login.AutoGenerarPass());
+                oBLL_Login.Guardar(oBE_Login);
             }
             catch (Exception ex)
             {
@@ -44,8 +47,7 @@ namespace Presentación
         {
             try
             {
-                
-
+                oBE_Login = new BE_Login(Int32.Parse(txtCodigo.Text), oBE_Empleado, txtUsuario.Text, txtPass.Text, Int32.Parse(lblCantidad.Text));
             }
             catch (Exception ex)
             {
@@ -55,16 +57,24 @@ namespace Presentación
         }
         private void ActualizarListado()
         {
-            Calculos.RefreshGrilla(dgvUsuarios, oBLL_Login.Listar());
-            Aspecto.DGVTurnos(dgvUsuarios);
+            //Calculos.RefreshGrilla(dgvUsuarios, oBLL_Login.Listar());
+            //Calculos.RefreshGrilla(dgvUsuarios, oBLL_Mozo.Listartodo());
+            //Aspecto.DGVTurnos(dgvUsuarios);
         }
 
-        private void dgvTurnos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+            oBE_Login = (BE_Login)dgvUsuarios.CurrentRow.DataBoundItem;
+            txtCodigo.Text = oBE_Login.Codigo.ToString();
+            txtUsuario.Text = oBE_Login.Usuario;
+            txtPass.Text = oBE_Login.Password;
+            txtLegajo.Text = oBE_Login.Empleado.Codigo.ToString();
+            txtNombre.Text = oBE_Login.Empleado.Nombre;
+            txtApellido.Text = oBE_Login.Empleado.Apellido;
+            lblCantidad.Text = oBE_Login.CantidadIntentos.ToString();
         }
 
-        private void btnNuevoTurno_Click(object sender, EventArgs e)
+        private void btnNuevoUser_Click(object sender, EventArgs e)
         {
             try
             {
@@ -80,7 +90,7 @@ namespace Presentación
             }
         }
 
-        private void btnModificarTurno_Click(object sender, EventArgs e)
+        private void btnEditUser_Click(object sender, EventArgs e)
         {
             try
             {
@@ -96,7 +106,7 @@ namespace Presentación
             }
         }
 
-        private void btnEliminarTurno_Click(object sender, EventArgs e)
+        private void btnEliminarUser_Click(object sender, EventArgs e)
         {
             Viejo();
             if (Calculos.EstaSeguro("Eliminar", oBE_Login.Codigo, oBE_Login.ToString()))
@@ -112,6 +122,11 @@ namespace Presentación
                 }
 
             }
+        }
+
+        private void dgvEmpleados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            oBE_Empleado = (BE_Empleado)dgvEmpleados.CurrentRow.DataBoundItem;
         }
     }
 }

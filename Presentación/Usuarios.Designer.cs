@@ -30,9 +30,9 @@
         {
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.grpUsuarios = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtPass = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.lblApellido = new System.Windows.Forms.Label();
@@ -43,10 +43,12 @@
             this.lblCantidad = new System.Windows.Forms.Label();
             this.prgCantidad = new System.Windows.Forms.ProgressBar();
             this.lblCantMozos = new System.Windows.Forms.Label();
-            this.btnEliminarTurno = new System.Windows.Forms.Button();
-            this.btnModificarTurno = new System.Windows.Forms.Button();
-            this.btnNuevoTurno = new System.Windows.Forms.Button();
             this.dgvEmpleados = new System.Windows.Forms.DataGridView();
+            this.btnEliminarUser = new System.Windows.Forms.Button();
+            this.btnEditUser = new System.Windows.Forms.Button();
+            this.btnNuevoUser = new System.Windows.Forms.Button();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.grpUsuarios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
@@ -64,13 +66,15 @@
             this.dgvUsuarios.RowTemplate.Height = 24;
             this.dgvUsuarios.Size = new System.Drawing.Size(398, 254);
             this.dgvUsuarios.TabIndex = 0;
-            this.dgvUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTurnos_CellContentClick);
+            this.dgvUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellContentClick);
             // 
             // grpUsuarios
             // 
-            this.grpUsuarios.Controls.Add(this.textBox2);
+            this.grpUsuarios.Controls.Add(this.txtCodigo);
+            this.grpUsuarios.Controls.Add(this.label3);
+            this.grpUsuarios.Controls.Add(this.txtPass);
             this.grpUsuarios.Controls.Add(this.label2);
-            this.grpUsuarios.Controls.Add(this.textBox1);
+            this.grpUsuarios.Controls.Add(this.txtUsuario);
             this.grpUsuarios.Controls.Add(this.label1);
             this.grpUsuarios.Controls.Add(this.txtApellido);
             this.grpUsuarios.Controls.Add(this.lblApellido);
@@ -88,39 +92,39 @@
             this.grpUsuarios.TabStop = false;
             this.grpUsuarios.Text = "Turnos";
             // 
-            // textBox2
+            // txtPass
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(347, 63);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(99, 22);
-            this.textBox2.TabIndex = 28;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox2.UseSystemPasswordChar = true;
+            this.txtPass.Enabled = false;
+            this.txtPass.Location = new System.Drawing.Point(412, 64);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.PasswordChar = '*';
+            this.txtPass.Size = new System.Drawing.Size(148, 22);
+            this.txtPass.TabIndex = 28;
+            this.txtPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPass.UseSystemPasswordChar = true;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(344, 33);
+            this.label2.Location = new System.Drawing.Point(409, 34);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 16);
             this.label2.TabIndex = 27;
             this.label2.Text = "Password";
             // 
-            // textBox1
+            // txtUsuario
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(205, 63);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(99, 22);
-            this.textBox1.TabIndex = 26;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtUsuario.Enabled = false;
+            this.txtUsuario.Location = new System.Drawing.Point(203, 64);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(125, 22);
+            this.txtUsuario.TabIndex = 26;
+            this.txtUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(202, 33);
+            this.label1.Location = new System.Drawing.Point(200, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 16);
             this.label1.TabIndex = 25;
@@ -128,7 +132,7 @@
             // 
             // txtApellido
             // 
-            this.txtApellido.Location = new System.Drawing.Point(250, 143);
+            this.txtApellido.Location = new System.Drawing.Point(412, 143);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(148, 22);
             this.txtApellido.TabIndex = 24;
@@ -137,7 +141,7 @@
             // lblApellido
             // 
             this.lblApellido.AutoSize = true;
-            this.lblApellido.Location = new System.Drawing.Point(247, 113);
+            this.lblApellido.Location = new System.Drawing.Point(409, 113);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(57, 16);
             this.lblApellido.TabIndex = 23;
@@ -145,7 +149,7 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(41, 143);
+            this.txtNombre.Location = new System.Drawing.Point(203, 143);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(148, 22);
             this.txtNombre.TabIndex = 22;
@@ -154,7 +158,7 @@
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(38, 113);
+            this.lblNombre.Location = new System.Drawing.Point(200, 113);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(56, 16);
             this.lblNombre.TabIndex = 21;
@@ -163,7 +167,7 @@
             // txtLegajo
             // 
             this.txtLegajo.Enabled = false;
-            this.txtLegajo.Location = new System.Drawing.Point(41, 63);
+            this.txtLegajo.Location = new System.Drawing.Point(32, 143);
             this.txtLegajo.Name = "txtLegajo";
             this.txtLegajo.Size = new System.Drawing.Size(99, 22);
             this.txtLegajo.TabIndex = 20;
@@ -172,7 +176,7 @@
             // lblLegajo
             // 
             this.lblLegajo.AutoSize = true;
-            this.lblLegajo.Location = new System.Drawing.Point(38, 33);
+            this.lblLegajo.Location = new System.Drawing.Point(29, 113);
             this.lblLegajo.Name = "lblLegajo";
             this.lblLegajo.Size = new System.Drawing.Size(49, 16);
             this.lblLegajo.TabIndex = 19;
@@ -207,51 +211,6 @@
             this.lblCantMozos.Text = "Cantidad de \r\nMozos En Turno";
             this.lblCantMozos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnEliminarTurno
-            // 
-            this.btnEliminarTurno.BackgroundImage = global::Presentación.Properties.Resources.Picture11;
-            this.btnEliminarTurno.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnEliminarTurno.FlatAppearance.BorderSize = 0;
-            this.btnEliminarTurno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarTurno.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarTurno.ForeColor = System.Drawing.Color.Gold;
-            this.btnEliminarTurno.Location = new System.Drawing.Point(738, 504);
-            this.btnEliminarTurno.Name = "btnEliminarTurno";
-            this.btnEliminarTurno.Size = new System.Drawing.Size(100, 93);
-            this.btnEliminarTurno.TabIndex = 4;
-            this.btnEliminarTurno.UseVisualStyleBackColor = true;
-            this.btnEliminarTurno.Click += new System.EventHandler(this.btnEliminarTurno_Click);
-            // 
-            // btnModificarTurno
-            // 
-            this.btnModificarTurno.BackgroundImage = global::Presentación.Properties.Resources.Picture12;
-            this.btnModificarTurno.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnModificarTurno.FlatAppearance.BorderSize = 0;
-            this.btnModificarTurno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificarTurno.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificarTurno.ForeColor = System.Drawing.Color.Gold;
-            this.btnModificarTurno.Location = new System.Drawing.Point(373, 504);
-            this.btnModificarTurno.Name = "btnModificarTurno";
-            this.btnModificarTurno.Size = new System.Drawing.Size(100, 93);
-            this.btnModificarTurno.TabIndex = 3;
-            this.btnModificarTurno.UseVisualStyleBackColor = true;
-            this.btnModificarTurno.Click += new System.EventHandler(this.btnModificarTurno_Click);
-            // 
-            // btnNuevoTurno
-            // 
-            this.btnNuevoTurno.BackgroundImage = global::Presentación.Properties.Resources.Picture10;
-            this.btnNuevoTurno.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnNuevoTurno.FlatAppearance.BorderSize = 0;
-            this.btnNuevoTurno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNuevoTurno.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoTurno.ForeColor = System.Drawing.Color.Gold;
-            this.btnNuevoTurno.Location = new System.Drawing.Point(12, 504);
-            this.btnNuevoTurno.Name = "btnNuevoTurno";
-            this.btnNuevoTurno.Size = new System.Drawing.Size(100, 93);
-            this.btnNuevoTurno.TabIndex = 2;
-            this.btnNuevoTurno.UseVisualStyleBackColor = true;
-            this.btnNuevoTurno.Click += new System.EventHandler(this.btnNuevoTurno_Click);
-            // 
             // dgvEmpleados
             // 
             this.dgvEmpleados.AllowUserToAddRows = false;
@@ -264,6 +223,70 @@
             this.dgvEmpleados.RowTemplate.Height = 24;
             this.dgvEmpleados.Size = new System.Drawing.Size(398, 254);
             this.dgvEmpleados.TabIndex = 5;
+            this.dgvEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpleados_CellContentClick);
+            // 
+            // btnEliminarUser
+            // 
+            this.btnEliminarUser.BackgroundImage = global::Presentación.Properties.Resources.Picture41;
+            this.btnEliminarUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEliminarUser.FlatAppearance.BorderSize = 0;
+            this.btnEliminarUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminarUser.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarUser.ForeColor = System.Drawing.Color.Gold;
+            this.btnEliminarUser.Location = new System.Drawing.Point(738, 504);
+            this.btnEliminarUser.Name = "btnEliminarUser";
+            this.btnEliminarUser.Size = new System.Drawing.Size(100, 93);
+            this.btnEliminarUser.TabIndex = 4;
+            this.btnEliminarUser.UseVisualStyleBackColor = true;
+            this.btnEliminarUser.Click += new System.EventHandler(this.btnEliminarUser_Click);
+            // 
+            // btnEditUser
+            // 
+            this.btnEditUser.BackgroundImage = global::Presentación.Properties.Resources.Picture61;
+            this.btnEditUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEditUser.FlatAppearance.BorderSize = 0;
+            this.btnEditUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditUser.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditUser.ForeColor = System.Drawing.Color.Gold;
+            this.btnEditUser.Location = new System.Drawing.Point(373, 504);
+            this.btnEditUser.Name = "btnEditUser";
+            this.btnEditUser.Size = new System.Drawing.Size(100, 93);
+            this.btnEditUser.TabIndex = 3;
+            this.btnEditUser.UseVisualStyleBackColor = true;
+            this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click);
+            // 
+            // btnNuevoUser
+            // 
+            this.btnNuevoUser.BackgroundImage = global::Presentación.Properties.Resources.Picture31;
+            this.btnNuevoUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNuevoUser.FlatAppearance.BorderSize = 0;
+            this.btnNuevoUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNuevoUser.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoUser.ForeColor = System.Drawing.Color.Gold;
+            this.btnNuevoUser.Location = new System.Drawing.Point(12, 504);
+            this.btnNuevoUser.Name = "btnNuevoUser";
+            this.btnNuevoUser.Size = new System.Drawing.Size(100, 93);
+            this.btnNuevoUser.TabIndex = 2;
+            this.btnNuevoUser.UseVisualStyleBackColor = true;
+            this.btnNuevoUser.Click += new System.EventHandler(this.btnNuevoUser_Click);
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.Enabled = false;
+            this.txtCodigo.Location = new System.Drawing.Point(32, 64);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(99, 22);
+            this.txtCodigo.TabIndex = 30;
+            this.txtCodigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(29, 34);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 16);
+            this.label3.TabIndex = 29;
+            this.label3.Text = "Codigo";
             // 
             // frmUsuarios
             // 
@@ -271,9 +294,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 609);
             this.Controls.Add(this.dgvEmpleados);
-            this.Controls.Add(this.btnEliminarTurno);
-            this.Controls.Add(this.btnModificarTurno);
-            this.Controls.Add(this.btnNuevoTurno);
+            this.Controls.Add(this.btnEliminarUser);
+            this.Controls.Add(this.btnEditUser);
+            this.Controls.Add(this.btnNuevoUser);
             this.Controls.Add(this.grpUsuarios);
             this.Controls.Add(this.dgvUsuarios);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -294,12 +317,12 @@
         private System.Windows.Forms.Label lblCantMozos;
         private System.Windows.Forms.ProgressBar prgCantidad;
         private System.Windows.Forms.Label lblCantidad;
-        private System.Windows.Forms.Button btnNuevoTurno;
-        private System.Windows.Forms.Button btnModificarTurno;
-        private System.Windows.Forms.Button btnEliminarTurno;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button btnNuevoUser;
+        private System.Windows.Forms.Button btnEditUser;
+        private System.Windows.Forms.Button btnEliminarUser;
+        private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.Label lblApellido;
@@ -308,5 +331,7 @@
         private System.Windows.Forms.TextBox txtLegajo;
         private System.Windows.Forms.Label lblLegajo;
         private System.Windows.Forms.DataGridView dgvEmpleados;
+        private System.Windows.Forms.TextBox txtCodigo;
+        private System.Windows.Forms.Label label3;
     }
 }
