@@ -50,7 +50,6 @@
     <Compile Include="MPP_Bebida.cs" />
     <Compile Include="MPP_Mesa.cs" />
     <Compile Include="MPP_Plato.cs" />
-    <Compile Include="MPP_Empleado.cs" />
     <Compile Include="MPP_Mozo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -11,7 +11,7 @@ using Mapper;
 
 namespace BLL
 {
-    public class BLL_Mozo : BLL_Empleado
+    public class BLL_Mozo : BLL_Empleado,IGestionable<BE_Mozo>
     {
         MPP_Mozo oMPP_Mozo;
 
@@ -19,33 +19,35 @@ namespace BLL
         {
             oMPP_Mozo = new MPP_Mozo();
         }
-        public override bool Baja(BE_Empleado Mozo)
-        {
-            return oMPP_Mozo.Baja(Mozo);
-        }
 
-        public override decimal DevolverPuntuación()
-        {
-            return oMPP_Mozo.DevolverPuntuacion();
-        }
-
-        public override bool Guardar(BE_Empleado Mozo)
-        {
-            return oMPP_Mozo.Guardar(Mozo);
-        }
-
-        public override List<BE_Empleado> Listar()
-        {
-            return oMPP_Mozo.Listar();
-        }
-        public List<BE_Mozo> ListarMozos()
-        {
-            return oMPP_Mozo.ListarMozos();
-        }
-        public override BE_Empleado ListarObjeto(BE_Empleado Mozo)
+        public bool Baja(BE_Mozo oBEE_Mozo)
         {
             throw new NotImplementedException();
         }
 
+        public decimal DevolverPuntuación()
+        {
+            return oMPP_Mozo.DevolverPuntuacion();
+        }
+
+        public bool Guardar(BE_Mozo oBEE_Mozo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<BE_Mozo> Listar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public BE_Mozo ListarObjeto(BE_Mozo oBEE_Mozo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<BE_Mozo> Listartodo()
+        {
+            return oMPP_Mozo.Listar();
+        }
     }
 }

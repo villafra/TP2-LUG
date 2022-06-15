@@ -9,40 +9,26 @@ using Abstracción;
 
 namespace Mapper
 {
-    public class MPP_Cocina : MPP_Empleado
+    public class MPP_Cocina : IGestionable<BE_Cocina>
     {
-
-        public override bool Baja(BE_Empleado Cocina)
+        public bool Baja(BE_Cocina Objeto)
         {
             throw new NotImplementedException();
         }
 
-        public override decimal DevolverPuntuacion()
+        public bool Guardar(BE_Cocina Objeto)
         {
             throw new NotImplementedException();
         }
 
-
-
-        public override bool Guardar(BE_Empleado Cocina)
+        public List<BE_Cocina> Listar()
         {
             throw new NotImplementedException();
         }
 
-        public List<BE_Cocina> ListarCocinas()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override List<BE_Empleado> Listar()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override BE_Empleado ListarObjeto(BE_Empleado Cocina)
+        public BE_Cocina ListarObjeto(BE_Cocina Objeto)
         {
             throw new NotImplementedException();
         }
     }
-
 }

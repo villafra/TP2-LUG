@@ -10,22 +10,22 @@ using System.Data;
 
 namespace Mapper
 {
-    public class MPP_Mozo : MPP_Empleado
+    public class MPP_Mozo : IGestionable<BE_Mozo>
     {
         ClsDataBase Acceso;
-        public override bool Baja(BE_Empleado oBE_Mozo)
+        public bool Baja(BE_Mozo oBE_Mozo)
         {
             string query = @"Delete from Mozo where [Legajo]=" + oBE_Mozo.Codigo;
             Acceso = new ClsDataBase();
             return Acceso.EscribirTransaction(query);
         }
 
-        public override decimal DevolverPuntuacion()
+        public decimal DevolverPuntuacion()
         {
             throw new NotImplementedException();
         }
 
-        public override bool Guardar(BE_Empleado Mozo)
+        public bool Guardar(BE_Mozo Mozo)
         {
             string query;
 
@@ -41,12 +41,7 @@ namespace Mapper
             return Acceso.EscribirTransaction(query);
         }
 
-        public override List<BE_Empleado> Listar()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<BE_Mozo> ListarMozos()
+        public List<BE_Mozo> Listar()
         {
             Acceso = new ClsDataBase();
             DataSet Ds;
@@ -56,7 +51,7 @@ namespace Mapper
 
             if (Ds.Tables[0].Rows.Count > 0)
             {
-                foreach(DataRow row in Ds.Tables[0].Rows)
+                foreach (DataRow row in Ds.Tables[0].Rows)
                 {
                     BE_Mozo Mozo = new BE_Mozo();
                     Mozo.Codigo = Convert.ToInt32(row[0].ToString());
@@ -81,12 +76,17 @@ namespace Mapper
             return ListadeMozos;
         }
 
+        public List<BE_Empleado> ListarTodo()
+        {
+            throw new NotImplementedException();
+        }
+
         public BE_Mozo ListarObjeto(BE_Mozo Objeto)
         {
             throw new NotImplementedException();
         }
 
-        public override BE_Empleado ListarObjeto(BE_Empleado Objeto)
+        public BE_Empleado ListarObjeto(BE_Empleado Objeto)
         {
             throw new NotImplementedException();
         }
