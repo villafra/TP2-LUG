@@ -17,7 +17,7 @@ namespace Mapper
         {
             string query = @"Delete from Mozo where [Legajo]=" + oBE_Mozo.Codigo;
             Acceso = new ClsDataBase();
-            return Acceso.EscribirTransaction(query);
+            throw new NotImplementedException();
         }
 
         public decimal DevolverPuntuacion()
@@ -38,7 +38,7 @@ namespace Mapper
                 query = @"Insert into Mozo (DNI, Nombre, Apellido, [Fecha Nacimiento], [Codigo_Turno]) values (" + Mozo.DNI + ",'" + Mozo.Nombre + "','" + Mozo.Apellido + "','" + Mozo.FechaNacimiento.ToString("yyyy-MM-dd") + "'," + Mozo.Turno.Codigo + ")";
             }
             Acceso = new ClsDataBase();
-            return Acceso.EscribirTransaction(query);
+            throw new NotImplementedException();
         }
 
         public List<BE_Mozo> Listar()
@@ -46,7 +46,7 @@ namespace Mapper
             Acceso = new ClsDataBase();
             DataSet Ds;
             string query = @"Select * from Mozo,Turno where Mozo.Codigo_Turno=Turno.Codigo_Turno";
-            Ds = Acceso.DevolverListado(query);
+            throw new NotImplementedException();
             List<BE_Mozo> ListadeMozos = new List<BE_Mozo>();
 
             if (Ds.Tables[0].Rows.Count > 0)

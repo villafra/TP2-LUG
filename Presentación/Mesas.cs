@@ -33,9 +33,9 @@ namespace Presentación
             try
             {
                 oBE_Mesa.Codigo = 0;
-                //oBE_Mesa.NroDeMesa = Convert.ToInt32(txtNumeroMesa.Text);
-                //oBE_Mesa.Capacidad = Convert.ToInt32(txtCapacidad.Text);
-                //oBE_Mesa.Estado = VerChecked(rdbDisponible, RdbOcupada, rdbReservada).Text;
+                oBE_Mesa.ID_Mesa = txtNumeroMesa.Text;
+                oBE_Mesa.Capacidad = Convert.ToInt32(txtCapacidad.Text);
+                oBE_Mesa.Status = VerChecked(rdbDisponible, RdbOcupada, rdbReservada);
                 oBE_Mesa.CantidadComensales = 0;
 
 
@@ -51,9 +51,9 @@ namespace Presentación
             try
             {
                 oBE_Mesa.Codigo = Convert.ToInt32(txtCodigoMesa.Text);
-                //oBE_Mesa.NroDeMesa = Convert.ToInt32(txtNumeroMesa.Text);
-                //oBE_Mesa.Capacidad = Convert.ToInt32(txtCapacidad.Text);
-                //oBE_Mesa.Estado = VerChecked(rdbDisponible, RdbOcupada, rdbReservada).Text;
+                oBE_Mesa.ID_Mesa = txtNumeroMesa.Text;
+                oBE_Mesa.Capacidad = Convert.ToInt32(txtCapacidad.Text);
+                oBE_Mesa.Status = VerChecked(rdbDisponible, RdbOcupada, rdbReservada);
                 oBE_Mesa.CantidadComensales = prgBarOcupación.Value;
 
             }
@@ -66,22 +66,22 @@ namespace Presentación
         private void ActualizarListado()
         {
             Calculos.RefreshGrilla(dgvMesas, oBLL_Mesa.Listar());
-            Aspecto.DGVMesas(dgvMesas);
+            //Aspecto.DGVMesas(dgvMesas);
         }
 
-        private RadioButton VerChecked(RadioButton rdbDisponible, RadioButton RdbOcupada, RadioButton rdbReservada)
+        private BE_Mesa.Estado VerChecked(RadioButton rdbDisponible, RadioButton RdbOcupada, RadioButton rdbReservada)
         {
             if (rdbDisponible.Checked == true)
             {
-                return rdbDisponible;
+                return BE_Mesa.Estado.Libre;
             }
             else if (RdbOcupada.Checked == true)
             {
-                return RdbOcupada;
+                return BE_Mesa.Estado.Ocupada;
             }
             else
             {
-                return rdbReservada;
+                return BE_Mesa.Estado.Reservada;
             }
         }
 
@@ -141,20 +141,20 @@ namespace Presentación
             {
                 oBE_Mesa = (BE_Mesa)dgvMesas.SelectedRows[0].DataBoundItem;
                 txtCodigoMesa.Text = oBE_Mesa.Codigo.ToString();
-                //txtNumeroMesa.Text = oBE_Mesa.NroDeMesa.ToString();
-                //txtCapacidad.Text = oBE_Mesa.Capacidad.ToString();
-                //if (oBE_Mesa.Estado == "Disponible")
-                //{
-                //    rdbDisponible.Checked = true;
-                //}
-                //else if (oBE_Mesa.Estado == "Ocupada")
-                //{
-                //    RdbOcupada.Checked = true;
-                //}
-                //else
-                //{
-                //    rdbDisponible.Checked = true;
-                //}
+                txtNumeroMesa.Text = oBE_Mesa.ID_Mesa;
+                txtCapacidad.Text = oBE_Mesa.Capacidad.ToString();
+                if (oBE_Mesa.Status.ToString() == "Libre")
+                {
+                    rdbDisponible.Checked = true;
+                }
+                else if (oBE_Mesa.Status.ToString() == "Ocupada")
+                {
+                    RdbOcupada.Checked = true;
+                }
+                else
+                {
+                    rdbDisponible.Checked = true;
+                }
                 lblPorcentaje.Text = (Math.Round((double)oBE_Mesa.CantidadComensales / oBE_Mesa.Capacidad * 100, 1)).ToString() + "%";
                 prgBarOcupación.Maximum = oBE_Mesa.Capacidad;
                 prgBarOcupación.Value = oBE_Mesa.CantidadComensales;

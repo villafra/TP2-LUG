@@ -19,7 +19,7 @@ namespace Mapper
             query[0] = @"update Pedido set Activo = 0, Cancelado = 1 where Codigo_Pedido = " + oBE_Pedido.Codigo;
             query[1] = @"update Mesa set Estado='Disponible', CantidadComensales=0 where Nro_Mesa= " + oBE_Pedido.CodigoMesa.Codigo;
             Acceso = new ClsDataBase();
-            return Acceso.EscribirTransaction(query);
+            throw new NotImplementedException();
         }
 
         public bool Guardar(BE_Pedido oBE_Pedido)
@@ -28,7 +28,7 @@ namespace Mapper
             query[0] = @"update Pedido set Activo = 0 where Codigo_Pedido = " + oBE_Pedido.Codigo;
             query[1] = @"update Mesa set Estado='Disponible', CantidadComensales=0 where Nro_Mesa= " + oBE_Pedido.CodigoMesa.Codigo;
             Acceso = new ClsDataBase();
-            return Acceso.EscribirTransaction(query);
+            throw new NotImplementedException();
         }
 
         public List<BE_Pedido> Listar()
@@ -36,7 +36,7 @@ namespace Mapper
             Acceso = new ClsDataBase();
             DataSet Ds;
             string query = @"Select * from Pedido where Activo= 1";
-            Ds = Acceso.DevolverListado(query);
+            throw new NotImplementedException();
             List<BE_Pedido> ListadePedidos = new List<BE_Pedido>();
 
             if (Ds.Tables[0].Rows.Count > 0)
@@ -61,7 +61,7 @@ namespace Mapper
                     {
                         DataSet Ds1;
                         string query1 = @"select * from Mesa where Mesa.Id_Mesa= " + Convert.ToInt32(row[1].ToString());
-                        Ds1 = Acceso.DevolverListado(query1);
+                        throw new NotImplementedException();
                         if (Ds1.Tables[0].Rows.Count > 0)
                         {
                             foreach (DataRow row1 in Ds1.Tables[0].Rows)
@@ -81,8 +81,8 @@ namespace Mapper
                     {
                         DataSet Ds2;
                         string query2 = @"Select * from Mozo,Turno where Mozo.Codigo_Turno=Turno.Codigo_Turno and Mozo.Legajo= " + Convert.ToInt32(row[2].ToString());
-                        Ds2 = Acceso.DevolverListado(query2);
-                        if(Ds2.Tables[0].Rows.Count > 0)
+                        throw new NotImplementedException();
+                        if (Ds2.Tables[0].Rows.Count > 0)
                         {
                             foreach(DataRow row2 in Ds2.Tables[0].Rows)
                             {
@@ -105,7 +105,7 @@ namespace Mapper
                     }
                     DataSet Ds3;
                     string query3 = @"Select * from Plato,Pedido, Pedido_Plato where Pedido.Codigo_Pedido=Pedido_Plato.Codigo_Pedido and Pedido_Plato.Codigo_Plato=Plato.Codigo_Plato and Pedido.Codigo_Pedido= " + Pedido.Codigo;
-                    Ds3 = Acceso.DevolverListado(query3);
+                    throw new NotImplementedException();
                     if (Ds3.Tables[0].Rows.Count > 0)
                     {
                         foreach (DataRow row3 in Ds3.Tables[0].Rows)
@@ -124,7 +124,7 @@ namespace Mapper
                     }
                     DataSet Ds4;
                     string query4 = @"Select * from Bebida,Pedido, Pedido_Bebida where Pedido.Codigo_Pedido=Pedido_Bebida.Codigo_Pedido and Pedido_Bebida.Codigo_Bebida=Bebida.Codigo_Bebida and Pedido.Codigo_Pedido= " + Pedido.Codigo;
-                    Ds4 = Acceso.DevolverListado(query4);
+                    throw new NotImplementedException();
                     if (Ds4.Tables[0].Rows.Count > 0)
                     {
                         foreach(DataRow row4 in Ds4.Tables[0].Rows)

@@ -19,7 +19,7 @@ namespace Mapper
             {
                 string query = @"Delete from Plato where [Codigo_Plato]=" + oBE_Plato.Codigo;
                 Acceso = new ClsDataBase();
-                return Acceso.EscribirTransaction(query);
+                throw new NotImplementedException();
             }
             else
             {
@@ -40,7 +40,7 @@ namespace Mapper
                 query = @"Insert into Plato (Nombre, Tipo, Clase, Costo) values ( '" + Plato.Nombre + "','" + Plato.Tipo_Plato.ToString() + "','" + Plato.Clasificacion.ToString() + "'," + Plato.CostoUnitario + ")";
             }
             Acceso = new ClsDataBase();
-            return Acceso.EscribirTransaction(query);
+            throw new NotImplementedException();
         }
 
         public List<BE_Plato> Listar()
@@ -48,7 +48,7 @@ namespace Mapper
             Acceso = new ClsDataBase();
             DataSet Ds;
             string query = @"Select * from Plato";
-            Ds = Acceso.DevolverListado(query);
+            throw new NotImplementedException();
             List<BE_Plato> ListadePlatos = new List<BE_Plato>();
 
             if (Ds.Tables[0].Rows.Count > 0)
@@ -78,7 +78,7 @@ namespace Mapper
             Acceso = new ClsDataBase();
             DataSet Ds;
             string query = @"Select * from Pedido_Plato,Plato where Plato.Codigo_Plato=Pedido_Plato.Codigo_Plato and  Codigo_Pedido = " + oBE_Pedido.Codigo;
-            Ds = Acceso.DevolverListado(query);
+            throw new NotImplementedException();
             List<BE_Plato> ListadePlatos = new List<BE_Plato>();
 
             if (Ds.Tables[0].Rows.Count > 0)
@@ -111,7 +111,7 @@ namespace Mapper
         {
             Acceso = new ClsDataBase();
             string query = @"Select count (Codigo_Plato) from Pedido_Plato,Pedido where Codigo_Plato= " + oBE_Plato.Codigo + " and Pedido_Plato.Codigo_Pedido=Pedido.Codigo_Pedido and Pedido.Activo=1" ;
-            return Acceso.LeerScalar(query);
+            throw new NotImplementedException();
         }
         public double PromedioPlatoEnPedido(BE_Plato oBE_Plato)
         {
@@ -120,9 +120,9 @@ namespace Mapper
             query[0] = @"select count (Pedido_Plato.Codigo_Plato) as Promedio from Pedido_Plato where Codigo_Plato= " + oBE_Plato.Codigo;
             query[1] = @"select count (Pedido.Codigo_Pedido) as Total from Pedido";
             Acceso = new ClsDataBase();
-            int frecuencia = Acceso.Cantidades(query[0]);
-            int total = Acceso.Cantidades(query[1]);
-            return ((double)frecuencia / (double)total)*100;
+            throw new NotImplementedException();
+            throw new NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

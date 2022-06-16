@@ -17,7 +17,7 @@ namespace Mapper
         {
             string query = @"Delete from Bebida where [Codigo_Bebida]=" + oBE_Bebida.Codigo;
             Acceso = new ClsDataBase();
-            return Acceso.EscribirTransaction(query);
+            throw new NotImplementedException();
         }
 
         public bool Guardar(BE_Bebida Bebida)
@@ -33,7 +33,7 @@ namespace Mapper
                 query = @"Insert into Bebida (Nombre, Tipo, Presentación, Precio,Stock) values('" + Bebida.Nombre + "','" + Bebida.Tipo_Bebida + "','" + Bebida.Presentación + "'," + Bebida.CostoUnitario + ", 0)";
             }
             Acceso = new ClsDataBase();
-            return Acceso.EscribirTransaction(query);
+            throw new NotImplementedException();
         }
 
         public List<BE_Bebida> Listar()
@@ -41,7 +41,7 @@ namespace Mapper
             Acceso = new ClsDataBase();
             DataSet Ds;
             string query = @"Select * from Bebida";
-            Ds = Acceso.DevolverListado(query);
+            throw new NotImplementedException();
             List<BE_Bebida> ListadeBebidas = new List<BE_Bebida>();
 
             if (Ds.Tables[0].Rows.Count > 0)
@@ -85,7 +85,7 @@ namespace Mapper
             Acceso = new ClsDataBase();
             DataSet Ds;
             string query = @"Select * from Pedido_Bebida,Bebida where Bebida.Codigo_Bebida=Pedido_Bebida.Codigo_Bebida and Codigo_Pedido = " + oBE_Pedido.Codigo;
-            Ds = Acceso.DevolverListado(query);
+            throw new NotImplementedException();
             List<BE_Bebida> ListadeBebidas = new List<BE_Bebida>();
 
             if (Ds.Tables[0].Rows.Count > 0)

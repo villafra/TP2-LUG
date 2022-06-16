@@ -2,36 +2,46 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Collections;
 
 namespace Conexión
 {
     public class ClsDataBase
     {
-        private SqlConnection conexion;
+        private SqlConnection conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexión"].ToString());
+        private SqlTransaction transaction;
+        private SqlCommand command;
         
-        public void AbrirConexion()
+        private void AbrirConexion()
         {
-            conexion = new SqlConnection();
-            conexion.ConnectionString = ConfigurationManager.ConnectionStrings["Conexión"].ToString();
             conexion.Open();
         }
-
-        public void CerrarConexion()
+        private void CerrarConexion()
         {
             conexion.Close();
             conexion.Dispose();
             conexion = null;
             GC.Collect();
         }
-
-        public DataSet DevolverListado(string query)
+       
+        public DataTable DevolverListado(string query, Hashtable hashtable)
         {
-            AbrirConexion();
-            DataSet Ds = new DataSet();
+            DataTable dt = new DataTable();
+            SqlDataAdapter adapter;
+            command = new SqlCommand(query, conexion);
+            command.CommandType = CommandType.StoredProcedure;
+
             try
             {
-                SqlDataAdapter DataAdapter = new SqlDataAdapter(query, conexion);
-                DataAdapter.Fill(Ds);
+                adapter = new SqlDataAdapter(command);
+                if(hashtable != null)
+                {
+                    foreach(string key in hashtable.Keys)
+                    {
+                        command.Parameters.AddWithValue(key, hashtable[key]);
+                    }
+                }
+               
             }
             catch (SqlException sql)
             {
@@ -41,102 +51,76 @@ namespace Conexión
             {
                 throw ex;
             }
+            adapter.Fill(dt);
+            return dt;
+
+        }
+        public bool Escribir (string query, Hashtable hashtable)
+        {
+            AbrirConexion();
+
+            try
+            {
+                transaction = conexion.BeginTransaction();
+                command = new SqlCommand (query, conexion, transaction);
+                command.CommandType = CommandType.StoredProcedure;
+
+                if(hashtable != null)
+                {
+                    foreach(string key in hashtable.Keys)
+                    {
+                        command.Parameters.AddWithValue(key, hashtable[key]);
+                    }
+                }
+                int respuesta = command.ExecuteNonQuery();
+                transaction.Commit();
+                return true;
+            }
+            catch (SqlException sql)
+            {
+                transaction.Rollback();
+                return false;
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                return false;
+                throw ex;
+            }
             finally
             {
                 CerrarConexion();
             }
-            return Ds;
         }
-
-
-        public int Cantidades(string query)
+        public bool Scalar (string query, Hashtable hashtable)
         {
-            int cantidad = 0;
-            try
+            if (conexion.State == ConnectionState.Closed)
             {
                 AbrirConexion();
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = query;
-                cmd.Connection = conexion;
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+            }
+            command = new SqlCommand(query, conexion);
+            command.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                if (hashtable != null)
                 {
-                    if (!reader.IsDBNull(0))
+                    foreach (string key in hashtable.Keys)
                     {
-                        cantidad = Convert.ToInt32(reader[0]);
+                        command.Parameters.AddWithValue(key, hashtable[key]);
                     }
-
                 }
+                int respuesta = Convert.ToInt32(command.ExecuteScalar());
+                if (respuesta > 0) { return true; }
+                else { return false; }
             }
             catch (SqlException sql)
             {
+                return false;
                 throw sql;
             }
             catch (Exception ex)
             {
-                throw ex;
-            }
-            finally
-            {
-                CerrarConexion();
-            }
-            return cantidad;
-
-        }
-
-        public bool LeerScalar(string query)
-        {
-            AbrirConexion();
-            SqlCommand cmd = new SqlCommand(query, conexion);
-            cmd.CommandType = CommandType.Text;
-            try
-            {
-                int Respuesta = Convert.ToInt32(cmd.ExecuteScalar());
-                if (Respuesta > 0)
-                { return true; }
-                else
-                { return false; }
-            }
-            catch (SqlException ex)
-            { throw ex; }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                CerrarConexion();
-            }
-        }
-
-        public bool EscribirTransaction(string query)
-        {
-            AbrirConexion();
-            SqlTransaction sqlTransaction;
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conexion;
-            cmd.CommandText = query;
-            sqlTransaction = conexion.BeginTransaction();
-
-            try
-            {
-                cmd.Transaction = sqlTransaction;
-                cmd.ExecuteNonQuery();
-                sqlTransaction.Commit();
-                return true;
-            }
-            catch (SqlException ex)
-            {
-                sqlTransaction.Rollback();
-                return false;
-                throw ex;
-            }
-            catch (Exception ex)
-            {
-                sqlTransaction.Rollback();
                 return false;
                 throw ex;
             }
@@ -146,44 +130,6 @@ namespace Conexión
             }
         }
 
-        public bool EscribirTransaction(string[] query)
-        {
-            AbrirConexion();
-            SqlTransaction sqlTransaction;
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conexion;
-            sqlTransaction = conexion.BeginTransaction();
-
-            try
-            {
-                for (int i = 0; i < query.Length; i++)
-                {
-                    cmd.CommandText = query[i];
-                    cmd.Transaction = sqlTransaction;
-                    cmd.ExecuteNonQuery();
-                }
-
-                sqlTransaction.Commit();
-                return true;
-            }
-            catch (SqlException ex)
-            {
-                sqlTransaction.Rollback();
-                return false;
-                throw ex;
-            }
-            catch (Exception ex)
-            {
-                sqlTransaction.Rollback();
-                return false;
-                throw ex;
-            }
-            finally
-            {
-                CerrarConexion();
-            }
-        }
     }
 }
 

@@ -40,7 +40,7 @@ namespace Mapper
                 query = @"Insert into Turno ([Nombre Turno], [Hora Inicio], [Hora Fin]) values ( '" + Turno.NombreTurno + "','" + Turno.HoraInicio.ToString("HH:mm") + "','" + Turno.HoraFin.ToString("HH:mm") + "')";
             }
             Acceso = new ClsDataBase();
-            return Acceso.EscribirTransaction(query);
+            throw new NotImplementedException();
         }
 
         public List<BE_Turno> Listar()
@@ -48,7 +48,7 @@ namespace Mapper
             Acceso = new ClsDataBase();
             DataSet Ds;
             string query = @"Select * from Turno";
-            Ds = Acceso.DevolverListado(query);
+            throw new NotImplementedException();
             List<BE_Turno> ListadeTurnos = new List<BE_Turno>();
 
             if (Ds.Tables[0].Rows.Count > 0)
@@ -75,7 +75,7 @@ namespace Mapper
             Acceso = new ClsDataBase();
             DataSet Ds;
             string query = @"Select * from Turno, Mozo where Turno.Codigo_Turno=Mozo.Codigo_Turno and Turno.Codigo_Turno= " + Obe_Turno.Codigo;
-            Ds = Acceso.DevolverListado(query);
+            throw new NotImplementedException();
             if (Ds.Tables[0].Rows.Count > 0)
             {
                 //Obe_Turno.Mozos.Clear();
@@ -98,13 +98,13 @@ namespace Mapper
         {
             Acceso = new ClsDataBase();
             string query = @"select count(Turno.Codigo_Turno) from Turno, Mozo where Turno.Codigo_Turno=Mozo.Codigo_Turno and Turno.Codigo_Turno= " + oBE_Turno.Codigo;
-            return Acceso.Cantidades(query);
+            throw new NotImplementedException();
         }
         public bool ExisteMozoenTurno(BE_Turno oBE_Turno)
         {
             Acceso = new ClsDataBase();
             string query = @"Select count (Legajo) from Mozo where Codigo_Turno= " + oBE_Turno.Codigo;
-            return Acceso.LeerScalar(query);
+            throw new NotImplementedException();
         }
     }
 }

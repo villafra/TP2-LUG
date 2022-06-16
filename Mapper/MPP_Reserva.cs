@@ -21,13 +21,13 @@ namespace Mapper
                 query[0] = @"Update Reserva set Estado= 0, Nro_Mesa = NULL where Codigo_Reserva= " + oBE_Reserva.Codigo;
                 query[1] = @"update Mesa set Estado= 'Disponible', CantidadComensales=0 where Mesa.Id_Mesa=" + oBE_Reserva.MesaReservada.Codigo;
                 Acceso = new ClsDataBase();
-                return Acceso.EscribirTransaction(query);
+                throw new NotImplementedException();
             }
             else
             {
                 string query = @"Update Reserva set Estado= 0, Nro_Mesa = NULL where Codigo_Reserva= " + oBE_Reserva.Codigo;
                 Acceso = new ClsDataBase();
-                return Acceso.EscribirTransaction(query);
+                throw new NotImplementedException();
             }
 
         }
@@ -39,7 +39,7 @@ namespace Mapper
             query[1] = @"update Reserva set Nro_Mesa=" + Mesa.Codigo + " where Codigo_Reserva=" + Reserva.Codigo;
             query[2] = @"update Mesa set Estado= 'Ocupada', CantidadComensales= " + Reserva.CantidadDeComensales + " where Mesa.Id_Mesa=" + Mesa.Codigo;
             Acceso = new ClsDataBase();
-            return Acceso.EscribirTransaction(query);
+            throw new NotImplementedException();
         }
         public bool Guardar(BE_Reserva Reserva, BE_Mesa Mesa)
         {
@@ -47,7 +47,7 @@ namespace Mapper
             query[0] = @"update Reserva set Nro_Mesa=" + Mesa.Codigo + " where Codigo_Reserva=" + Reserva.Codigo;
             query[1] = @"update Mesa set Estado= 'Ocupada', CantidadComensales= " + Reserva.CantidadDeComensales + " where Mesa.Id_Mesa=" + Mesa.Codigo;
             Acceso = new ClsDataBase();
-            return Acceso.EscribirTransaction(query);
+            throw new NotImplementedException();
         }
 
         public List<BE_Reserva> Listar()
@@ -55,7 +55,7 @@ namespace Mapper
             Acceso = new ClsDataBase();
             DataSet Ds;
             string query = @"Select * from Reserva where Estado = 1";
-            Ds = Acceso.DevolverListado(query);
+            throw new NotImplementedException();
             List<BE_Reserva> ListadeReservas = new List<BE_Reserva>();
 
             if (Ds.Tables[0].Rows.Count > 0)
@@ -71,7 +71,7 @@ namespace Mapper
                     {
                         DataSet Ds1;
                         string query1 = @"select * from Mesa where Mesa.Id_Mesa= " + Convert.ToInt32(row[1].ToString());
-                        Ds1 = Acceso.DevolverListado(query1);
+                        throw new NotImplementedException();
                         if (Ds1.Tables[0].Rows.Count > 0)
                         {
                             foreach(DataRow row1 in Ds1.Tables[0].Rows)
@@ -90,7 +90,7 @@ namespace Mapper
                     {
                         DataSet Ds2;
                         string query2 = @"select * from Pedido where Pedido.Codigo_Pedido = " + Convert.ToInt32(row[2].ToString());
-                        Ds2 = Acceso.DevolverListado(query2);
+                        throw new NotImplementedException();
                         if (Ds2.Tables[0].Rows.Count > 0)
                         {
                             foreach(DataRow row2 in Ds2.Tables[0].Rows)
