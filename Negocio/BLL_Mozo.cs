@@ -25,7 +25,7 @@ namespace BLL
             throw new NotImplementedException();
         }
 
-        public decimal DevolverPuntuación()
+        public override int DevolverPuntuacion()
         {
             return oMPP_Mozo.DevolverPuntuacion();
         }
@@ -37,7 +37,7 @@ namespace BLL
 
         public List<BE_Mozo> Listar()
         {
-            throw new NotImplementedException();
+            return oMPP_Mozo.Listar();
         }
 
         public BE_Mozo ListarObjeto(BE_Mozo oBEE_Mozo)
@@ -49,5 +49,6 @@ namespace BLL
         {
             return oMPP_Mozo.Listar();
         }
+
     }
 }

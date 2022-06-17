@@ -11,6 +11,6 @@ namespace BLL
 {
     public abstract class BLL_Empleado
     {
-       
+        public abstract int DevolverPuntuacion();
     }
 }

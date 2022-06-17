@@ -46,14 +46,12 @@ namespace Mapper
         public List<BE_Turno> Listar()
         {
             Acceso = new ClsDataBase();
-            DataSet Ds;
-            string query = @"Select * from Turno";
-            throw new NotImplementedException();
             List<BE_Turno> ListadeTurnos = new List<BE_Turno>();
+            DataTable Dt = Acceso.DevolverListado("36 - Listar_Turno", null);
 
-            if (Ds.Tables[0].Rows.Count > 0)
+            if (Dt.Rows.Count > 0)
             {
-                foreach (DataRow row in Ds.Tables[0].Rows)
+                foreach (DataRow row in Dt.Rows)
                 {
                     BE_Turno Turno = new BE_Turno();
                     Turno.Codigo = Convert.ToInt32(row[0].ToString());

@@ -239,9 +239,9 @@
             this.lblRanking.AutoSize = true;
             this.lblRanking.Location = new System.Drawing.Point(633, 51);
             this.lblRanking.Name = "lblRanking";
-            this.lblRanking.Size = new System.Drawing.Size(57, 16);
+            this.lblRanking.Size = new System.Drawing.Size(73, 16);
             this.lblRanking.TabIndex = 8;
-            this.lblRanking.Text = "Ranking";
+            this.lblRanking.Text = "Puntuación";
             // 
             // btnEliminarMozo
             // 

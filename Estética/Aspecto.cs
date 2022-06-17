@@ -214,13 +214,15 @@ namespace Estética
         }
         public static void DGVMozos(DataGridView dgv)
         {
-            dgv.Columns[0].HeaderText = "Puntuación";
-            dgv.Columns[0].DisplayIndex = 5;
-            dgv.Columns[1].HeaderText = "Legajo";
-            dgv.Columns[2].HeaderText = "DNI";
-            dgv.Columns[3].HeaderText = "Nombre";
-            dgv.Columns[4].HeaderText = "Apellido";
-            dgv.Columns[5].Visible = false;
+            dgv.Columns[0].HeaderText = "Legajo";
+            dgv.Columns[1].HeaderText = "DNI";
+            dgv.Columns[2].HeaderText = "Nombre";
+            dgv.Columns[3].HeaderText = "Apellido";
+            dgv.Columns[4].Visible = false;
+            dgv.Columns[5].HeaderText = "Edad";
+            dgv.Columns[6].Visible = false;
+            dgv.Columns[7].HeaderText = "Antiguedad";
+            dgv.Columns[8].HeaderText = "Turno";
             foreach (DataGridViewColumn columns in dgv.Columns)
             {
                 columns.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -231,10 +233,10 @@ namespace Estética
         public static void DGVMesas(DataGridView dgv)
         {
             dgv.Columns[0].Visible = false;
-            dgv.Columns[1].HeaderText = "Número";
+            dgv.Columns[1].HeaderText = "ID Mesa";
             dgv.Columns[2].HeaderText = "Capacidad Máxima";
-            dgv.Columns[3].HeaderText = "Estado Actual";
-            dgv.Columns[4].HeaderText = "Cant Ocupantes";
+            dgv.Columns[3].HeaderText = "Cant Ocupantes"; 
+            dgv.Columns[4].HeaderText = "Estado Actual";
             foreach (DataGridViewColumn columns in dgv.Columns)
             {
                 columns.SortMode = DataGridViewColumnSortMode.NotSortable;

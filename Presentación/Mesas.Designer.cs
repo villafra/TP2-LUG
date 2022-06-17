@@ -38,7 +38,7 @@
             this.lblEstado = new System.Windows.Forms.Label();
             this.rdbReservada = new System.Windows.Forms.RadioButton();
             this.RdbOcupada = new System.Windows.Forms.RadioButton();
-            this.rdbDisponible = new System.Windows.Forms.RadioButton();
+            this.rdbLibre = new System.Windows.Forms.RadioButton();
             this.txtCapacidad = new System.Windows.Forms.TextBox();
             this.lblCapacidad = new System.Windows.Forms.Label();
             this.txtNumeroMesa = new System.Windows.Forms.TextBox();
@@ -74,7 +74,7 @@
             this.grpMesas.Controls.Add(this.lblEstado);
             this.grpMesas.Controls.Add(this.rdbReservada);
             this.grpMesas.Controls.Add(this.RdbOcupada);
-            this.grpMesas.Controls.Add(this.rdbDisponible);
+            this.grpMesas.Controls.Add(this.rdbLibre);
             this.grpMesas.Controls.Add(this.txtCapacidad);
             this.grpMesas.Controls.Add(this.lblCapacidad);
             this.grpMesas.Controls.Add(this.txtNumeroMesa);
@@ -142,7 +142,7 @@
             // rdbReservada
             // 
             this.rdbReservada.AutoSize = true;
-            this.rdbReservada.Location = new System.Drawing.Point(499, 117);
+            this.rdbReservada.Location = new System.Drawing.Point(683, 65);
             this.rdbReservada.Name = "rdbReservada";
             this.rdbReservada.Size = new System.Drawing.Size(96, 20);
             this.rdbReservada.TabIndex = 6;
@@ -153,7 +153,7 @@
             // RdbOcupada
             // 
             this.RdbOcupada.AutoSize = true;
-            this.RdbOcupada.Location = new System.Drawing.Point(683, 117);
+            this.RdbOcupada.Location = new System.Drawing.Point(587, 117);
             this.RdbOcupada.Name = "RdbOcupada";
             this.RdbOcupada.Size = new System.Drawing.Size(84, 20);
             this.RdbOcupada.TabIndex = 5;
@@ -161,16 +161,16 @@
             this.RdbOcupada.Text = "Ocupada";
             this.RdbOcupada.UseVisualStyleBackColor = true;
             // 
-            // rdbDisponible
+            // rdbLibre
             // 
-            this.rdbDisponible.AutoSize = true;
-            this.rdbDisponible.Location = new System.Drawing.Point(612, 64);
-            this.rdbDisponible.Name = "rdbDisponible";
-            this.rdbDisponible.Size = new System.Drawing.Size(93, 20);
-            this.rdbDisponible.TabIndex = 4;
-            this.rdbDisponible.TabStop = true;
-            this.rdbDisponible.Text = "Disponible";
-            this.rdbDisponible.UseVisualStyleBackColor = true;
+            this.rdbLibre.AutoSize = true;
+            this.rdbLibre.Location = new System.Drawing.Point(499, 64);
+            this.rdbLibre.Name = "rdbLibre";
+            this.rdbLibre.Size = new System.Drawing.Size(58, 20);
+            this.rdbLibre.TabIndex = 4;
+            this.rdbLibre.TabStop = true;
+            this.rdbLibre.Text = "Libre";
+            this.rdbLibre.UseVisualStyleBackColor = true;
             // 
             // txtCapacidad
             // 
@@ -281,7 +281,7 @@
         private System.Windows.Forms.Label lblCapacidad;
         private System.Windows.Forms.RadioButton rdbReservada;
         private System.Windows.Forms.RadioButton RdbOcupada;
-        private System.Windows.Forms.RadioButton rdbDisponible;
+        private System.Windows.Forms.RadioButton rdbLibre;
         private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.Label lblOcupación;
         private System.Windows.Forms.ProgressBar prgBarOcupación;

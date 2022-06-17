@@ -23,6 +23,11 @@ namespace BLL
             throw new NotImplementedException();
         }
 
+        public override int DevolverPuntuacion()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Guardar(BE_Cocina oBEE_Cocina)
         {
             throw new NotImplementedException();

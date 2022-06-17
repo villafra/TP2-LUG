@@ -124,6 +124,9 @@ namespace Presentación
                 dtpFechaNacimiento.Value = oBE_Mozo.FechaNacimiento;
                 txtEdad.Text = oBE_Mozo.Edad.ToString();
                 comboTurno.Text = oBE_Mozo.Turno.NombreTurno;
+                int rank = oBLL_Mozo.DevolverPuntuacion();
+                lblPuntuación.Text = rank.ToString();
+                prgBaRanking.Value = rank;
                 
             }
             catch { }

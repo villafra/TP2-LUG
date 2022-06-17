@@ -39,5 +39,9 @@ namespace BLL
         {
             throw new NotImplementedException();
         }
+        public double PorcentajeUso (BE_Mesa oBE_Mesa)
+        {
+            return Math.Round((double)oBE_Mesa.CantidadComensales / oBE_Mesa.Capacidad * 100, 1);
+        }
     }
 }

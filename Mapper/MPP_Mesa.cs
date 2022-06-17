@@ -133,7 +133,7 @@ namespace Mapper
 
             string query = "41 - Mesa_Activa";
             hash.Add("@Codigo", oBE_Mesa.Codigo);
-            return Acceso.Scalar(query, hashtable);
+            return Acceso.Scalar(query, hash);
         }
     }
 }
