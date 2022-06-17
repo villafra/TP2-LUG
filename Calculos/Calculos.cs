@@ -127,8 +127,10 @@ namespace Calculo
         {
             combo.DataSource = null;
             combo.DataSource = refObject;
-            combo.ValueMember = "Codigo";
+            try {combo.ValueMember = "Codigo"; }
+            catch { }
             combo.DisplayMember = DisplayMember;
+            combo.SelectedIndex = -1;
             combo.Refresh();
 
         }

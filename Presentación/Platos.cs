@@ -18,13 +18,18 @@ namespace Presentación
     {
         BLL_Plato oBLL_Plato;
         BE_Plato oBE_Plato;
+        BLL_Pedido oBLL_Pedido;
         public frmPlatos()
         {
             InitializeComponent();
             oBE_Plato = new BE_Plato();
             oBLL_Plato = new BLL_Plato();
+            oBLL_Pedido = new BLL_Pedido();
             ActualizarListado();
+            Calculos.DataSourceCombo(ComboTipo, Enum.GetNames(typeof(BE_Plato.Tipo)), "TipoPlatos");
+            Calculos.DataSourceCombo(ComboClase, Enum.GetNames(typeof(BE_Plato.Clasificación)), "ClasiPlatos");
             Aspecto.FormatearDGV(dgvPlatos);
+            Aspecto.FormatearDGV(dgvPedidosConPlat);
             Aspecto.FormatearGRP(grpPlatos);
 
         }
@@ -34,9 +39,9 @@ namespace Presentación
             try
             {
                 oBE_Plato.Codigo = 0;
-                //oBE_Plato.Tipo = ComboTipo.SelectedItem.ToString();
-                //oBE_Plato.Nombre = txtNombre.Text;
-                //oBE_Plato.Clase= ComboClase.SelectedItem.ToString();
+                oBE_Plato.Tipo_Plato = (BE_Plato.Tipo)Enum.Parse(typeof(BE_Plato.Tipo), ComboTipo.Text);
+                oBE_Plato.Nombre = txtNombre.Text;
+                oBE_Plato.Clasificacion= (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), ComboClase.Text);
                 oBE_Plato.CostoUnitario = Convert.ToDecimal(txtCosto.Text);
                 oBE_Plato.Stock = 0;
 
@@ -53,9 +58,9 @@ namespace Presentación
             try
             {
                 oBE_Plato.Codigo = Convert.ToInt32(txtCodigo.Text);
-                //oBE_Plato.Tipo = ComboTipo.SelectedItem.ToString();
-                //oBE_Plato.Nombre = txtNombre.Text;
-                //oBE_Plato.Clase = ComboClase.Text;
+                oBE_Plato.Tipo_Plato = (BE_Plato.Tipo)Enum.Parse(typeof(BE_Plato.Tipo), ComboTipo.Text);
+                oBE_Plato.Nombre = txtNombre.Text;
+                oBE_Plato.Clasificacion = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), ComboClase.Text);
                 oBE_Plato.CostoUnitario = Convert.ToDecimal(txtCosto.Text);
                 oBE_Plato.Stock = Convert.ToInt32(txtStock.Text);
 
@@ -69,7 +74,8 @@ namespace Presentación
         private void ActualizarListado()
         {
             Calculos.RefreshGrilla(dgvPlatos, oBLL_Plato.Listar());
-            Aspecto.DGVPlatos(dgvPlatos);
+            try {Aspecto.DGVPlatos(dgvPlatos); }
+            catch { }
         }
 
         private void dgvPlatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -79,13 +85,15 @@ namespace Presentación
                 oBE_Plato = (BE_Plato)dgvPlatos.SelectedRows[0].DataBoundItem;
                 txtCodigo.Text = oBE_Plato.Codigo.ToString();
                 txtNombre.Text = oBE_Plato.Nombre;
-                //ComboTipo.Text = oBE_Plato.Tipo;
-                //ComboClase.Text = oBE_Plato.Clase;
+                ComboTipo.Text = oBE_Plato.Tipo_Plato.ToString();
+                ComboClase.Text = oBE_Plato.Clasificacion.ToString();
                 txtCosto.Text = oBE_Plato.CostoUnitario.ToString();
                 txtStock.Text = oBE_Plato.Stock.ToString();
-                lblCantidad.Text = oBLL_Plato.PromedioPlatoEnPedido(oBE_Plato).ToString() + "%";
-                prgFrecuencia.Value = Convert.ToInt32(Math.Round(oBLL_Plato.PromedioPlatoEnPedido(oBE_Plato), 0));
-                
+                double promedio = oBLL_Plato.PromedioPlatoEnPedido(oBE_Plato);
+                lblCantidad.Text = promedio.ToString() + "%";
+                prgFrecuencia.Value = Convert.ToInt32(Math.Round(promedio, 0));
+                Calculos.RefreshGrilla(dgvPedidosConPlat, oBLL_Pedido.PlatoEnPedidos(oBE_Plato));
+                Aspecto.DGVPedidosXPlatos(dgvPedidosConPlat);
             }
             catch { }
         }

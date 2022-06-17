@@ -10,13 +10,23 @@ using System.Data;
 
 namespace Mapper
 {
-    public class MPP_Bebida : IGestionable<BE_Bebida>
+    public class MPP_Bebida : IGestionable<BE_Bebida>, IValidable<BE_Bebida>
     {
         ClsDataBase Acceso;
         public bool Baja(BE_Bebida oBE_Bebida)
         {
             string query = @"Delete from Bebida where [Codigo_Bebida]=" + oBE_Bebida.Codigo;
             Acceso = new ClsDataBase();
+            throw new NotImplementedException();
+        }
+
+        public bool Existe(BE_Bebida Objeto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ExisteActivo(BE_Bebida Objeto)
+        {
             throw new NotImplementedException();
         }
 

@@ -9,9 +9,19 @@ using BE;
 
 namespace Mapper
 {
-    public class MPP_Login : IGestionable<BE_Login>
+    public class MPP_Login : IGestionable<BE_Login>, IValidable<BE_Login>
     {
         public bool Baja(BE_Login Objeto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Existe(BE_Login Objeto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ExisteActivo(BE_Login Objeto)
         {
             throw new NotImplementedException();
         }

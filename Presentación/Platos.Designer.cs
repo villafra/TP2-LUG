@@ -30,6 +30,8 @@
         {
             this.dgvPlatos = new System.Windows.Forms.DataGridView();
             this.grpPlatos = new System.Windows.Forms.GroupBox();
+            this.txtStock = new System.Windows.Forms.TextBox();
+            this.lblStock = new System.Windows.Forms.Label();
             this.txtCosto = new System.Windows.Forms.TextBox();
             this.lblCosto = new System.Windows.Forms.Label();
             this.ComboClase = new System.Windows.Forms.ComboBox();
@@ -47,8 +49,6 @@
             this.btnEliminarPlato = new System.Windows.Forms.Button();
             this.btnModificarPlato = new System.Windows.Forms.Button();
             this.btnNuevoPlato = new System.Windows.Forms.Button();
-            this.txtStock = new System.Windows.Forms.TextBox();
-            this.lblStock = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlatos)).BeginInit();
             this.grpPlatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidosConPlat)).BeginInit();
@@ -91,6 +91,24 @@
             this.grpPlatos.TabIndex = 1;
             this.grpPlatos.TabStop = false;
             this.grpPlatos.Text = "Platos";
+            // 
+            // txtStock
+            // 
+            this.txtStock.Enabled = false;
+            this.txtStock.Location = new System.Drawing.Point(561, 65);
+            this.txtStock.Name = "txtStock";
+            this.txtStock.Size = new System.Drawing.Size(118, 22);
+            this.txtStock.TabIndex = 24;
+            this.txtStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblStock
+            // 
+            this.lblStock.AutoSize = true;
+            this.lblStock.Location = new System.Drawing.Point(558, 33);
+            this.lblStock.Name = "lblStock";
+            this.lblStock.Size = new System.Drawing.Size(41, 16);
+            this.lblStock.TabIndex = 23;
+            this.lblStock.Text = "Stock";
             // 
             // txtCosto
             // 
@@ -272,24 +290,6 @@
             this.btnNuevoPlato.TabIndex = 2;
             this.btnNuevoPlato.UseVisualStyleBackColor = true;
             this.btnNuevoPlato.Click += new System.EventHandler(this.btnNuevoPlato_Click);
-            // 
-            // txtStock
-            // 
-            this.txtStock.Enabled = false;
-            this.txtStock.Location = new System.Drawing.Point(561, 65);
-            this.txtStock.Name = "txtStock";
-            this.txtStock.Size = new System.Drawing.Size(118, 22);
-            this.txtStock.TabIndex = 24;
-            this.txtStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lblStock
-            // 
-            this.lblStock.AutoSize = true;
-            this.lblStock.Location = new System.Drawing.Point(558, 33);
-            this.lblStock.Name = "lblStock";
-            this.lblStock.Size = new System.Drawing.Size(41, 16);
-            this.lblStock.TabIndex = 23;
-            this.lblStock.Text = "Stock";
             // 
             // frmPlatos
             // 

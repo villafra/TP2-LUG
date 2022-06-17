@@ -18,11 +18,13 @@ namespace Presentación
     {
         BLL_Turno oBLL_Turno;
         BE_Turno oBE_Turno;
+        BLL_Mozo oBLL_Mozo;
         public frmTurnos()
         {
             InitializeComponent();
             oBE_Turno = new BE_Turno();
             oBLL_Turno = new BLL_Turno();
+            oBLL_Mozo = new BLL_Mozo();
             ActualizarListado();
             Aspecto.FormatearDGV(dgvTurnos);
             Aspecto.FormatearGRP(grpTurnos);
@@ -74,10 +76,16 @@ namespace Presentación
             txtNombreTurno.Text = oBE_Turno.NombreTurno;
             dtpHoraInicio.Value = oBE_Turno.HoraInicio;
             dtpHoraFin.Value = oBE_Turno.HoraFin;
-            lblCantidad.Text = oBLL_Turno.CantidadMozosEnTurno(oBE_Turno).ToString();
-            prgCantidad.Value = oBLL_Turno.CantidadMozosEnTurno(oBE_Turno);
-            //Calculos.RefreshGrilla(dgvMozosEnturno, oBLL_Turno.ListarObjeto(oBE_Turno).Mozos);
-            Aspecto.DGVTurnosMozos(dgvMozosEnturno);
+            int Cantidad = oBLL_Turno.CantidadMozosEnTurno(oBE_Turno);
+            lblCantidad.Text = Cantidad.ToString();
+            prgCantidad.Value = Cantidad;
+            Calculos.RefreshGrilla(dgvMozosEnturno, oBLL_Mozo.ListarMozosXTurno(oBE_Turno));
+            try
+            {
+                Aspecto.DGVTurnosMozos(dgvMozosEnturno);
+            }
+            catch { }
+           
         }
 
         private void btnNuevoTurno_Click(object sender, EventArgs e)

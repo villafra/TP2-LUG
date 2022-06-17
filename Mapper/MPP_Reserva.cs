@@ -10,7 +10,7 @@ using System.Data;
 
 namespace Mapper
 {
-    public class MPP_Reserva : IGestionable<BE_Reserva>
+    public class MPP_Reserva : IGestionable<BE_Reserva>, IValidable<BE_Reserva>
     {
         ClsDataBase Acceso;
         public bool Baja(BE_Reserva oBE_Reserva)
@@ -121,6 +121,16 @@ namespace Mapper
         }
 
         public bool Guardar(BE_Reserva Objeto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Existe(BE_Reserva Objeto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ExisteActivo(BE_Reserva Objeto)
         {
             throw new NotImplementedException();
         }

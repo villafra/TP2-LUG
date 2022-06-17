@@ -44,6 +44,7 @@
     <Compile Include="IEntidable.cs" />
     <Compile Include="IGestionable.cs" />
     <Compile Include="IStockeable.cs" />
+    <Compile Include="IValidable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

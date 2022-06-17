@@ -11,12 +11,12 @@ using System.Collections;
 
 namespace Mapper
 {
-    public class MPP_Mozo : IGestionable<BE_Mozo>
+    public class MPP_Mozo : IGestionable<BE_Mozo>, IValidable<BE_Mozo>
     {
         ClsDataBase Acceso;
         public bool Baja(BE_Mozo oBE_Mozo)
         {
-            if (!ExisteMozoActivo(oBE_Mozo))
+            if (!ExisteActivo(oBE_Mozo))
             {
                 Hashtable hashtable = new Hashtable();
                 string query = "13 - Baja_Mozo";
@@ -50,9 +50,9 @@ namespace Mapper
             hashtable.Add("@Apellido", Mozo.Apellido);
             hashtable.Add("@FNac", Mozo.FechaNacimiento);
             hashtable.Add("@Fing", Mozo.FechaIngreso);
-            hashtable.Add("@Codigo_Turno", Mozo.Turno);
+            hashtable.Add("@Codigo_Turno", Mozo.Turno.Codigo);
 
-            if (!ExisteMozo(Mozo))
+            if (!Existe(Mozo))
             {
                 Acceso = new ClsDataBase();
                 return Acceso.Escribir(query, hashtable);
@@ -102,7 +102,50 @@ namespace Mapper
             }
             return ListadeMozos;
         }
+        public List<BE_Mozo> ListarMozosXTurno(BE_Turno Turno)
+        {
+            Acceso = new ClsDataBase();
+            List<BE_Mozo> ListadeMozos = new List<BE_Mozo>();
+            Hashtable hash = new Hashtable();
+            hash.Add("@Codigo_Turno", Turno.Codigo);
+            DataTable Dt = Acceso.DevolverListado("44 - Listar_Mozo", hash);
 
+            if (Dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in Dt.Rows)
+                {
+                    BE_Mozo Mozo = new BE_Mozo();
+                    Mozo.Codigo = Convert.ToInt32(row[0].ToString());
+                    Mozo.DNI = Convert.ToInt32(row[1].ToString());
+                    Mozo.Nombre = row[2].ToString();
+                    Mozo.Apellido = row[3].ToString();
+                    Mozo.FechaNacimiento = Convert.ToDateTime(row[4].ToString());
+                    Mozo.Edad = Mozo.CalcularAños(Mozo.FechaNacimiento);
+                    Mozo.FechaIngreso = Convert.ToDateTime(row[5].ToString());
+                    Mozo.Antiguedad = Mozo.CalcularAños(Mozo.FechaIngreso);
+
+                    Hashtable hashtable = new Hashtable();
+                    hashtable.Add("@Codigo", Convert.ToInt32(row[6].ToString()));
+                    DataTable table = Acceso.DevolverListado("36 - Listar_Turno", hashtable);
+                    foreach (DataRow dataRow in table.Rows)
+                    {
+                        BE_Turno oBE_Turno = new BE_Turno();
+                        oBE_Turno.Codigo = Convert.ToInt32(dataRow[0].ToString());
+                        oBE_Turno.NombreTurno = dataRow[1].ToString();
+                        oBE_Turno.HoraInicio = Convert.ToDateTime(dataRow[2].ToString());
+                        oBE_Turno.HoraFin = Convert.ToDateTime(dataRow[3].ToString());
+                        Mozo.Turno = oBE_Turno;
+                    }
+
+                    ListadeMozos.Add(Mozo);
+                }
+            }
+            else
+            {
+                ListadeMozos = null;
+            }
+            return ListadeMozos;
+        }
         public List<BE_Empleado> ListarTodo()
         {
             Acceso = new ClsDataBase();
@@ -181,7 +224,7 @@ namespace Mapper
         {
             throw new NotImplementedException();
         }
-        public bool ExisteMozo(BE_Mozo Mozo)
+        public bool Existe(BE_Mozo Mozo)
         {
             Hashtable hash = new Hashtable();
             if (Mozo.Codigo == 0)
@@ -194,7 +237,7 @@ namespace Mapper
                 return false;
             }
         }
-        public bool ExisteMozoActivo(BE_Mozo Mozo)
+        public bool ExisteActivo(BE_Mozo Mozo)
         {
             Hashtable hash = new Hashtable();
             hash.Add("@Codigo_Mozo", Mozo.Codigo);

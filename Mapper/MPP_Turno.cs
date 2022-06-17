@@ -7,40 +7,49 @@ using BE;
 using Conexión;
 using Abstracción;
 using System.Data;
+using System.Collections;
 
 namespace Mapper
 {
-    public class MPP_Turno : IGestionable<BE_Turno>
+    public class MPP_Turno : IGestionable<BE_Turno>, IValidable<BE_Turno>
     {
         ClsDataBase Acceso;
         public bool Baja(BE_Turno oBE_Turno)
         {
-            //if (ExisteMozoenTurno(oBE_Turno) == false)
-            //{
-            //    string query = @"Delete from Turno where [Codigo_Turno]=" + oBE_Turno.Codigo;
-            //    Acceso = new ClsDataBase();
-            //    return Acceso.EscribirTransaction(query);
-            //}
-            //else
-            //{
-            return false;
-            //}
+            if (!ExisteActivo(oBE_Turno))
+            {
+                Hashtable hashtable = new Hashtable();
+                string query = "39 - Baja_Turno";
+                hashtable.Add("@Codigo", oBE_Turno.Codigo);
+                Acceso = new ClsDataBase();
+                return Acceso.Escribir(query, hashtable);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool Guardar(BE_Turno Turno)
         {
-            string query;
+            Hashtable hashtable = new Hashtable();
+            string query = "37 - Alta_Turno";
 
             if (Turno.Codigo != 0)
             {
-                query = @"Update Turno set [Nombre Turno]= '" + Turno.NombreTurno + "', [Hora Inicio]= '" + Turno.HoraInicio.ToString("HH:mm") + "', [Hora Fin]= '" + Turno.HoraFin.ToString("HH:mm") + "' where Codigo_Turno= " + Turno.Codigo;
+                query = "38 - Modificar_Turno";
+                hashtable.Add("@Codigo", Turno.Codigo);
             }
-            else
+            hashtable.Add("@Nombre", Turno.NombreTurno);
+            hashtable.Add("@HoraInicio", Turno.HoraInicio);
+            hashtable.Add("@HoraFin", Turno.HoraFin);
+
+            if (!Existe(Turno))
             {
-                query = @"Insert into Turno ([Nombre Turno], [Hora Inicio], [Hora Fin]) values ( '" + Turno.NombreTurno + "','" + Turno.HoraInicio.ToString("HH:mm") + "','" + Turno.HoraFin.ToString("HH:mm") + "')";
+                Acceso = new ClsDataBase();
+                return Acceso.Escribir(query, hashtable);
             }
-            Acceso = new ClsDataBase();
-            throw new NotImplementedException();
+            else { return false; }
         }
 
         public List<BE_Turno> Listar()
@@ -70,39 +79,43 @@ namespace Mapper
 
         public BE_Turno ListarObjeto(BE_Turno Obe_Turno)
         {
-            Acceso = new ClsDataBase();
-            DataSet Ds;
-            string query = @"Select * from Turno, Mozo where Turno.Codigo_Turno=Mozo.Codigo_Turno and Turno.Codigo_Turno= " + Obe_Turno.Codigo;
             throw new NotImplementedException();
-            if (Ds.Tables[0].Rows.Count > 0)
-            {
-                //Obe_Turno.Mozos.Clear();
-                //foreach (DataRow row in Ds.Tables[0].Rows)
-                //{
-                //    BE_Mozo Mozo = new BE_Mozo();
-                //    Mozo.Codigo = Convert.ToInt32(row[4].ToString());
-                //    Mozo.DNI = long.Parse(row[5].ToString());
-                //    Mozo.Nombre = row[6].ToString();
-                //    Mozo.Apellido = row[7].ToString();
-                //    Mozo.FechaNacimiento = Convert.ToDateTime(row[8].ToString());
-                //    Mozo.Edad = Mozo.DevolverEdad();
-                //    Mozo.Turno = Obe_Turno;
-                //    Obe_Turno.Mozos.Add(Mozo);
-                //}
-            }
-            return Obe_Turno;
         }
         public int CantidadMozosEnTurno(BE_Turno oBE_Turno)
         {
             Acceso = new ClsDataBase();
-            string query = @"select count(Turno.Codigo_Turno) from Turno, Mozo where Turno.Codigo_Turno=Mozo.Codigo_Turno and Turno.Codigo_Turno= " + oBE_Turno.Codigo;
-            throw new NotImplementedException();
+            int Cantidad = 0;
+            Hashtable hash = new Hashtable();
+            hash.Add("@Codigo_turno", oBE_Turno.Codigo);
+            DataTable Dt = Acceso.DevolverListado("48 - Listar_Mozo_Turno", hash);
+            if (Dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in Dt.Rows)
+                {
+                    Cantidad = Convert.ToInt32(row[0].ToString());
+                }
+            }
+            else { Cantidad = 0; }
+            return Cantidad;
         }
-        public bool ExisteMozoenTurno(BE_Turno oBE_Turno)
+        public bool Existe(BE_Turno Turno)
         {
-            Acceso = new ClsDataBase();
-            string query = @"Select count (Legajo) from Mozo where Codigo_Turno= " + oBE_Turno.Codigo;
-            throw new NotImplementedException();
+            Hashtable hash = new Hashtable();
+            if (Turno.Codigo == 0)
+            {
+                hash.Add("@Nombre", Turno.NombreTurno);
+                return Acceso.Scalar("43 - Existe_Turno", hash);
+            }
+            else
+            {
+                return false;
+            }
+        }
+            public bool ExisteActivo(BE_Turno Turno)
+        {
+            Hashtable hash = new Hashtable();
+            hash.Add("@Codigo_Turno", Turno.Codigo);
+            return Acceso.Scalar("46 - Existe_Turno_Activo", hash);
         }
     }
 }

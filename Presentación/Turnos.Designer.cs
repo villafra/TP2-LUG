@@ -138,9 +138,9 @@
             // 
             // txtNombreTurno
             // 
-            this.txtNombreTurno.Location = new System.Drawing.Point(201, 63);
+            this.txtNombreTurno.Location = new System.Drawing.Point(184, 63);
             this.txtNombreTurno.Name = "txtNombreTurno";
-            this.txtNombreTurno.Size = new System.Drawing.Size(102, 22);
+            this.txtNombreTurno.Size = new System.Drawing.Size(150, 22);
             this.txtNombreTurno.TabIndex = 14;
             this.txtNombreTurno.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 

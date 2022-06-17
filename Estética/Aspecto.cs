@@ -246,12 +246,15 @@ namespace Estética
         }
         public static void DGVTurnosMozos(DataGridView dgv)
         {
-            dgv.Columns[0].Visible = false;
-            dgv.Columns[1].HeaderText = "Legajo";
-            dgv.Columns[2].Visible = false;
+            dgv.Columns[0].HeaderText = "Legajo";
+            dgv.Columns[1].Visible = false;
+            dgv.Columns[2].HeaderText = "Nombre";
+            dgv.Columns[3].HeaderText = "Apellido";
+            dgv.Columns[4].Visible = false;
             dgv.Columns[5].Visible = false;
             dgv.Columns[6].Visible = false;
             dgv.Columns[7].Visible = false;
+            dgv.Columns[8].Visible = false;
             foreach (DataGridViewColumn columns in dgv.Columns)
             {
                 columns.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -262,9 +265,9 @@ namespace Estética
         public static void DGVPlatos(DataGridView dgv)
         {
             dgv.Columns[0].Visible = false;
-            dgv.Columns[1].HeaderText = "Nombre del Plato";
-            dgv.Columns[2].HeaderText = "Tipo de Plato";
-            dgv.Columns[3].HeaderText = "Clase de Plato";
+            dgv.Columns[1].HeaderText = "Nombre Plato";
+            dgv.Columns[2].HeaderText = "Tipo Plato";
+            dgv.Columns[3].HeaderText = "Clase Plato";
             dgv.Columns[5].DefaultCellStyle.Format = "c";
 
             foreach (DataGridViewColumn columns in dgv.Columns)

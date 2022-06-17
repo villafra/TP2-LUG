@@ -30,12 +30,12 @@
         {
             this.dgvMozos = new System.Windows.Forms.DataGridView();
             this.grpMozos = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtpFechaIngreso = new System.Windows.Forms.DateTimePicker();
             this.lblFechaNacimiento = new System.Windows.Forms.Label();
             this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.comboTurno = new System.Windows.Forms.ComboBox();
             this.lblTurno = new System.Windows.Forms.Label();
-            this.txtEdad = new System.Windows.Forms.TextBox();
-            this.lblEdad = new System.Windows.Forms.Label();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.lblApellido = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
@@ -70,12 +70,12 @@
             // 
             // grpMozos
             // 
+            this.grpMozos.Controls.Add(this.label1);
+            this.grpMozos.Controls.Add(this.dtpFechaIngreso);
             this.grpMozos.Controls.Add(this.lblFechaNacimiento);
             this.grpMozos.Controls.Add(this.dtpFechaNacimiento);
             this.grpMozos.Controls.Add(this.comboTurno);
             this.grpMozos.Controls.Add(this.lblTurno);
-            this.grpMozos.Controls.Add(this.txtEdad);
-            this.grpMozos.Controls.Add(this.lblEdad);
             this.grpMozos.Controls.Add(this.txtApellido);
             this.grpMozos.Controls.Add(this.lblApellido);
             this.grpMozos.Controls.Add(this.txtNombre);
@@ -94,10 +94,28 @@
             this.grpMozos.TabStop = false;
             this.grpMozos.Text = "Mozos";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(451, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(112, 16);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Fecha de Ingreso";
+            // 
+            // dtpFechaIngreso
+            // 
+            this.dtpFechaIngreso.CustomFormat = "dd/MM/yyyy";
+            this.dtpFechaIngreso.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaIngreso.Location = new System.Drawing.Point(454, 63);
+            this.dtpFechaIngreso.Name = "dtpFechaIngreso";
+            this.dtpFechaIngreso.Size = new System.Drawing.Size(121, 22);
+            this.dtpFechaIngreso.TabIndex = 27;
+            // 
             // lblFechaNacimiento
             // 
             this.lblFechaNacimiento.AutoSize = true;
-            this.lblFechaNacimiento.Location = new System.Drawing.Point(424, 33);
+            this.lblFechaNacimiento.Location = new System.Drawing.Point(284, 33);
             this.lblFechaNacimiento.Name = "lblFechaNacimiento";
             this.lblFechaNacimiento.Size = new System.Drawing.Size(135, 16);
             this.lblFechaNacimiento.TabIndex = 26;
@@ -107,7 +125,7 @@
             // 
             this.dtpFechaNacimiento.CustomFormat = "dd/MM/yyyy";
             this.dtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaNacimiento.Location = new System.Drawing.Point(427, 61);
+            this.dtpFechaNacimiento.Location = new System.Drawing.Point(287, 63);
             this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(121, 22);
             this.dtpFechaNacimiento.TabIndex = 25;
@@ -128,23 +146,6 @@
             this.lblTurno.Size = new System.Drawing.Size(42, 16);
             this.lblTurno.TabIndex = 23;
             this.lblTurno.Text = "Turno";
-            // 
-            // txtEdad
-            // 
-            this.txtEdad.Location = new System.Drawing.Point(300, 63);
-            this.txtEdad.Name = "txtEdad";
-            this.txtEdad.Size = new System.Drawing.Size(84, 22);
-            this.txtEdad.TabIndex = 20;
-            this.txtEdad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lblEdad
-            // 
-            this.lblEdad.AutoSize = true;
-            this.lblEdad.Location = new System.Drawing.Point(304, 33);
-            this.lblEdad.Name = "lblEdad";
-            this.lblEdad.Size = new System.Drawing.Size(40, 16);
-            this.lblEdad.TabIndex = 19;
-            this.lblEdad.Text = "Edad";
             // 
             // txtApellido
             // 
@@ -320,8 +321,6 @@
         private System.Windows.Forms.Button btnEliminarMozo;
         private System.Windows.Forms.TextBox txtLegajo;
         private System.Windows.Forms.Label lblLegajo;
-        private System.Windows.Forms.TextBox txtEdad;
-        private System.Windows.Forms.Label lblEdad;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.Label lblApellido;
         private System.Windows.Forms.TextBox txtNombre;
@@ -332,5 +331,7 @@
         private System.Windows.Forms.Label lblTurno;
         private System.Windows.Forms.Label lblFechaNacimiento;
         private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dtpFechaIngreso;
     }
 }

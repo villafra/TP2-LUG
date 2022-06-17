@@ -33,7 +33,10 @@ namespace BLL
         {
             return oMPP_Pedido.Listar();
         }
-
+        public List<BE_Pedido> PlatoEnPedidos(BE_Plato oBE_Plato)
+        {
+            return oMPP_Pedido.PlatoEnPedidos(oBE_Plato);
+        }
         public BE_Pedido ListarObjeto(BE_Pedido Pedido)
         {
             throw new NotImplementedException();

@@ -29,6 +29,7 @@ namespace BE
         {
             Entrada,
             Plato_Principal,
+            Guarnición,
             Postre
         }
         public enum Clasificación

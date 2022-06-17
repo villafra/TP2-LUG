@@ -7,10 +7,11 @@ using BE;
 using Conexión;
 using Abstracción;
 using System.Data;
+using System.Collections;
 
 namespace Mapper
 {
-    public class MPP_Pedido : IGestionable<BE_Pedido>
+    public class MPP_Pedido : IGestionable<BE_Pedido>, IValidable<BE_Pedido>
     {
         ClsDataBase Acceso;
         public bool Baja(BE_Pedido oBE_Pedido)
@@ -19,6 +20,16 @@ namespace Mapper
             query[0] = @"update Pedido set Activo = 0, Cancelado = 1 where Codigo_Pedido = " + oBE_Pedido.Codigo;
             query[1] = @"update Mesa set Estado='Disponible', CantidadComensales=0 where Nro_Mesa= " + oBE_Pedido.CodigoMesa.Codigo;
             Acceso = new ClsDataBase();
+            throw new NotImplementedException();
+        }
+
+        public bool Existe(BE_Pedido Objeto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ExisteActivo(BE_Pedido Objeto)
+        {
             throw new NotImplementedException();
         }
 
@@ -155,6 +166,41 @@ namespace Mapper
                         }
                     }
                     Pedido.CalcularMonto();
+                    ListadePedidos.Add(Pedido);
+                }
+            }
+            else
+            {
+                ListadePedidos = null;
+            }
+            return ListadePedidos;
+        }
+
+        public List<BE_Pedido> PlatoEnPedidos(BE_Plato oBE_Plato)
+        {
+            Acceso = new ClsDataBase();
+            List<BE_Pedido> ListadePedidos = new List<BE_Pedido>();
+            Hashtable hash = new Hashtable();
+            hash.Add("@Codigo_Plato", oBE_Plato.Codigo);
+            DataTable Dt = Acceso.DevolverListado("26 - Listar_Plato_Pedido", hash);
+
+            if (Dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in Dt.Rows)
+                {
+                    BE_Pedido Pedido = new BE_Pedido();
+                    Pedido.Codigo = Convert.ToInt32(row[7].ToString());
+                    Pedido.FechaHoradeInicio = Convert.ToDateTime(row[8].ToString());
+                    if (!(row[9] is DBNull))
+                    {
+                        Pedido.Observaciones = row[9].ToString();
+                    }
+                    else
+                    {
+                        Pedido.Observaciones = null;
+                    }
+                    Pedido.Monto = Convert.ToDecimal(row[14].ToString());
+                    Pedido.Activo = Convert.ToBoolean(row[12].ToString());
                     ListadePedidos.Add(Pedido);
                 }
             }

@@ -9,6 +9,7 @@ namespace Conexión
     public class ClsDataBase
     {
         private SqlConnection conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexión"].ToString());
+        private SqlConnection connection;
         private SqlTransaction transaction;
         private SqlCommand command;
         
@@ -16,11 +17,24 @@ namespace Conexión
         {
             conexion.Open();
         }
+        private void AbrirConexionValidacion()
+        {
+            connection = new SqlConnection();
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["Conexión"].ToString();
+            connection.Open();
+        }
         private void CerrarConexion()
         {
             conexion.Close();
             conexion.Dispose();
             conexion = null;
+            GC.Collect();
+        }
+        private void CerrarConexionValidacion()
+        {
+            connection.Close();
+            connection.Dispose();
+            connection = null;
             GC.Collect();
         }
        
@@ -95,11 +109,8 @@ namespace Conexión
         }
         public bool Scalar (string query, Hashtable hashtable)
         {
-            if (conexion.State == ConnectionState.Closed)
-            {
-                AbrirConexion();
-            }
-            command = new SqlCommand(query, conexion);
+            AbrirConexionValidacion();
+            command = new SqlCommand(query, connection);
             command.CommandType = CommandType.StoredProcedure;
             try
             {
@@ -126,7 +137,7 @@ namespace Conexión
             }
             finally
             {
-                CerrarConexion();
+                CerrarConexionValidacion();
             }
         }
 

@@ -20,9 +20,9 @@ namespace BLL
             oMPP_Mozo = new MPP_Mozo();
         }
 
-        public bool Baja(BE_Mozo oBEE_Mozo)
+        public bool Baja(BE_Mozo oBE_Mozo)
         {
-            throw new NotImplementedException();
+            return oMPP_Mozo.Baja(oBE_Mozo);
         }
 
         public override int DevolverPuntuacion()
@@ -30,24 +30,27 @@ namespace BLL
             return oMPP_Mozo.DevolverPuntuacion();
         }
 
-        public bool Guardar(BE_Mozo oBEE_Mozo)
+        public bool Guardar(BE_Mozo oBE_Mozo)
         {
-            throw new NotImplementedException();
+            return oMPP_Mozo.Guardar(oBE_Mozo);
         }
 
         public List<BE_Mozo> Listar()
         {
             return oMPP_Mozo.Listar();
         }
-
+        public List<BE_Mozo>ListarMozosXTurno (BE_Turno oBE_Turno)
+        {
+            return oMPP_Mozo.ListarMozosXTurno(oBE_Turno);
+        }
         public BE_Mozo ListarObjeto(BE_Mozo oBEE_Mozo)
         {
             throw new NotImplementedException();
         }
 
-        public List<BE_Mozo> Listartodo()
+        public List<BE_Empleado> Listartodo()
         {
-            return oMPP_Mozo.Listar();
+            return oMPP_Mozo.ListarTodo();
         }
 
     }

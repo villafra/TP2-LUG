@@ -9,9 +9,19 @@ using Abstracción;
 
 namespace Mapper
 {
-    public class MPP_Cocina : IGestionable<BE_Cocina>
+    public class MPP_Cocina : IGestionable<BE_Cocina>, IValidable<BE_Cocina>
     {
         public bool Baja(BE_Cocina Objeto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Existe(BE_Cocina Objeto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ExisteActivo(BE_Cocina Objeto)
         {
             throw new NotImplementedException();
         }

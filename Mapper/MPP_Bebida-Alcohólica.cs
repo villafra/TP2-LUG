@@ -10,7 +10,7 @@ using System.Data;
 
 namespace Mapper
 {
-    public class MPP_Bebida_Alcohólica : MPP_Bebida, IGestionable<BE_Bebida_Alcohólica>
+    public class MPP_Bebida_Alcohólica : MPP_Bebida, IGestionable<BE_Bebida_Alcohólica>, IValidable<BE_Bebida_Alcohólica>
     {
         ClsDataBase Acceso;
         public bool Baja(BE_Bebida_Alcohólica Objeto)
@@ -29,6 +29,16 @@ namespace Mapper
         }
 
         public new List<BE_Bebida_Alcohólica> Listar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Existe(BE_Bebida_Alcohólica Objeto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ExisteActivo(BE_Bebida_Alcohólica Objeto)
         {
             throw new NotImplementedException();
         }

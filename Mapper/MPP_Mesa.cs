@@ -100,7 +100,9 @@ namespace Mapper
         {
             Acceso = new ClsDataBase();
             List<BE_Mesa> ListadeMesas = new List<BE_Mesa>();
-            DataTable Dt = Acceso.DevolverListado("42 - Listar_Mesa_Libre", null);
+            Hashtable hash = new Hashtable();
+            hash.Add("@Status", BE_Mesa.Estado.Libre.ToString());
+            DataTable Dt = Acceso.DevolverListado("17 - Listar_Mesa", hash);
 
             if (Dt.Rows.Count > 0)
             {

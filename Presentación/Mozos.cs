@@ -43,9 +43,9 @@ namespace Presentación
                 oBE_Mozo.Apellido = txtApellido.Text;
                 oBE_Mozo.FechaNacimiento = dtpFechaNacimiento.Value;
                 oBE_Mozo.Edad = oBE_Mozo.CalcularAños(oBE_Mozo.FechaNacimiento);
+                oBE_Mozo.FechaIngreso = dtpFechaIngreso.Value;
+                oBE_Mozo.Antiguedad = oBE_Mozo.CalcularAños(oBE_Mozo.FechaIngreso);
                 oBE_Mozo.Turno = (BE_Turno)comboTurno.SelectedItem;
-                oBLL_Mozo.Guardar(oBE_Mozo);
-
             }
             catch (Exception ex)
             {
@@ -55,23 +55,24 @@ namespace Presentación
         }
         private void Viejo()
         {
-              try
-                {
-                    oBE_Mozo.Codigo = Convert.ToInt32(txtLegajo.Text);   
-                    oBE_Mozo.DNI = Int32.Parse(txtDNI.Text);
-                    oBE_Mozo.Nombre = txtNombre.Text;
-                    oBE_Mozo.Apellido = txtApellido.Text;
-                    oBE_Mozo.FechaNacimiento = dtpFechaNacimiento.Value;
-                    oBE_Mozo.Edad = oBE_Mozo.CalcularAños(oBE_Mozo.FechaNacimiento);
-                    oBE_Mozo.Turno = (BE_Turno)comboTurno.SelectedItem;
-                    oBLL_Mozo.Guardar(oBE_Mozo);
+            try
+            {
+                oBE_Mozo.Codigo = Convert.ToInt32(txtLegajo.Text);
+                oBE_Mozo.DNI = Int32.Parse(txtDNI.Text);
+                oBE_Mozo.Nombre = txtNombre.Text;
+                oBE_Mozo.Apellido = txtApellido.Text;
+                oBE_Mozo.FechaNacimiento = dtpFechaNacimiento.Value;
+                oBE_Mozo.Edad = oBE_Mozo.CalcularAños(oBE_Mozo.FechaNacimiento);
+                oBE_Mozo.FechaIngreso = dtpFechaIngreso.Value;
+                oBE_Mozo.Antiguedad = oBE_Mozo.CalcularAños(oBE_Mozo.FechaIngreso);
+                oBE_Mozo.Turno = (BE_Turno)comboTurno.SelectedItem;
+                oBLL_Mozo.Guardar(oBE_Mozo);
+            }
+            catch (Exception ex)
+            {
 
-                }
-                catch (Exception ex)
-                {
-
-                    throw ex;
-                }
+                throw ex;
+            }
             
         }
 
@@ -122,7 +123,7 @@ namespace Presentación
                 txtNombre.Text = oBE_Mozo.Nombre;
                 txtApellido.Text = oBE_Mozo.Apellido;
                 dtpFechaNacimiento.Value = oBE_Mozo.FechaNacimiento;
-                txtEdad.Text = oBE_Mozo.Edad.ToString();
+                dtpFechaIngreso.Value = oBE_Mozo.FechaIngreso;
                 comboTurno.Text = oBE_Mozo.Turno.NombreTurno;
                 int rank = oBLL_Mozo.DevolverPuntuacion();
                 lblPuntuación.Text = rank.ToString();
