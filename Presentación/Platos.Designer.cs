@@ -95,7 +95,7 @@
             // txtStock
             // 
             this.txtStock.Enabled = false;
-            this.txtStock.Location = new System.Drawing.Point(561, 65);
+            this.txtStock.Location = new System.Drawing.Point(528, 63);
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(118, 22);
             this.txtStock.TabIndex = 24;
@@ -104,7 +104,7 @@
             // lblStock
             // 
             this.lblStock.AutoSize = true;
-            this.lblStock.Location = new System.Drawing.Point(558, 33);
+            this.lblStock.Location = new System.Drawing.Point(525, 33);
             this.lblStock.Name = "lblStock";
             this.lblStock.Size = new System.Drawing.Size(41, 16);
             this.lblStock.TabIndex = 23;
@@ -123,9 +123,9 @@
             this.lblCosto.AutoSize = true;
             this.lblCosto.Location = new System.Drawing.Point(479, 114);
             this.lblCosto.Name = "lblCosto";
-            this.lblCosto.Size = new System.Drawing.Size(42, 16);
+            this.lblCosto.Size = new System.Drawing.Size(46, 16);
             this.lblCosto.TabIndex = 21;
-            this.lblCosto.Text = "Costo";
+            this.lblCosto.Text = "Precio";
             // 
             // ComboClase
             // 
@@ -172,7 +172,7 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(248, 63);
+            this.txtNombre.Location = new System.Drawing.Point(221, 63);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(286, 22);
             this.txtNombre.TabIndex = 14;
@@ -181,7 +181,7 @@
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(256, 33);
+            this.lblNombre.Location = new System.Drawing.Point(218, 33);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(56, 16);
             this.lblNombre.TabIndex = 13;
@@ -228,9 +228,9 @@
             this.lblFrecuenciaPlato.AutoSize = true;
             this.lblFrecuenciaPlato.Location = new System.Drawing.Point(694, 33);
             this.lblFrecuenciaPlato.Name = "lblFrecuenciaPlato";
-            this.lblFrecuenciaPlato.Size = new System.Drawing.Size(67, 16);
+            this.lblFrecuenciaPlato.Size = new System.Drawing.Size(74, 16);
             this.lblFrecuenciaPlato.TabIndex = 8;
-            this.lblFrecuenciaPlato.Text = "Frecuecia";
+            this.lblFrecuenciaPlato.Text = "Frecuencia";
             this.lblFrecuenciaPlato.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dgvPedidosConPlat

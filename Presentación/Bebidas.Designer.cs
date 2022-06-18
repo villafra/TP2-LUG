@@ -94,12 +94,6 @@
             // comboTipo
             // 
             this.comboTipo.FormattingEnabled = true;
-            this.comboTipo.Items.AddRange(new object[] {
-            "Agua",
-            "Gaseosa",
-            "Preparada",
-            "Energizante",
-            "Alcoholica"});
             this.comboTipo.Location = new System.Drawing.Point(205, 146);
             this.comboTipo.Name = "comboTipo";
             this.comboTipo.Size = new System.Drawing.Size(194, 24);

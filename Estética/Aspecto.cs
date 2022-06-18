@@ -268,6 +268,7 @@ namespace Estética
             dgv.Columns[1].HeaderText = "Nombre Plato";
             dgv.Columns[2].HeaderText = "Tipo Plato";
             dgv.Columns[3].HeaderText = "Clase Plato";
+            dgv.Columns[5].HeaderText = "Precio Un.";
             dgv.Columns[5].DefaultCellStyle.Format = "c";
 
             foreach (DataGridViewColumn columns in dgv.Columns)
@@ -300,8 +301,9 @@ namespace Estética
             dgv.Columns[1].HeaderText = "Nombre";
             dgv.Columns[2].HeaderText = "Tipo";
             dgv.Columns[3].HeaderText = "Presentación";
-            dgv.Columns[4].HeaderText = "Precio";
-            dgv.Columns[5].HeaderText = "Stock";
+            dgv.Columns[4].HeaderText = "Stock";
+            dgv.Columns[5].HeaderText = "Precio Un.";
+            dgv.Columns[5].DefaultCellStyle.Format = "c";
 
             foreach (DataGridViewColumn columns in dgv.Columns)
             {

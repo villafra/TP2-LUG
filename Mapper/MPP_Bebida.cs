@@ -7,6 +7,7 @@ using BE;
 using Conexión;
 using Abstracción;
 using System.Data;
+using System.Collections;
 
 namespace Mapper
 {
@@ -15,9 +16,18 @@ namespace Mapper
         ClsDataBase Acceso;
         public bool Baja(BE_Bebida oBE_Bebida)
         {
-            string query = @"Delete from Bebida where [Codigo_Bebida]=" + oBE_Bebida.Codigo;
-            Acceso = new ClsDataBase();
-            throw new NotImplementedException();
+            if (!ExisteActivo(oBE_Bebida))
+            {
+                Hashtable hashtable = new Hashtable();
+                string query = "08 - Baja_Bebida";
+                hashtable.Add("@Codigo", oBE_Bebida.Codigo);
+                Acceso = new ClsDataBase();
+                return Acceso.Escribir(query, hashtable);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool Existe(BE_Bebida Objeto)
@@ -25,49 +35,58 @@ namespace Mapper
             throw new NotImplementedException();
         }
 
-        public bool ExisteActivo(BE_Bebida Objeto)
+        public bool ExisteActivo(BE_Bebida oBE_Bebida)
         {
-            throw new NotImplementedException();
+            Hashtable hash = new Hashtable();
+            hash.Add("@Codigo_Turno", oBE_Bebida.Codigo);
+            Acceso = new ClsDataBase();
+            return Acceso.Scalar("53 - Existe_Bebida_Activo", hash);
         }
 
         public bool Guardar(BE_Bebida Bebida)
         {
-            string query;
+            Hashtable hashtable = new Hashtable();
+            string query = "06 - Alta_Bebida";
 
             if (Bebida.Codigo != 0)
             {
-                query = @"Update Bebida set Nombre= '" + Bebida.Nombre + "', Tipo= '" + Bebida.Tipo_Bebida.ToString() + "', Presentación= '" + Bebida.Presentación + "', Precio= " + Bebida.CostoUnitario + ", Stock= " + Bebida.Stock + "where Codigo_Bebida= " + Bebida.Codigo;
+                query = "07 - Modificar_Bebida";
+                hashtable.Add("@Codigo", Bebida.Codigo);
             }
-            else
-            {
-                query = @"Insert into Bebida (Nombre, Tipo, Presentación, Precio,Stock) values('" + Bebida.Nombre + "','" + Bebida.Tipo_Bebida + "','" + Bebida.Presentación + "'," + Bebida.CostoUnitario + ", 0)";
-            }
+            hashtable.Add("@Nombre", Bebida.Nombre);
+            hashtable.Add("@Tipo", Bebida.Tipo_Bebida.ToString());
+            hashtable.Add("@Present", Bebida.Presentación);
+            hashtable.Add("@Stock", Bebida.Stock);
+            hashtable.Add("@Costo", Bebida.CostoUnitario);
             Acceso = new ClsDataBase();
-            throw new NotImplementedException();
+            return Acceso.Escribir(query, hashtable);
         }
 
         public List<BE_Bebida> Listar()
         {
             Acceso = new ClsDataBase();
-            DataSet Ds;
-            string query = @"Select * from Bebida";
-            throw new NotImplementedException();
             List<BE_Bebida> ListadeBebidas = new List<BE_Bebida>();
+            DataTable Dt = Acceso.DevolverListado("05 - Listar_Bebida", null);
 
-            if (Ds.Tables[0].Rows.Count > 0)
+            if (Dt.Rows.Count > 0)
             {
-                foreach (DataRow row in Ds.Tables[0].Rows)
+                foreach (DataRow row in Dt.Rows)
                 {
                     BE_Bebida Bebida = new BE_Bebida();
                     BE_Bebida_Alcohólica Bebida_Alcohólica = new BE_Bebida_Alcohólica();
-                    if (row[6].ToString() == "")
+                    if (row[6] is DBNull)
                     {
                         Bebida.Codigo = Convert.ToInt32(row[0].ToString());
                         Bebida.Nombre = row[1].ToString();
                         Bebida.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), row[2].ToString());
                         Bebida.Presentación = row[3].ToString();
-                        Bebida.CostoUnitario = Convert.ToDecimal(row[4].ToString());
-                        Bebida.Stock = Convert.ToInt32(row[5].ToString());
+                        if (!(row[4] is DBNull))
+                        {
+                            Bebida.Stock = Convert.ToInt32(row[4].ToString());
+                        }
+                        else { Bebida.Stock = 0; }
+                        
+                        Bebida.CostoUnitario = Convert.ToDecimal(row[5].ToString());
                         ListadeBebidas.Add(Bebida);
                     }
                     else
@@ -76,8 +95,12 @@ namespace Mapper
                         Bebida_Alcohólica.Nombre = row[1].ToString();
                         Bebida_Alcohólica.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), row[2].ToString());
                         Bebida_Alcohólica.Presentación = row[3].ToString();
-                        Bebida_Alcohólica.CostoUnitario = Convert.ToDecimal(row[4].ToString());
-                        Bebida_Alcohólica.Stock = Convert.ToInt32(row[5].ToString());
+                        if (!(row[4] is DBNull))
+                        {
+                            Bebida_Alcohólica.Stock = Convert.ToInt32(row[4].ToString());
+                        }
+                        else { Bebida_Alcohólica.Stock = 0; }
+                        Bebida_Alcohólica.CostoUnitario = Convert.ToDecimal(row[5].ToString());
                         Bebida_Alcohólica.GraduaciónAlcoholica = Convert.ToDecimal(row[6].ToString());
                         ListadeBebidas.Add(Bebida_Alcohólica);
                     }
@@ -93,14 +116,14 @@ namespace Mapper
         public List<BE_Bebida> ListarBebidasEnPedido(BE_Pedido oBE_Pedido)
         {
             Acceso = new ClsDataBase();
-            DataSet Ds;
-            string query = @"Select * from Pedido_Bebida,Bebida where Bebida.Codigo_Bebida=Pedido_Bebida.Codigo_Bebida and Codigo_Pedido = " + oBE_Pedido.Codigo;
-            throw new NotImplementedException();
+            Hashtable hash = new Hashtable();
+            hash.Add("@Codigo", oBE_Pedido.Bebidas.Find(x => x.Codigo == oBE_Pedido.Codigo));
             List<BE_Bebida> ListadeBebidas = new List<BE_Bebida>();
+            DataTable Dt = Acceso.DevolverListado("27 - Listar_Bebida_Pedido", hash);
 
-            if (Ds.Tables[0].Rows.Count > 0)
+            if (Dt.Rows.Count > 0)
             {
-                foreach (DataRow row in Ds.Tables[0].Rows)
+                foreach (DataRow row in Dt.Rows)
                 {
                     BE_Bebida Bebida = new BE_Bebida();
                     BE_Bebida_Alcohólica Bebida_Alcohólica = new BE_Bebida_Alcohólica();
@@ -110,8 +133,8 @@ namespace Mapper
                         Bebida.Nombre = row[1].ToString();
                         Bebida.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), row[2].ToString());
                         Bebida.Presentación = row[3].ToString();
-                        Bebida.CostoUnitario = Convert.ToDecimal(row[4].ToString());
-                        Bebida.Stock = Convert.ToInt32(row[5].ToString());
+                        Bebida.Stock = Convert.ToInt32(row[4].ToString());
+                        Bebida.CostoUnitario = Convert.ToDecimal(row[5].ToString());
                         ListadeBebidas.Add(Bebida);
                     }
                     else
@@ -120,8 +143,8 @@ namespace Mapper
                         Bebida_Alcohólica.Nombre = row[1].ToString();
                         Bebida_Alcohólica.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), row[2].ToString());
                         Bebida_Alcohólica.Presentación = row[3].ToString();
-                        Bebida_Alcohólica.CostoUnitario = Convert.ToDecimal(row[4].ToString());
-                        Bebida_Alcohólica.Stock = Convert.ToInt32(row[5].ToString());
+                        Bebida_Alcohólica.Stock = Convert.ToInt32(row[4].ToString());
+                        Bebida_Alcohólica.CostoUnitario = Convert.ToDecimal(row[5].ToString());
                         Bebida_Alcohólica.GraduaciónAlcoholica = Convert.ToDecimal(row[6].ToString());
                         ListadeBebidas.Add(Bebida_Alcohólica);
                     }

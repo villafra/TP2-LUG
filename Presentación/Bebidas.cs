@@ -29,6 +29,7 @@ namespace Presentación
             oBLL_Bebida_Alcohólica = new BLL_Bebida_Alcohólica();
             oBE_Bebida = new BE_Bebida();
             oBE_Bebida_Alcohólica = new BE_Bebida_Alcohólica();
+            Calculos.DataSourceCombo(comboTipo, Enum.GetNames(typeof(BE_Bebida.Tipo)), "TipoBebidas");
             ActualizarListado();
             Aspecto.FormatearDGV(dgvBebidas);
             Aspecto.FormatearGRP(grpBebidas);
@@ -38,11 +39,11 @@ namespace Presentación
         {
             try
             {
-                if (txtABV.Text == "")
+                if (comboTipo.SelectedIndex < 3)
                 {
                     oBE_Bebida.Codigo = 0;
                     oBE_Bebida.Nombre = txtNombre.Text;
-                    //oBE_Bebida.Tipo_Bebida = comboTipo.SelectedItem.ToString();
+                    oBE_Bebida.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), comboTipo.Text);
                     oBE_Bebida.Presentación = txtPresentacion.Text;
                     oBE_Bebida.CostoUnitario = Convert.ToDecimal(txtPrecio.Text);
                     oBE_Bebida.Stock = 0;
@@ -51,7 +52,7 @@ namespace Presentación
                 {
                     oBE_Bebida_Alcohólica.Codigo = 0;
                     oBE_Bebida_Alcohólica.Nombre = txtNombre.Text;
-                    //oBE_Bebida_Alcohólica.Tipo = comboTipo.SelectedItem.ToString();
+                    oBE_Bebida_Alcohólica.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), comboTipo.Text);
                     oBE_Bebida_Alcohólica.Presentación = txtPresentacion.Text;
                     oBE_Bebida_Alcohólica.CostoUnitario = Convert.ToDecimal(txtPrecio.Text);
                     oBE_Bebida_Alcohólica.GraduaciónAlcoholica = Convert.ToDecimal(txtABV.Text);
@@ -74,7 +75,7 @@ namespace Presentación
                 {
                     oBE_Bebida.Codigo = Convert.ToInt32(txtCodigo.Text);
                     oBE_Bebida.Nombre = txtNombre.Text;
-                    //oBE_Bebida.Tipo = comboTipo.SelectedItem.ToString();
+                    oBE_Bebida.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), comboTipo.Text);
                     oBE_Bebida.Presentación = txtPresentacion.Text;
                     oBE_Bebida.CostoUnitario = Convert.ToDecimal(txtPrecio.Text);
                     oBE_Bebida.Stock = Convert.ToInt32(lblCantidad.Text);
@@ -83,7 +84,7 @@ namespace Presentación
                 {
                     oBE_Bebida_Alcohólica.Codigo = Convert.ToInt32(txtCodigo.Text);
                     oBE_Bebida_Alcohólica.Nombre = txtNombre.Text;
-                    //oBE_Bebida_Alcohólica.Tipo = comboTipo.SelectedItem.ToString();
+                    oBE_Bebida_Alcohólica.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), comboTipo.Text);
                     oBE_Bebida_Alcohólica.Presentación = txtPresentacion.Text;
                     oBE_Bebida_Alcohólica.CostoUnitario = Convert.ToDecimal(txtPrecio.Text);
                     oBE_Bebida_Alcohólica.GraduaciónAlcoholica = Convert.ToDecimal(txtABV.Text);
@@ -101,8 +102,13 @@ namespace Presentación
 
         private void ActualizarListado()
         {
-            Calculos.RefreshGrilla(dgvBebidas, oBLL_Bebida.Listar());
-            Aspecto.DGVBebidas(dgvBebidas);
+            
+                Calculos.RefreshGrilla(dgvBebidas, oBLL_Bebida.Listar());
+            try
+            {
+                Aspecto.DGVBebidas(dgvBebidas);
+            }
+            catch { }
         }
 
         private void btnNuevaBebida_Click(object sender, EventArgs e)
@@ -110,7 +116,7 @@ namespace Presentación
             try
             {
                 Nuevo();
-                if (txtABV.Text == "")
+                if (comboTipo.SelectedIndex < 3)
                 {
                     oBLL_Bebida.Guardar(oBE_Bebida);
                 }
@@ -178,40 +184,29 @@ namespace Presentación
         {
             try
             {
-                if (dgvBebidas.SelectedRows[0].Cells[2].Value.ToString() == "Alcoholica")
+                oBE_Bebida = (BE_Bebida)dgvBebidas.SelectedRows[0].DataBoundItem;
+                txtCodigo.Text = oBE_Bebida.Codigo.ToString();
+                txtNombre.Text = oBE_Bebida.Nombre;
+                txtPrecio.Text = oBE_Bebida.CostoUnitario.ToString();
+                comboTipo.Text = oBE_Bebida.Tipo_Bebida.ToString();
+                txtPresentacion.Text = oBE_Bebida.Presentación;
+                lblCantidad.Text = oBE_Bebida.Stock.ToString();
+                prgCantidad.Value = oBE_Bebida.Stock;
+                if (oBE_Bebida is BE_Bebida_Alcohólica)
                 {
-                    oBE_Bebida_Alcohólica = (BE_Bebida_Alcohólica)dgvBebidas.SelectedRows[0].DataBoundItem;
-                    txtCodigo.Text = oBE_Bebida_Alcohólica.Codigo.ToString();
-                    txtNombre.Text = oBE_Bebida_Alcohólica.Nombre;
-                    txtPrecio.Text = oBE_Bebida_Alcohólica.CostoUnitario.ToString();
-                    txtABV.Text = oBE_Bebida_Alcohólica.GraduaciónAlcoholica.ToString();
-                    //comboTipo.Text = oBE_Bebida_Alcohólica.Tipo.ToString();
-                    txtPresentacion.Text = oBE_Bebida_Alcohólica.Presentación;
-                    lblCantidad.Text = oBE_Bebida_Alcohólica.Stock.ToString();
-                    prgCantidad.Value = oBE_Bebida_Alcohólica.Stock;
+                    txtABV.Text = (oBE_Bebida as BE_Bebida_Alcohólica).GraduaciónAlcoholica.ToString();
                 }
                 else
                 {
-                    oBE_Bebida = (BE_Bebida)dgvBebidas.SelectedRows[0].DataBoundItem;
-                    txtCodigo.Text = oBE_Bebida.Codigo.ToString();
-                    txtNombre.Text = oBE_Bebida.Nombre;
-                    txtPrecio.Text = oBE_Bebida.CostoUnitario.ToString();
-                    //comboTipo.Text = oBE_Bebida.Tipo.ToString();
-                    txtPresentacion.Text = oBE_Bebida.Presentación;
-                    lblCantidad.Text = oBE_Bebida.Stock.ToString();
                     txtABV.Text = "";
-                    prgCantidad.Value = oBE_Bebida.Stock;
                 }
-
-
-
             }
             catch { }
         }
 
         private void comboTipo_TextChanged(object sender, EventArgs e)
         {
-            if (comboTipo.Text == "Alcoholica")
+            if (comboTipo.SelectedIndex >= 3)
             {
                 txtABV.Enabled = true;
             }
@@ -225,10 +220,11 @@ namespace Presentación
         {
             try
             {
-                if (comboTipo.Text == "Alcoholica")
+                oBE_Bebida = (BE_Bebida)dgvBebidas.SelectedRows[0].DataBoundItem;
+
+                if (oBE_Bebida is BE_Bebida_Alcohólica)
                 {
-                    oBE_Bebida_Alcohólica = (BE_Bebida_Alcohólica)dgvBebidas.SelectedRows[0].DataBoundItem;
-                    if (Calculos.EstaSeguro("Agregar Stock de Bebida", oBE_Bebida_Alcohólica.Codigo, oBE_Bebida_Alcohólica.ToString()))
+                    if (Calculos.EstaSeguro("Agregar Stock de Bebida", oBE_Bebida.Codigo, oBE_Bebida.ToString()))
                     {
                         int Cantidad;
                         bool numero = Int32.TryParse(Interaction.InputBox("Ingrese Cantidad a Agregar", "Agregar Stock"), out Cantidad);
@@ -236,14 +232,13 @@ namespace Presentación
                         {
                             numero = Int32.TryParse(Interaction.InputBox("Ingrese Cantidad a Agregar", "Agregar Stock"), out Cantidad);
                         }
-                        oBE_Bebida_Alcohólica.AgregarStock(Cantidad);
-                        oBLL_Bebida_Alcohólica.Guardar(oBE_Bebida_Alcohólica);
+                        (oBE_Bebida as BE_Bebida_Alcohólica).AgregarStock(Cantidad);
+                        oBLL_Bebida_Alcohólica.Guardar((oBE_Bebida as BE_Bebida_Alcohólica));
 
                     }
                 }
                 else
                 {
-                    oBE_Bebida = (BE_Bebida)dgvBebidas.SelectedRows[0].DataBoundItem;
                     if (Calculos.EstaSeguro("Agregar Stock de Bebida", oBE_Bebida.Codigo, oBE_Bebida.ToString()))
                     {
                         int Cantidad;
@@ -253,10 +248,10 @@ namespace Presentación
                             numero = Int32.TryParse(Interaction.InputBox("Ingrese Cantidad a Agregar", "Agregar Stock"), out Cantidad);
                         }
                         oBE_Bebida.AgregarStock(Cantidad);
-                        oBLL_Bebida.Guardar(oBE_Bebida);
-                        Calculos.MsgBox("Stock Agregado");
+                        oBLL_Bebida.Guardar(oBE_Bebida);     
                     }
                 }
+                Calculos.MsgBox("Stock Agregado");
             }
             catch { }
             finally

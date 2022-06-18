@@ -59,12 +59,12 @@
             this.dgvMozos.AllowUserToAddRows = false;
             this.dgvMozos.AllowUserToDeleteRows = false;
             this.dgvMozos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMozos.Location = new System.Drawing.Point(98, 53);
+            this.dgvMozos.Location = new System.Drawing.Point(77, 53);
             this.dgvMozos.Name = "dgvMozos";
             this.dgvMozos.ReadOnly = true;
             this.dgvMozos.RowHeadersWidth = 51;
             this.dgvMozos.RowTemplate.Height = 24;
-            this.dgvMozos.Size = new System.Drawing.Size(651, 254);
+            this.dgvMozos.Size = new System.Drawing.Size(693, 254);
             this.dgvMozos.TabIndex = 0;
             this.dgvMozos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMozos_CellContentClick);
             // 
@@ -97,7 +97,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(451, 33);
+            this.label1.Location = new System.Drawing.Point(467, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 16);
             this.label1.TabIndex = 28;
@@ -107,7 +107,7 @@
             // 
             this.dtpFechaIngreso.CustomFormat = "dd/MM/yyyy";
             this.dtpFechaIngreso.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaIngreso.Location = new System.Drawing.Point(454, 63);
+            this.dtpFechaIngreso.Location = new System.Drawing.Point(470, 63);
             this.dtpFechaIngreso.Name = "dtpFechaIngreso";
             this.dtpFechaIngreso.Size = new System.Drawing.Size(121, 22);
             this.dtpFechaIngreso.TabIndex = 27;
@@ -115,11 +115,11 @@
             // lblFechaNacimiento
             // 
             this.lblFechaNacimiento.AutoSize = true;
-            this.lblFechaNacimiento.Location = new System.Drawing.Point(284, 33);
+            this.lblFechaNacimiento.Location = new System.Drawing.Point(289, 33);
             this.lblFechaNacimiento.Name = "lblFechaNacimiento";
-            this.lblFechaNacimiento.Size = new System.Drawing.Size(135, 16);
+            this.lblFechaNacimiento.Size = new System.Drawing.Size(95, 16);
             this.lblFechaNacimiento.TabIndex = 26;
-            this.lblFechaNacimiento.Text = "Fecha de Nacimiento";
+            this.lblFechaNacimiento.Text = "Fecha de Nac.";
             // 
             // dtpFechaNacimiento
             // 
@@ -133,15 +133,15 @@
             // comboTurno
             // 
             this.comboTurno.FormattingEnabled = true;
-            this.comboTurno.Location = new System.Drawing.Point(445, 141);
+            this.comboTurno.Location = new System.Drawing.Point(433, 141);
             this.comboTurno.Name = "comboTurno";
-            this.comboTurno.Size = new System.Drawing.Size(121, 24);
+            this.comboTurno.Size = new System.Drawing.Size(158, 24);
             this.comboTurno.TabIndex = 24;
             // 
             // lblTurno
             // 
             this.lblTurno.AutoSize = true;
-            this.lblTurno.Location = new System.Drawing.Point(442, 113);
+            this.lblTurno.Location = new System.Drawing.Point(430, 113);
             this.lblTurno.Name = "lblTurno";
             this.lblTurno.Size = new System.Drawing.Size(42, 16);
             this.lblTurno.TabIndex = 23;
@@ -149,16 +149,16 @@
             // 
             // txtApellido
             // 
-            this.txtApellido.Location = new System.Drawing.Point(236, 143);
+            this.txtApellido.Location = new System.Drawing.Point(222, 143);
             this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(148, 22);
+            this.txtApellido.Size = new System.Drawing.Size(186, 22);
             this.txtApellido.TabIndex = 18;
             this.txtApellido.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblApellido
             // 
             this.lblApellido.AutoSize = true;
-            this.lblApellido.Location = new System.Drawing.Point(233, 113);
+            this.lblApellido.Location = new System.Drawing.Point(219, 113);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(57, 16);
             this.lblApellido.TabIndex = 17;
@@ -168,7 +168,7 @@
             // 
             this.txtNombre.Location = new System.Drawing.Point(27, 143);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(148, 22);
+            this.txtNombre.Size = new System.Drawing.Size(175, 22);
             this.txtNombre.TabIndex = 16;
             this.txtNombre.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -219,7 +219,7 @@
             // lblPuntuación
             // 
             this.lblPuntuación.AutoSize = true;
-            this.lblPuntuación.Location = new System.Drawing.Point(736, 51);
+            this.lblPuntuación.Location = new System.Drawing.Point(739, 65);
             this.lblPuntuación.Name = "lblPuntuación";
             this.lblPuntuación.Size = new System.Drawing.Size(14, 16);
             this.lblPuntuación.TabIndex = 10;
@@ -228,7 +228,7 @@
             // prgBaRanking
             // 
             this.prgBaRanking.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.prgBaRanking.Location = new System.Drawing.Point(622, 78);
+            this.prgBaRanking.Location = new System.Drawing.Point(619, 96);
             this.prgBaRanking.Maximum = 10;
             this.prgBaRanking.Name = "prgBaRanking";
             this.prgBaRanking.Size = new System.Drawing.Size(188, 42);
@@ -238,7 +238,7 @@
             // lblRanking
             // 
             this.lblRanking.AutoSize = true;
-            this.lblRanking.Location = new System.Drawing.Point(633, 51);
+            this.lblRanking.Location = new System.Drawing.Point(636, 65);
             this.lblRanking.Name = "lblRanking";
             this.lblRanking.Size = new System.Drawing.Size(73, 16);
             this.lblRanking.TabIndex = 8;

@@ -57,8 +57,8 @@ namespace Presentación
         }
         private void ActualizarListado()
         {
-            //Calculos.RefreshGrilla(dgvUsuarios, oBLL_Login.Listar());
-            //Calculos.RefreshGrilla(dgvUsuarios, oBLL_Mozo.Listartodo());
+            Calculos.RefreshGrilla(dgvUsuarios, oBLL_Login.Listar());
+            Calculos.RefreshGrilla(dgvUsuarios, oBLL_Mozo.Listartodo());
             //Aspecto.DGVTurnos(dgvUsuarios);
         }
 

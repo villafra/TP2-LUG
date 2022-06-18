@@ -30,6 +30,10 @@ namespace BE
             Usuario = usuario;
             Password = password;
         }
+
+        public BE_Login()
+        {
+        }
     }
 
 }
