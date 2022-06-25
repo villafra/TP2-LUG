@@ -304,5 +304,17 @@
   <ItemGroup>
     <None Include="Resources\Picture4.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reset.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\restablecer-la-contrasena.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture23png.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

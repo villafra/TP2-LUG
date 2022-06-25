@@ -13,13 +13,13 @@ namespace Security
         {
             try
             {
-                string key = "restó";
+                string key = "littlementalyoga";
                 byte[] keyArray;
                 byte[] Arreglo_a_Cifrar = UTF8Encoding.UTF8.GetBytes(pass);
 
-                SHA1CryptoServiceProvider SHA = new SHA1CryptoServiceProvider();
-                keyArray = SHA.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
-                SHA.Clear();
+                MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
+                keyArray = hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
+                hashmd5.Clear();
 
                 TripleDESCryptoServiceProvider tdes = new TripleDESCryptoServiceProvider();
                 tdes.Key = keyArray;
@@ -42,13 +42,13 @@ namespace Security
         {
             try
             {
-                string key = "restó";
+                string key = "littlementalyoga";
                 byte[] keyArray;
                 byte[] Array_a_Descifrar = Convert.FromBase64String(pass);
 
-                SHA1CryptoServiceProvider SHA = new SHA1CryptoServiceProvider();
-                keyArray = SHA.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
-                SHA.Clear();
+                MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
+                keyArray = hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
+                hashmd5.Clear();
 
                 TripleDESCryptoServiceProvider tdes = new TripleDESCryptoServiceProvider();
 

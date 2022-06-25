@@ -46,6 +46,7 @@
             this.prgFrecuencia = new System.Windows.Forms.ProgressBar();
             this.lblFrecuenciaPlato = new System.Windows.Forms.Label();
             this.dgvPedidosConPlat = new System.Windows.Forms.DataGridView();
+            this.btnAgregarStock = new System.Windows.Forms.Button();
             this.btnEliminarPlato = new System.Windows.Forms.Button();
             this.btnModificarPlato = new System.Windows.Forms.Button();
             this.btnNuevoPlato = new System.Windows.Forms.Button();
@@ -59,7 +60,7 @@
             this.dgvPlatos.AllowUserToAddRows = false;
             this.dgvPlatos.AllowUserToDeleteRows = false;
             this.dgvPlatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPlatos.Location = new System.Drawing.Point(5, 53);
+            this.dgvPlatos.Location = new System.Drawing.Point(12, 25);
             this.dgvPlatos.Name = "dgvPlatos";
             this.dgvPlatos.ReadOnly = true;
             this.dgvPlatos.RowHeadersWidth = 51;
@@ -238,13 +239,28 @@
             this.dgvPedidosConPlat.AllowUserToAddRows = false;
             this.dgvPedidosConPlat.AllowUserToDeleteRows = false;
             this.dgvPedidosConPlat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPedidosConPlat.Location = new System.Drawing.Point(664, 53);
+            this.dgvPedidosConPlat.Location = new System.Drawing.Point(671, 25);
             this.dgvPedidosConPlat.Name = "dgvPedidosConPlat";
             this.dgvPedidosConPlat.ReadOnly = true;
             this.dgvPedidosConPlat.RowHeadersWidth = 51;
             this.dgvPedidosConPlat.RowTemplate.Height = 24;
-            this.dgvPedidosConPlat.Size = new System.Drawing.Size(174, 254);
+            this.dgvPedidosConPlat.Size = new System.Drawing.Size(174, 185);
             this.dgvPedidosConPlat.TabIndex = 5;
+            // 
+            // btnAgregarStock
+            // 
+            this.btnAgregarStock.BackgroundImage = global::Presentación.Properties.Resources.Picture23png;
+            this.btnAgregarStock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAgregarStock.FlatAppearance.BorderSize = 0;
+            this.btnAgregarStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarStock.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarStock.ForeColor = System.Drawing.Color.Gold;
+            this.btnAgregarStock.Location = new System.Drawing.Point(750, 239);
+            this.btnAgregarStock.Name = "btnAgregarStock";
+            this.btnAgregarStock.Size = new System.Drawing.Size(82, 68);
+            this.btnAgregarStock.TabIndex = 6;
+            this.btnAgregarStock.UseVisualStyleBackColor = true;
+            this.btnAgregarStock.Click += new System.EventHandler(this.btnAgregarStock_Click);
             // 
             // btnEliminarPlato
             // 
@@ -296,6 +312,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 609);
+            this.Controls.Add(this.btnAgregarStock);
             this.Controls.Add(this.dgvPedidosConPlat);
             this.Controls.Add(this.btnEliminarPlato);
             this.Controls.Add(this.btnModificarPlato);
@@ -336,5 +353,6 @@
         private System.Windows.Forms.Label lblCosto;
         private System.Windows.Forms.TextBox txtStock;
         private System.Windows.Forms.Label lblStock;
+        private System.Windows.Forms.Button btnAgregarStock;
     }
 }

@@ -11,6 +11,7 @@ using BE;
 using BLL;
 using Calculo;
 using Estética;
+using Microsoft.VisualBasic;
 
 namespace Presentación
 {
@@ -145,6 +146,30 @@ namespace Presentación
                     Calculos.BorrarCampos(grpPlatos);
                 }
 
+            }
+        }
+
+        private void btnAgregarStock_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Calculos.EstaSeguro("Agregar Stock de Plato", oBE_Plato.Codigo, oBE_Plato.ToString()))
+                {
+                    int Cantidad;
+                    bool numero = Int32.TryParse(Interaction.InputBox("Ingrese Cantidad a Agregar", "Agregar Stock"), out Cantidad);
+                    while (!numero)
+                    {
+                        numero = Int32.TryParse(Interaction.InputBox("Ingrese Cantidad a Agregar", "Agregar Stock"), out Cantidad);
+                    }
+                    oBE_Plato.AgregarStock(Cantidad);
+                    oBLL_Plato.Guardar(oBE_Plato);
+                    Calculos.MsgBox("Stock Agregado");
+                }
+            }
+            catch { }
+            finally
+            {
+                ActualizarListado();
             }
         }
     }

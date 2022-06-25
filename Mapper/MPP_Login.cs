@@ -61,7 +61,6 @@ namespace Mapper
                 query = "02 - Modificar_User_Login";
                 hashtable.Add("@Codigo", oBE_Login.Codigo);
             }
-            hashtable.Add("@Codigo_Empleado", oBE_Login.Empleado.Codigo);
             hashtable.Add("@Nombre", oBE_Login.Usuario);
             hashtable.Add("@Pass", oBE_Login.Password);
             hashtable.Add("@CantInt", oBE_Login.CantidadIntentos);
@@ -104,6 +103,35 @@ namespace Mapper
             }
             return ListadeLogins;
         }
+
+        public BE_Login Login(string user)
+        {
+            Acceso = new ClsDataBase();
+            BE_Login oBE_Login = new BE_Login();
+            Hashtable hashtable = new Hashtable();
+            hashtable.Add("@Usuario", user);
+            DataTable Dt = Acceso.DevolverListado("55 - Loguearse", hashtable);
+            if (Dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in Dt.Rows)
+                {
+                    oBE_Login.Codigo = Convert.ToInt32(row[0].ToString());
+                    oBE_Login.Usuario = row[2].ToString();
+                    oBE_Login.Password = row[3].ToString();
+                    oBE_Login.CantidadIntentos = Convert.ToInt32(row[4].ToString());
+                    Hashtable hash = new Hashtable();
+                    hash.Add("@Codigo", Convert.ToInt32(row[1].ToString()));
+                    oBE_Login.Empleado = TraerUserID(hash);
+                }
+                return oBE_Login;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
         private BE_Empleado TraerUserID(Hashtable hashtable)
         {
             BE_Empleado Empleado = new BE_Empleado();

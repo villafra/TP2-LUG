@@ -73,7 +73,7 @@
             this.btnLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnLogin.FlatAppearance.BorderSize = 0;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.Location = new System.Drawing.Point(518, 272);
+            this.btnLogin.Location = new System.Drawing.Point(510, 272);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(90, 70);
             this.btnLogin.TabIndex = 3;

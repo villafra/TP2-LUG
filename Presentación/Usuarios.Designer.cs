@@ -30,6 +30,10 @@
         {
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.grpUsuarios = new System.Windows.Forms.GroupBox();
+            this.btnSeePass = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtPass = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
@@ -40,15 +44,12 @@
             this.lblNombre = new System.Windows.Forms.Label();
             this.txtLegajo = new System.Windows.Forms.TextBox();
             this.lblLegajo = new System.Windows.Forms.Label();
-            this.lblCantidad = new System.Windows.Forms.Label();
             this.prgCantidad = new System.Windows.Forms.ProgressBar();
             this.lblCantMozos = new System.Windows.Forms.Label();
             this.dgvEmpleados = new System.Windows.Forms.DataGridView();
             this.btnEliminarUser = new System.Windows.Forms.Button();
             this.btnEditUser = new System.Windows.Forms.Button();
             this.btnNuevoUser = new System.Windows.Forms.Button();
-            this.txtCodigo = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.grpUsuarios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
@@ -59,17 +60,19 @@
             this.dgvUsuarios.AllowUserToAddRows = false;
             this.dgvUsuarios.AllowUserToDeleteRows = false;
             this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUsuarios.Location = new System.Drawing.Point(12, 44);
+            this.dgvUsuarios.Location = new System.Drawing.Point(450, 53);
             this.dgvUsuarios.Name = "dgvUsuarios";
             this.dgvUsuarios.ReadOnly = true;
             this.dgvUsuarios.RowHeadersWidth = 51;
             this.dgvUsuarios.RowTemplate.Height = 24;
-            this.dgvUsuarios.Size = new System.Drawing.Size(398, 254);
+            this.dgvUsuarios.Size = new System.Drawing.Size(388, 254);
             this.dgvUsuarios.TabIndex = 0;
             this.dgvUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellContentClick);
             // 
             // grpUsuarios
             // 
+            this.grpUsuarios.Controls.Add(this.btnSeePass);
+            this.grpUsuarios.Controls.Add(this.btnReset);
             this.grpUsuarios.Controls.Add(this.txtCodigo);
             this.grpUsuarios.Controls.Add(this.label3);
             this.grpUsuarios.Controls.Add(this.txtPass);
@@ -82,7 +85,6 @@
             this.grpUsuarios.Controls.Add(this.lblNombre);
             this.grpUsuarios.Controls.Add(this.txtLegajo);
             this.grpUsuarios.Controls.Add(this.lblLegajo);
-            this.grpUsuarios.Controls.Add(this.lblCantidad);
             this.grpUsuarios.Controls.Add(this.prgCantidad);
             this.grpUsuarios.Controls.Add(this.lblCantMozos);
             this.grpUsuarios.Location = new System.Drawing.Point(12, 313);
@@ -92,9 +94,56 @@
             this.grpUsuarios.TabStop = false;
             this.grpUsuarios.Text = "Turnos";
             // 
+            // btnSeePass
+            // 
+            this.btnSeePass.BackgroundImage = global::Presentación.Properties.Resources.eye;
+            this.btnSeePass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSeePass.FlatAppearance.BorderSize = 0;
+            this.btnSeePass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeePass.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSeePass.ForeColor = System.Drawing.Color.Gold;
+            this.btnSeePass.Location = new System.Drawing.Point(566, 45);
+            this.btnSeePass.Name = "btnSeePass";
+            this.btnSeePass.Size = new System.Drawing.Size(63, 58);
+            this.btnSeePass.TabIndex = 31;
+            this.btnSeePass.UseVisualStyleBackColor = true;
+            this.btnSeePass.Click += new System.EventHandler(this.btnSeePass_Click);
+            // 
+            // btnReset
+            // 
+            this.btnReset.BackgroundImage = global::Presentación.Properties.Resources.reset;
+            this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.ForeColor = System.Drawing.Color.Gold;
+            this.btnReset.Location = new System.Drawing.Point(715, 121);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(63, 58);
+            this.btnReset.TabIndex = 6;
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.Enabled = false;
+            this.txtCodigo.Location = new System.Drawing.Point(32, 64);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(99, 22);
+            this.txtCodigo.TabIndex = 30;
+            this.txtCodigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(29, 34);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 16);
+            this.label3.TabIndex = 29;
+            this.label3.Text = "Codigo";
+            // 
             // txtPass
             // 
-            this.txtPass.Enabled = false;
             this.txtPass.Location = new System.Drawing.Point(412, 64);
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
@@ -102,6 +151,8 @@
             this.txtPass.TabIndex = 28;
             this.txtPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPass.UseSystemPasswordChar = true;
+            this.txtPass.Click += new System.EventHandler(this.txtPass_Click);
+            this.txtPass.Enter += new System.EventHandler(this.txtPass_Enter);
             // 
             // label2
             // 
@@ -132,7 +183,7 @@
             // 
             // txtApellido
             // 
-            this.txtApellido.Location = new System.Drawing.Point(412, 143);
+            this.txtApellido.Location = new System.Drawing.Point(407, 143);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(148, 22);
             this.txtApellido.TabIndex = 24;
@@ -141,7 +192,7 @@
             // lblApellido
             // 
             this.lblApellido.AutoSize = true;
-            this.lblApellido.Location = new System.Drawing.Point(409, 113);
+            this.lblApellido.Location = new System.Drawing.Point(404, 113);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(57, 16);
             this.lblApellido.TabIndex = 23;
@@ -182,20 +233,11 @@
             this.lblLegajo.TabIndex = 19;
             this.lblLegajo.Text = "Legajo";
             // 
-            // lblCantidad
-            // 
-            this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Location = new System.Drawing.Point(699, 69);
-            this.lblCantidad.Name = "lblCantidad";
-            this.lblCantidad.Size = new System.Drawing.Size(14, 16);
-            this.lblCantidad.TabIndex = 10;
-            this.lblCantidad.Text = "0";
-            // 
             // prgCantidad
             // 
             this.prgCantidad.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.prgCantidad.Location = new System.Drawing.Point(634, 123);
-            this.prgCantidad.Maximum = 7;
+            this.prgCantidad.Location = new System.Drawing.Point(660, 64);
+            this.prgCantidad.Maximum = 5;
             this.prgCantidad.Name = "prgCantidad";
             this.prgCantidad.Size = new System.Drawing.Size(157, 42);
             this.prgCantidad.Step = 1;
@@ -204,11 +246,11 @@
             // lblCantMozos
             // 
             this.lblCantMozos.AutoSize = true;
-            this.lblCantMozos.Location = new System.Drawing.Point(660, 18);
+            this.lblCantMozos.Location = new System.Drawing.Point(683, 18);
             this.lblCantMozos.Name = "lblCantMozos";
-            this.lblCantMozos.Size = new System.Drawing.Size(104, 32);
+            this.lblCantMozos.Size = new System.Drawing.Size(83, 32);
             this.lblCantMozos.TabIndex = 8;
-            this.lblCantMozos.Text = "Cantidad de \r\nMozos En Turno";
+            this.lblCantMozos.Text = "Cantidad de \r\nIntentos";
             this.lblCantMozos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dgvEmpleados
@@ -216,12 +258,12 @@
             this.dgvEmpleados.AllowUserToAddRows = false;
             this.dgvEmpleados.AllowUserToDeleteRows = false;
             this.dgvEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmpleados.Location = new System.Drawing.Point(437, 44);
+            this.dgvEmpleados.Location = new System.Drawing.Point(12, 53);
             this.dgvEmpleados.Name = "dgvEmpleados";
             this.dgvEmpleados.ReadOnly = true;
             this.dgvEmpleados.RowHeadersWidth = 51;
             this.dgvEmpleados.RowTemplate.Height = 24;
-            this.dgvEmpleados.Size = new System.Drawing.Size(398, 254);
+            this.dgvEmpleados.Size = new System.Drawing.Size(432, 254);
             this.dgvEmpleados.TabIndex = 5;
             this.dgvEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpleados_CellContentClick);
             // 
@@ -270,24 +312,6 @@
             this.btnNuevoUser.UseVisualStyleBackColor = true;
             this.btnNuevoUser.Click += new System.EventHandler(this.btnNuevoUser_Click);
             // 
-            // txtCodigo
-            // 
-            this.txtCodigo.Enabled = false;
-            this.txtCodigo.Location = new System.Drawing.Point(32, 64);
-            this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(99, 22);
-            this.txtCodigo.TabIndex = 30;
-            this.txtCodigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 34);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 16);
-            this.label3.TabIndex = 29;
-            this.label3.Text = "Codigo";
-            // 
             // frmUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -316,7 +340,6 @@
         private System.Windows.Forms.GroupBox grpUsuarios;
         private System.Windows.Forms.Label lblCantMozos;
         private System.Windows.Forms.ProgressBar prgCantidad;
-        private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.Button btnNuevoUser;
         private System.Windows.Forms.Button btnEditUser;
         private System.Windows.Forms.Button btnEliminarUser;
@@ -333,5 +356,7 @@
         private System.Windows.Forms.DataGridView dgvEmpleados;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnSeePass;
     }
 }

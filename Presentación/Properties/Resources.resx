@@ -163,6 +163,9 @@
   <data name="Picture12" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Picture12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="reset" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reset.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Picture6" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Picture6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -171,6 +174,12 @@
   </data>
   <data name="espiritu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\espiritu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="restablecer-la-contrasena" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\restablecer-la-contrasena.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Picture41" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Picture4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Picture1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Picture1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -196,14 +205,17 @@
   <data name="agua" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\agua.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mesa_redonda" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mesa-redonda.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="eye" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cordero" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cordero.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Picture13" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Picture13.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mesa_redonda" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mesa-redonda.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="perfil-del-usuario" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\perfil-del-usuario.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -217,7 +229,7 @@
   <data name="camarero" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\camarero.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Picture41" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Picture4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Picture23png" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Picture23png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

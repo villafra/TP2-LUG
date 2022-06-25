@@ -27,6 +27,7 @@ namespace Presentación
             oBLL_Mozo = new BLL_Mozo();
             ActualizarListado();
             Aspecto.FormatearDGV(dgvUsuarios);
+            Aspecto.FormatearDGV(dgvEmpleados);
             Aspecto.FormatearGRP(grpUsuarios);
         }
 
@@ -34,8 +35,8 @@ namespace Presentación
         {
             try
             {
+                oBE_Empleado = (BE_Empleado)dgvEmpleados.CurrentRow.DataBoundItem;
                 oBE_Login = new BE_Login(oBE_Empleado, oBLL_Login.GenerarUsuario(oBE_Empleado), oBLL_Login.AutoGenerarPass());
-                oBLL_Login.Guardar(oBE_Login);
             }
             catch (Exception ex)
             {
@@ -47,7 +48,8 @@ namespace Presentación
         {
             try
             {
-                oBE_Login = new BE_Login(Int32.Parse(txtCodigo.Text), oBE_Empleado, txtUsuario.Text, txtPass.Text, Int32.Parse(lblCantidad.Text));
+                oBE_Empleado = (BE_Empleado)dgvEmpleados.CurrentRow.DataBoundItem;
+                oBE_Login = new BE_Login(Int32.Parse(txtCodigo.Text), oBE_Empleado, txtUsuario.Text, oBLL_Login.EncriptarPass(txtPass.Text), prgCantidad.Value);
             }
             catch (Exception ex)
             {
@@ -58,8 +60,9 @@ namespace Presentación
         private void ActualizarListado()
         {
             Calculos.RefreshGrilla(dgvUsuarios, oBLL_Login.Listar());
-            Calculos.RefreshGrilla(dgvUsuarios, oBLL_Mozo.Listartodo());
-            //Aspecto.DGVTurnos(dgvUsuarios);
+            Calculos.RefreshGrilla(dgvEmpleados, oBLL_Mozo.Listartodo());
+            Aspecto.DGVEmpleados(dgvEmpleados);
+            Aspecto.DGVLogin(dgvUsuarios);
         }
 
         private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -71,7 +74,7 @@ namespace Presentación
             txtLegajo.Text = oBE_Login.Empleado.Codigo.ToString();
             txtNombre.Text = oBE_Login.Empleado.Nombre;
             txtApellido.Text = oBE_Login.Empleado.Apellido;
-            lblCantidad.Text = oBE_Login.CantidadIntentos.ToString();
+            prgCantidad.Value = oBE_Login.CantidadIntentos;
         }
 
         private void btnNuevoUser_Click(object sender, EventArgs e)
@@ -113,7 +116,7 @@ namespace Presentación
             {
                 if (oBLL_Login.Baja(oBE_Login) == false)
                 {
-                    Calculos.MsgBox("No se puede dar de baja un turno con Mozos Asignados");
+                    Calculos.MsgBox("No se puede dar de baja un usuario si el empleado esta activo");
                 }
                 else
                 {
@@ -127,6 +130,35 @@ namespace Presentación
         private void dgvEmpleados_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             oBE_Empleado = (BE_Empleado)dgvEmpleados.CurrentRow.DataBoundItem;
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            oBLL_Login.ResetCounter(oBE_Login);
+            prgCantidad.Value = oBE_Login.CantidadIntentos;
+        }
+
+        private void btnSeePass_Click(object sender, EventArgs e)
+        {
+            Calculos.MsgBox(oBLL_Login.DesencriptarPass(txtPass.Text));
+        }
+
+        private bool ingreso;
+
+        private void txtPass_Click(object sender, EventArgs e)
+        {
+            if (ingreso)
+            {
+                txtPass.SelectAll();
+            }
+
+            ingreso = false;
+        }
+
+        private void txtPass_Enter(object sender, EventArgs e)
+        {
+            txtPass.SelectAll();
+            ingreso = true;
         }
     }
 }

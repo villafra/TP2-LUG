@@ -9,22 +9,53 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Estética;
 using Calculo;
+using BE;
+using BLL;
 
 namespace Presentación
 {
     public partial class frmLogin : Form
     {
+        BLL_Login oBLL_Login;
+        BE_Login oBE_Login;
         public frmLogin()
         {
             InitializeComponent();
+            oBLL_Login = new BLL_Login();
+            oBE_Login = new BE_Login();
             Aspecto.FormatearLogin(this, grpLogin, this.Width, this.Height);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            frmMenu frm = new frmMenu();
-            this.Hide();
-            frm.Show();
+            oBE_Login = oBLL_Login.Login(txtUsuario.Text);
+            if (oBE_Login != null)
+            {
+                if (oBLL_Login.CheckPass(oBE_Login, txtPass.Text))
+                {
+                    if (oBLL_Login.Intentos(oBE_Login))
+                    {
+                        frmMenu frm = new frmMenu();
+                        this.Hide();
+                        frm.Show();
+                    }
+                    else
+                    {
+                        Calculos.MsgBox("El usuario está bloqueado. Comuniquese con el Administrador");
+                    }
+
+                }
+                else
+                {
+                    Calculos.MsgBox("La contraseña es incorrecta");
+                }
+               
+            }
+            else
+            {
+                Calculos.MsgBox("El usuario es inexistente");
+            }
+
             
         }
 
@@ -32,5 +63,6 @@ namespace Presentación
         {
             Calculos.Salir();
         }
+
     }
 }

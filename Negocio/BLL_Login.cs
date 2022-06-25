@@ -49,14 +49,83 @@ namespace BLL
         public string GenerarUsuario(BE_Empleado empleado)
         {
             string nombre, apellido;
-            nombre = empleado.Nombre.Substring(1, 5);
-            apellido = empleado.Apellido.Substring(1, 3);
-            return nombre.PadRight(5, '1') + apellido.PadRight(3, '1');
+            if (empleado.Nombre.Length < 3)
+            {
+                nombre = empleado.Nombre.Substring(0, empleado.Nombre.Length).ToLower();
+            }
+            else
+            {
+            nombre = empleado.Nombre.Substring(0,3).ToLower();
+            }
+            if (empleado.Apellido.Length < 5)
+            {
+                apellido = empleado.Apellido.Substring(0,empleado.Apellido.Length).ToLower();
+            }
+            else
+            {
+                apellido = empleado.Apellido.Substring(0, 5).ToLower() ;
+            }
+            return apellido.PadRight(5, '1') + nombre.PadRight(3, '1');
         }
         public string AutoGenerarPass()
         {
-            Random rand = new Random(12);
-            return EncriptarPass(rand.Next().ToString());
+            Random rand = new Random();
+            string pass=null;
+            for (int i =0; i<13; i++)
+            {
+                pass = pass + rand.Next(0, 9).ToString();
+            }
+            return EncriptarPass(pass);
+        }
+
+        public bool ResetCounter (BE_Login oBE_Login)
+        {
+            int aux = oBE_Login.CantidadIntentos;
+            oBE_Login.CantidadIntentos = 0;
+            if (Guardar(oBE_Login))
+            {
+                return true;
+            }
+            else
+            {
+                oBE_Login.CantidadIntentos = aux;
+                return false;
+            }
+            
+        }
+        public bool Intentos(BE_Login oBE_Login)
+        {
+            if (oBE_Login.CantidadIntentos >= 5)
+            {
+                return false;
+            }
+            else { return true; }
+        }
+        private void IntentoFallido(BE_Login oBE_Login)
+        {
+            oBE_Login.CantidadIntentos += 1;
+            if (!Guardar(oBE_Login))
+            {
+                oBE_Login.CantidadIntentos -= 1;
+            }
+        }
+        public BE_Login Login(string user)
+        {
+            return oMPP_Login.Login(user);
+        }
+        public bool CheckPass(BE_Login oBE_Login, string pass)
+        {
+            string password = DesencriptarPass(oBE_Login.Password);
+            if (password == pass)
+            {
+                return true;
+            }
+            else
+            {
+                if (oBE_Login.CantidadIntentos < 5) { IntentoFallido(oBE_Login); }
+                return false;
+            }
+
         }
     }
 }
