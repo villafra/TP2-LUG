@@ -108,6 +108,7 @@
             this.txtABV.Size = new System.Drawing.Size(123, 22);
             this.txtABV.TabIndex = 36;
             this.txtABV.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtABV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtABV_KeyPress);
             // 
             // lblABV
             // 
@@ -125,6 +126,7 @@
             this.txtPrecio.Size = new System.Drawing.Size(123, 22);
             this.txtPrecio.TabIndex = 34;
             this.txtPrecio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
             // lblPrecio
             // 
@@ -168,6 +170,7 @@
             this.txtNombre.Size = new System.Drawing.Size(248, 22);
             this.txtNombre.TabIndex = 14;
             this.txtNombre.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // lblNombre
             // 

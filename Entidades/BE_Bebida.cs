@@ -12,7 +12,7 @@ namespace BE
         public int Codigo { get; set; }
         public string Nombre { get; set; }
         public Tipo Tipo_Bebida { get; set; }
-        public string Presentación { get; set; }
+        public decimal Presentación { get; set; }
         public int Stock { get; set; }
         public decimal CostoUnitario { get; set; }
 

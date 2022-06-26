@@ -101,7 +101,11 @@ namespace Presentación
             oBE_Reserva = (BE_Reserva)dgvReservas.SelectedRows[0].DataBoundItem;
             if (Calculos.EstaSeguro("Cancelar Reserva", oBE_Reserva.Codigo, oBE_Reserva.ToString()))
             {
-                oBLL_Reserva.Baja(oBE_Reserva);
+                if (!oBLL_Reserva.Baja(oBE_Reserva)) 
+                {
+                    Calculos.MsgBox("No se puede cancelar una reserva ya recibida");
+                }
+                
                 ActualizarListado();
             }
         }

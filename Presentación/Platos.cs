@@ -172,5 +172,15 @@ namespace Presentación
                 ActualizarListado();
             }
         }
+
+        private void txtCosto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Calculos.ValidarNumeros(e);
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Calculos.ValidarLetras(e);
+        }
     }
 }

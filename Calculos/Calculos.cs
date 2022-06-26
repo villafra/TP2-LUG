@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows.Forms; 
+using System.Text.RegularExpressions;
 
 namespace Calculo
 {
@@ -13,9 +14,9 @@ namespace Calculo
         public static void ValidarNumeros(KeyPressEventArgs e)
         {
             string s = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
-            if (char.IsLetter(e.KeyChar))
+            if (Regex.IsMatch(e.KeyChar.ToString(), "^([\\d]|[\\b])$"))
             {
-                e.Handled = true;
+                e.Handled = false;
             }
             else if (char.IsPunctuation(e.KeyChar))
             {
@@ -23,38 +24,48 @@ namespace Calculo
             }
             else
             {
-                e.Handled = false;
+                e.Handled = true;
             }
 
         }
-        public static void ValidarEnteros(KeyPressEventArgs e)
+
+        public static bool ValidarDecimal(string numero)
         {
-            if (char.IsLetter(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-            else
-                e.Handled = false;
+            return Regex.IsMatch(numero, "^(0*[1-9]\\d{0,15}|0+)(\\.\\d\\d)|(\\.\\d)?$");
         }
         public static void ValidarLetras(KeyPressEventArgs e)
         {
-            if (char.IsDigit(e.KeyChar))
+            if (Regex.IsMatch(e.KeyChar.ToString(), "^([\\w]|[\\b]|[\\s])$"))
+            {
+                e.Handled = false;
+            }
+            else
+                e.Handled = true;
+        }
+
+       public static void ValidarEntero(KeyPressEventArgs e)
+        {
+            if (Regex.IsMatch(e.KeyChar.ToString(), "^([0-9]|[\\b])"))
+            {
+                e.Handled = false;
+            }
+            else
             {
                 e.Handled = true;
             }
-            else
-                e.Handled = false;
         }
-
-        public static bool ValidarLargoString(Control control, int largo)
+        public static bool LargoDNI(string dni)
         {
-            if (control.Text.Length > largo)
-            {
-                return false;
-            }
-            else { return true; }
+            return Regex.IsMatch(dni, "^([0-9]{8,8})");
         }
-
+        public static bool ValidarNombrePersonal(string nombre)
+        {
+            return Regex.IsMatch(nombre, "([a-zA-Z]|[0-9])$");
+        }
+        public static bool ValidarApellido(string apellido)
+        {
+            return Regex.IsMatch(apellido, "([\\w0-9'°\\s])$");
+        }
         public static void BorrarCampos(Control grp)
         {
             foreach (Control c in grp.Controls)

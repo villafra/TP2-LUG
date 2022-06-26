@@ -79,7 +79,7 @@ namespace Mapper
                         Bebida.Codigo = Convert.ToInt32(row[0].ToString());
                         Bebida.Nombre = row[1].ToString();
                         Bebida.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), row[2].ToString());
-                        Bebida.Presentación = row[3].ToString();
+                        Bebida.Presentación = Convert.ToDecimal(row[3].ToString());
                         if (!(row[4] is DBNull))
                         {
                             Bebida.Stock = Convert.ToInt32(row[4].ToString());
@@ -94,7 +94,7 @@ namespace Mapper
                         Bebida_Alcohólica.Codigo = Convert.ToInt32(row[0].ToString());
                         Bebida_Alcohólica.Nombre = row[1].ToString();
                         Bebida_Alcohólica.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), row[2].ToString());
-                        Bebida_Alcohólica.Presentación = row[3].ToString();
+                        Bebida_Alcohólica.Presentación = Convert.ToDecimal(row[3].ToString());
                         if (!(row[4] is DBNull))
                         {
                             Bebida_Alcohólica.Stock = Convert.ToInt32(row[4].ToString());
@@ -132,7 +132,7 @@ namespace Mapper
                         Bebida.Codigo = Convert.ToInt32(row[0].ToString());
                         Bebida.Nombre = row[1].ToString();
                         Bebida.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), row[2].ToString());
-                        Bebida.Presentación = row[3].ToString();
+                        Bebida.Presentación = Convert.ToDecimal(row[3].ToString());
                         Bebida.Stock = Convert.ToInt32(row[4].ToString());
                         Bebida.CostoUnitario = Convert.ToDecimal(row[5].ToString());
                         ListadeBebidas.Add(Bebida);
@@ -142,7 +142,7 @@ namespace Mapper
                         Bebida_Alcohólica.Codigo = Convert.ToInt32(row[0].ToString());
                         Bebida_Alcohólica.Nombre = row[1].ToString();
                         Bebida_Alcohólica.Tipo_Bebida = (BE_Bebida.Tipo)Enum.Parse(typeof(BE_Bebida.Tipo), row[2].ToString());
-                        Bebida_Alcohólica.Presentación = row[3].ToString();
+                        Bebida_Alcohólica.Presentación = Convert.ToDecimal(row[3].ToString());
                         Bebida_Alcohólica.Stock = Convert.ToInt32(row[4].ToString());
                         Bebida_Alcohólica.CostoUnitario = Convert.ToDecimal(row[5].ToString());
                         Bebida_Alcohólica.GraduaciónAlcoholica = Convert.ToDecimal(row[6].ToString());

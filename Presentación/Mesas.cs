@@ -163,5 +163,9 @@ namespace Presentación
             catch { }
         }
 
+        private void txtCapacidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Calculos.ValidarEntero(e);
+        }
     }
 }

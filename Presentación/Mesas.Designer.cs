@@ -179,6 +179,7 @@
             this.txtCapacidad.Size = new System.Drawing.Size(136, 22);
             this.txtCapacidad.TabIndex = 3;
             this.txtCapacidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCapacidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCapacidad_KeyPress);
             // 
             // lblCapacidad
             // 

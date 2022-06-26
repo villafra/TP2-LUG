@@ -59,12 +59,12 @@
             this.dgvMozos.AllowUserToAddRows = false;
             this.dgvMozos.AllowUserToDeleteRows = false;
             this.dgvMozos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMozos.Location = new System.Drawing.Point(77, 53);
+            this.dgvMozos.Location = new System.Drawing.Point(37, 53);
             this.dgvMozos.Name = "dgvMozos";
             this.dgvMozos.ReadOnly = true;
             this.dgvMozos.RowHeadersWidth = 51;
             this.dgvMozos.RowTemplate.Height = 24;
-            this.dgvMozos.Size = new System.Drawing.Size(693, 254);
+            this.dgvMozos.Size = new System.Drawing.Size(772, 254);
             this.dgvMozos.TabIndex = 0;
             this.dgvMozos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMozos_CellContentClick);
             // 
@@ -188,6 +188,7 @@
             this.txtDNI.Size = new System.Drawing.Size(102, 22);
             this.txtDNI.TabIndex = 14;
             this.txtDNI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDNI_KeyPress);
             // 
             // lblDNI
             // 

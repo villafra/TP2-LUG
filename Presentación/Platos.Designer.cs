@@ -118,6 +118,7 @@
             this.txtCosto.Size = new System.Drawing.Size(118, 22);
             this.txtCosto.TabIndex = 22;
             this.txtCosto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCosto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCosto_KeyPress);
             // 
             // lblCosto
             // 
@@ -178,6 +179,7 @@
             this.txtNombre.Size = new System.Drawing.Size(286, 22);
             this.txtNombre.TabIndex = 14;
             this.txtNombre.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // lblNombre
             // 

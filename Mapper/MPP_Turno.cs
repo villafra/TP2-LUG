@@ -81,13 +81,13 @@ namespace Mapper
         {
             throw new NotImplementedException();
         }
-        public int CantidadMozosEnTurno(BE_Turno oBE_Turno)
+        public int CantidadEmpleadosEnTurno(BE_Turno oBE_Turno)
         {
             Acceso = new ClsDataBase();
             int Cantidad = 0;
             Hashtable hash = new Hashtable();
             hash.Add("@Codigo_turno", oBE_Turno.Codigo);
-            DataTable Dt = Acceso.DevolverListado("48 - Listar_Mozo_Turno", hash);
+            DataTable Dt = Acceso.DevolverListado("48 - Listar_Empleado_Turno", hash);
             if (Dt.Rows.Count > 0)
             {
                 foreach (DataRow row in Dt.Rows)

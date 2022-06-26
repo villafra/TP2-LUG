@@ -25,18 +25,6 @@ namespace BE
             Bebidas = new List<BE_Bebida>();
         }
 
-        public void CalcularMonto()
-        {
-            Monto = 0;
-            foreach (var plato in Platos)
-            {
-                Monto += plato.CostoUnitario;
-            }
-            foreach (var bebida in Bebidas)
-            {
-                Monto += bebida.CostoUnitario;
-            }
-        }
         public override string ToString()
         {
             return this.Codigo.ToString();

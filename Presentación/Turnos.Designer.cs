@@ -143,6 +143,7 @@
             this.txtNombreTurno.Size = new System.Drawing.Size(150, 22);
             this.txtNombreTurno.TabIndex = 14;
             this.txtNombreTurno.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNombreTurno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreTurno_KeyPress);
             // 
             // lblNombre
             // 
@@ -174,7 +175,7 @@
             // lblCantidad
             // 
             this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Location = new System.Drawing.Point(427, 91);
+            this.lblCantidad.Location = new System.Drawing.Point(433, 94);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(14, 16);
             this.lblCantidad.TabIndex = 10;
@@ -193,11 +194,11 @@
             // lblCantMozos
             // 
             this.lblCantMozos.AutoSize = true;
-            this.lblCantMozos.Location = new System.Drawing.Point(357, 33);
+            this.lblCantMozos.Location = new System.Drawing.Point(381, 18);
             this.lblCantMozos.Name = "lblCantMozos";
-            this.lblCantMozos.Size = new System.Drawing.Size(104, 32);
+            this.lblCantMozos.Size = new System.Drawing.Size(80, 48);
             this.lblCantMozos.TabIndex = 8;
-            this.lblCantMozos.Text = "Cantidad de \r\nMozos En Turno";
+            this.lblCantMozos.Text = "Cantidad de\r\nEmpleados\r\nen Turno";
             this.lblCantMozos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnEliminarTurno

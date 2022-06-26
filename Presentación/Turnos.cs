@@ -76,7 +76,7 @@ namespace Presentación
             txtNombreTurno.Text = oBE_Turno.NombreTurno;
             dtpHoraInicio.Value = oBE_Turno.HoraInicio;
             dtpHoraFin.Value = oBE_Turno.HoraFin;
-            int Cantidad = oBLL_Turno.CantidadMozosEnTurno(oBE_Turno);
+            int Cantidad = oBLL_Turno.CantidadEmpleadosEnTurno(oBE_Turno);
             lblCantidad.Text = Cantidad.ToString();
             prgCantidad.Value = Cantidad;
             Calculos.RefreshGrilla(dgvMozosEnturno, oBLL_Mozo.ListarMozosXTurno(oBE_Turno));
@@ -136,6 +136,11 @@ namespace Presentación
                 }
 
             }
+        }
+
+        private void txtNombreTurno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Calculos.ValidarLetras(e);
         }
     }
 }

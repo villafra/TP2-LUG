@@ -85,7 +85,8 @@ namespace Mapper
                     Mesa.Codigo = Convert.ToInt32(row[0].ToString());
                     Mesa.ID_Mesa = row[1].ToString();
                     Mesa.Capacidad = Convert.ToInt32(row[2].ToString());
-                    Mesa.CantidadComensales = Convert.ToInt32(row[3].ToString());
+                    if (!(row[3] is DBNull)) { Mesa.CantidadComensales = Convert.ToInt32(row[3].ToString()); }
+                    else { Mesa.CantidadComensales = 0; }
                     Mesa.Status = (BE_Mesa.Estado)Enum.Parse(typeof(BE_Mesa.Estado), row[4].ToString()); 
                     ListadeMesas.Add(Mesa);
                 }

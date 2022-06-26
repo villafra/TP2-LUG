@@ -86,9 +86,17 @@ namespace Presentación
             try
             {
                 Nuevo();
-                oBLL_Mozo.Guardar(oBE_Mozo);
-                ActualizarListado();
-                Calculos.BorrarCampos(grpMozos);
+                if (Calculos.LargoDNI(oBE_Mozo.DNI.ToString())&&Calculos.ValidarNombrePersonal(oBE_Mozo.Nombre)&&Calculos.ValidarApellido(oBE_Mozo.Apellido))
+                {
+                    oBLL_Mozo.Guardar(oBE_Mozo);
+                    ActualizarListado();
+                    Calculos.BorrarCampos(grpMozos);
+                }
+                else
+                {
+                    Calculos.MsgBox("El DNI no tiene el formato correcto");
+                }
+ 
             }
             catch (Exception ex)
             {
@@ -144,6 +152,9 @@ namespace Presentación
             }
         }
 
-       
+        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Calculos.ValidarEntero(e);
+        }
     }
 }

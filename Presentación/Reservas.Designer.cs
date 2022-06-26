@@ -50,7 +50,7 @@
             this.dgvReservas.ReadOnly = true;
             this.dgvReservas.RowHeadersWidth = 51;
             this.dgvReservas.RowTemplate.Height = 24;
-            this.dgvReservas.Size = new System.Drawing.Size(374, 338);
+            this.dgvReservas.Size = new System.Drawing.Size(599, 338);
             this.dgvReservas.TabIndex = 1;
             // 
             // dgvMesasDisponibles
@@ -58,12 +58,12 @@
             this.dgvMesasDisponibles.AllowUserToAddRows = false;
             this.dgvMesasDisponibles.AllowUserToDeleteRows = false;
             this.dgvMesasDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMesasDisponibles.Location = new System.Drawing.Point(464, 26);
+            this.dgvMesasDisponibles.Location = new System.Drawing.Point(627, 26);
             this.dgvMesasDisponibles.Name = "dgvMesasDisponibles";
             this.dgvMesasDisponibles.ReadOnly = true;
             this.dgvMesasDisponibles.RowHeadersWidth = 51;
             this.dgvMesasDisponibles.RowTemplate.Height = 24;
-            this.dgvMesasDisponibles.Size = new System.Drawing.Size(341, 338);
+            this.dgvMesasDisponibles.Size = new System.Drawing.Size(214, 338);
             this.dgvMesasDisponibles.TabIndex = 2;
             // 
             // lblAsignarMesa
@@ -139,7 +139,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(829, 562);
+            this.ClientSize = new System.Drawing.Size(846, 562);
             this.Controls.Add(this.btnEditarMesa);
             this.Controls.Add(this.lblEditarMesa);
             this.Controls.Add(this.lblCancelarReserva);

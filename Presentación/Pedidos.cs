@@ -34,8 +34,11 @@ namespace Presentación
             Aspecto.FormatearDGV(dgvPedidos);
             Aspecto.FormatearDGV(dgvBebidas);
             Aspecto.FormatearDGV(dgvPlatos);
+            Aspecto.FormatearDGV(dgvMozo);
+            Aspecto.FormatearDGV(dgvMesa);
             Aspecto.FormatearControlInterno(lblCancelarPedido);
             Aspecto.FormatearControlInterno(lblCerrarPedido);
+            Aspecto.FormatearControlInterno(lblCosto);
             ActualizarListado();
         }
         private void ActualizarListado()
@@ -46,13 +49,21 @@ namespace Presentación
 
         private void dgvPedidos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            List<BE_Mozo> mozo = new List<BE_Mozo>();
+            List<BE_Mesa> mesa = new List<BE_Mesa>();
             try
             {
                 oBE_Pedido = (BE_Pedido)dgvPedidos.SelectedRows[0].DataBoundItem;
                 Calculos.RefreshGrilla(dgvBebidas,oBE_Pedido.Bebidas);
                 Calculos.RefreshGrilla(dgvPlatos,oBE_Pedido.Platos);
+                mozo.Add(oBE_Pedido.CodigoMozo);
+                Calculos.RefreshGrilla(dgvMozo, mozo);
+                mesa.Add(oBE_Pedido.CodigoMesa);
+                Calculos.RefreshGrilla(dgvMesa, mesa);
                 Aspecto.DGVBebidasPedidos(dgvBebidas);
                 Aspecto.DGVPlatosPedidos(dgvPlatos);
+                Aspecto.DGVMozoXPedido(dgvMozo);
+                Aspecto.DGVMesaXPedido(dgvMesa);
             }
             catch { }
             
@@ -63,6 +74,7 @@ namespace Presentación
             try
             {
                 oBE_Pedido = (BE_Pedido)dgvPedidos.SelectedRows[0].DataBoundItem;
+                oBLL_Pedido.CalcularMonto(oBE_Pedido);
                 oBLL_Pedido.Guardar(oBE_Pedido);
                 ActualizarListado();
             }
@@ -83,6 +95,21 @@ namespace Presentación
                 
             }
             catch { }
+        }
+
+        private void btnActualizarCosto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                oBE_Pedido = (BE_Pedido)dgvPedidos.SelectedRows[0].DataBoundItem;
+                oBLL_Pedido.CalcularMonto(oBE_Pedido);
+                ActualizarListado();
+            }
+            catch
+            {
+
+            }
+
         }
     }
 }

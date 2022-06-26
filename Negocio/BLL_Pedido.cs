@@ -41,5 +41,31 @@ namespace BLL
         {
             throw new NotImplementedException();
         }
+        private bool ActualizarMonto(BE_Pedido Pedido)
+        {
+            return oMPP_Pedido.ActualizarMonto(Pedido);
+        }
+        public bool CalcularMonto(BE_Pedido Pedido)
+        {
+            decimal aux = Pedido.Monto;
+            Pedido.Monto = 0;
+            foreach (var plato in Pedido.Platos)
+            {
+                Pedido.Monto += plato.CostoUnitario;
+            }
+            foreach (var bebida in Pedido.Bebidas)
+            {
+                Pedido.Monto += bebida.CostoUnitario;
+            }
+            if (ActualizarMonto(Pedido))
+            {
+                return true;
+            }
+            else
+            {
+                Pedido.Monto = aux;
+                return false;
+            }
+        }
     }
 }
