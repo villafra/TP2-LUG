@@ -103,6 +103,16 @@ namespace Presentación.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cocina {
+            get {
+                object obj = ResourceManager.GetObject("cocina", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cordero {
             get {
                 object obj = ResourceManager.GetObject("cordero", resourceCulture);
@@ -346,6 +356,26 @@ namespace Presentación.Properties {
         internal static System.Drawing.Bitmap Picture23png {
             get {
                 object obj = ResourceManager.GetObject("Picture23png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Picture24 {
+            get {
+                object obj = ResourceManager.GetObject("Picture24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Picture25 {
+            get {
+                object obj = ResourceManager.GetObject("Picture25", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

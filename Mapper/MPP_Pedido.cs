@@ -33,7 +33,6 @@ namespace Mapper
         {
             throw new NotImplementedException();
         }
-
         public bool Guardar(BE_Pedido oBE_Pedido)
         {
             Hashtable hashtable = new Hashtable();
@@ -225,7 +224,40 @@ namespace Mapper
             }
             return ListadePedidos;
         }
+        public List<BE_Pedido> BebidaEnPedidos(BE_Bebida oBE_Bebida)
+        {
+            Acceso = new ClsDataBase();
+            List<BE_Pedido> ListadePedidos = new List<BE_Pedido>();
+            Hashtable hash = new Hashtable();
+            hash.Add("@Codigo_Bebida", oBE_Bebida.Codigo);
+            DataTable Dt = Acceso.DevolverListado("27 - Listar_Bebida_Pedido", hash);
 
+            if (Dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in Dt.Rows)
+                {
+                    BE_Pedido Pedido = new BE_Pedido();
+                    Pedido.Codigo = Convert.ToInt32(row[8].ToString());
+                    Pedido.FechaHoradeInicio = Convert.ToDateTime(row[9].ToString());
+                    if (!(row[10] is DBNull))
+                    {
+                        Pedido.Observaciones = row[10].ToString();
+                    }
+                    else
+                    {
+                        Pedido.Observaciones = null;
+                    }
+                    Pedido.Monto = Convert.ToDecimal(row[15].ToString());
+                    Pedido.Activo = Convert.ToBoolean(row[13].ToString());
+                    ListadePedidos.Add(Pedido);
+                }
+            }
+            else
+            {
+                ListadePedidos = null;
+            }
+            return ListadePedidos;
+        }
         public BE_Pedido ListarObjeto(BE_Pedido Objeto)
         {
             throw new NotImplementedException();

@@ -133,7 +133,7 @@ namespace Presentación
                 dtpFechaNacimiento.Value = oBE_Mozo.FechaNacimiento;
                 dtpFechaIngreso.Value = oBE_Mozo.FechaIngreso;
                 comboTurno.Text = oBE_Mozo.Turno.NombreTurno;
-                int rank = oBLL_Mozo.DevolverPuntuacion();
+                int rank = oBLL_Mozo.DevolverPuntuacion(oBE_Mozo);
                 lblPuntuación.Text = rank.ToString();
                 prgBaRanking.Value = rank;
                 

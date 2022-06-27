@@ -54,6 +54,10 @@ namespace Calculo
                 e.Handled = true;
             }
         }
+        public static bool ValidarMail(string mail)
+        {
+            return Regex.IsMatch(mail, "^([\\w-]+\\.)*?[\\w-]+@[\\w-]+\\.([\\w-]+\\.)*?[\\w]+$");
+        }
         public static bool LargoDNI(string dni)
         {
             return Regex.IsMatch(dni, "^([0-9]{8,8})");

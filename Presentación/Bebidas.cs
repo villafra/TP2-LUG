@@ -21,6 +21,7 @@ namespace Presentación
         BLL_Bebida_Alcohólica oBLL_Bebida_Alcohólica;
         BE_Bebida oBE_Bebida;
         BE_Bebida_Alcohólica oBE_Bebida_Alcohólica;
+        BLL_Pedido oBLL_Pedido;
         public frmBebidas()
         {
             InitializeComponent();
@@ -28,9 +29,11 @@ namespace Presentación
             oBLL_Bebida_Alcohólica = new BLL_Bebida_Alcohólica();
             oBE_Bebida = new BE_Bebida();
             oBE_Bebida_Alcohólica = new BE_Bebida_Alcohólica();
+            oBLL_Pedido = new BLL_Pedido();
             Calculos.DataSourceCombo(comboTipo, Enum.GetNames(typeof(BE_Bebida.Tipo)), "TipoBebidas");
             ActualizarListado();
             Aspecto.FormatearDGV(dgvBebidas);
+            Aspecto.FormatearDGV(dgvPedidosConBeb);
             Aspecto.FormatearGRP(grpBebidas);
         }
 
@@ -231,6 +234,8 @@ namespace Presentación
                 {
                     txtABV.Text = "";
                 }
+                Calculos.RefreshGrilla(dgvPedidosConBeb, oBLL_Pedido.BebidaEnPedidos(oBE_Bebida));
+                Aspecto.DGVPedidosXBebidas(dgvPedidosConBeb);
             }
             catch { }
         }

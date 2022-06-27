@@ -25,9 +25,9 @@ namespace BLL
             return oMPP_Mozo.Baja(oBE_Mozo);
         }
 
-        public override int DevolverPuntuacion()
+        public override int DevolverPuntuacion(BE_Empleado Mozo)
         {
-            return oMPP_Mozo.DevolverPuntuacion();
+            return oMPP_Mozo.DevolverPuntuacion(Mozo);
         }
 
         public bool Guardar(BE_Mozo oBE_Mozo)

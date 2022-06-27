@@ -83,6 +83,12 @@
     <Compile Include="Mesas.Designer.cs">
       <DependentUpon>Mesas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cocina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cocina.Designer.cs">
+      <DependentUpon>Cocina.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mozos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mesas.resx">
       <DependentUpon>Mesas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cocina.resx">
+      <DependentUpon>Cocina.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mozos.resx">
       <DependentUpon>Mozos.cs</DependentUpon>
@@ -315,6 +324,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Picture23png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cocina.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture25.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

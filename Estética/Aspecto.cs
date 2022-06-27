@@ -91,6 +91,8 @@ namespace Estética
             boton.ImageAlign = ContentAlignment.MiddleLeft;
         };
 
+       
+
         #endregion
 
         public static Action<Form> FormatearMenuStrip = (form) =>
@@ -285,8 +287,8 @@ namespace Estética
             dgv.Columns[2].Visible = false;
             dgv.Columns[3].Visible = false;
             dgv.Columns[4].Visible = false;
-            dgv.Columns[5].HeaderText = "Monto";
-            dgv.Columns[6].Visible = false;
+            dgv.Columns[5].Visible = false;
+            dgv.Columns[6].HeaderText = "Monto";
 
             foreach (DataGridViewColumn columns in dgv.Columns)
             {
@@ -304,6 +306,23 @@ namespace Estética
             dgv.Columns[4].HeaderText = "Stock";
             dgv.Columns[5].HeaderText = "Precio Un.";
             dgv.Columns[5].DefaultCellStyle.Format = "c";
+
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+        public static void DGVPedidosXBebidas(DataGridView dgv)
+        {
+            dgv.Columns[0].HeaderText = "Número";
+            dgv.Columns[1].Visible = false;
+            dgv.Columns[2].Visible = false;
+            dgv.Columns[3].Visible = false;
+            dgv.Columns[4].Visible = false;
+            dgv.Columns[5].Visible = false;
+            dgv.Columns[6].HeaderText = "Monto";
 
             foreach (DataGridViewColumn columns in dgv.Columns)
             {
@@ -449,9 +468,32 @@ namespace Estética
         {
             dgv.Columns[0].Visible = false;
             dgv.Columns[1].Visible = false;
-            dgv.Columns[4].HeaderText = "Intentos";
+            dgv.Columns[4].HeaderText = "e-Mail";
+            dgv.Columns[5].Visible = false;
            
            
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+
+        public static void DGVCocinas(DataGridView dgv)
+        {
+            dgv.Columns[1].HeaderText = "Legajo";
+            dgv.Columns[2].HeaderText = "DNI";
+            dgv.Columns[3].HeaderText = "Nombre";
+            dgv.Columns[4].HeaderText = "Apellido";
+            dgv.Columns[5].Visible = false;
+            dgv.Columns[6].HeaderText = "Edad";
+            dgv.Columns[7].Visible = false;
+            dgv.Columns[8].HeaderText = "Antiguedad";
+            dgv.Columns[0].DisplayIndex = 9;
+            dgv.Columns[9].HeaderText = "Turno";
+
+
             foreach (DataGridViewColumn columns in dgv.Columns)
             {
                 columns.SortMode = DataGridViewColumnSortMode.NotSortable;

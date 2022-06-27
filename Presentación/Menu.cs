@@ -208,6 +208,22 @@ namespace Presentación
             }
         }
 
+        private void cocinaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmCocina);
+            if (frm != null)
+            {
+
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmCocina();
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+
 
         //private void btnInformes_Click(object sender, EventArgs e)
         //{

@@ -37,6 +37,10 @@ namespace BLL
         {
             return oMPP_Pedido.PlatoEnPedidos(oBE_Plato);
         }
+        public List<BE_Pedido> BebidaEnPedidos(BE_Bebida oBE_Bebida)
+        {
+            return oMPP_Pedido.BebidaEnPedidos(oBE_Bebida);
+        }
         public BE_Pedido ListarObjeto(BE_Pedido Pedido)
         {
             throw new NotImplementedException();

@@ -63,6 +63,7 @@ namespace Mapper
             }
             hashtable.Add("@Nombre", oBE_Login.Usuario);
             hashtable.Add("@Pass", oBE_Login.Password);
+            hashtable.Add("eMail", oBE_Login.eMail);
             hashtable.Add("@CantInt", oBE_Login.CantidadIntentos);
 
             if (!Existe(oBE_Login))
@@ -87,7 +88,8 @@ namespace Mapper
                     Login.Codigo = Convert.ToInt32(row[0].ToString());
                     Login.Usuario = row[2].ToString();
                     Login.Password = row[3].ToString();
-                    Login.CantidadIntentos = Convert.ToInt32(row[4].ToString());
+                    Login.eMail = row[4].ToString();
+                    Login.CantidadIntentos = Convert.ToInt32(row[5].ToString());
 
                     Hashtable hash = new Hashtable();
                     hash.Add("@Codigo", Convert.ToInt32(row[1].ToString()));
@@ -118,7 +120,8 @@ namespace Mapper
                     oBE_Login.Codigo = Convert.ToInt32(row[0].ToString());
                     oBE_Login.Usuario = row[2].ToString();
                     oBE_Login.Password = row[3].ToString();
-                    oBE_Login.CantidadIntentos = Convert.ToInt32(row[4].ToString());
+                    oBE_Login.eMail = row[4].ToString();
+                    oBE_Login.CantidadIntentos = Convert.ToInt32(row[5].ToString());
                     Hashtable hash = new Hashtable();
                     hash.Add("@Codigo", Convert.ToInt32(row[1].ToString()));
                     oBE_Login.Empleado = TraerUserID(hash);

@@ -30,11 +30,29 @@ namespace Mapper
             }
         }
 
-        public int DevolverPuntuacion()
+        public int DevolverPuntuacion(BE_Empleado Mozo)
         {
-            throw new NotImplementedException();
-        }
+            int puntuacion=0;
+            decimal punt=0;
+            Hashtable hash = new Hashtable();
+            string query = "61 - Buscar_Mozo_Puntuacion";
+            hash.Add("@Codigo", Mozo.Codigo);
+            Acceso = new ClsDataBase();
+            DataTable Dt = Acceso.DevolverListado(query, hash);
 
+            if (Dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in Dt.Rows)
+                {
+                    if (!(row["Puntuacion"] is DBNull))
+                    {
+                        punt = Convert.ToDecimal(row["Puntuacion"].ToString());
+                    }
+                }
+            }
+            puntuacion = Convert.ToInt32(Math.Round(punt,0));
+            return puntuacion;
+        }
         public bool Guardar(BE_Mozo Mozo)
         {
             Hashtable hashtable = new Hashtable();
@@ -157,7 +175,7 @@ namespace Mapper
                 foreach (DataRow row in Dt.Rows)
                 {
                     BE_Empleado Empleado = new BE_Empleado();
-                    if (Empleado is BE_Cocina)
+                    if (!(row[7] is DBNull))
                     {
                         BE_Cocina Cocina = new BE_Cocina();
                         Cocina.Codigo = Convert.ToInt32(row[0].ToString());

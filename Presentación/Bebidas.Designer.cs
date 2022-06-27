@@ -49,8 +49,10 @@
             this.btnEliminarBebida = new System.Windows.Forms.Button();
             this.btnModificarBebida = new System.Windows.Forms.Button();
             this.btnNuevaBebida = new System.Windows.Forms.Button();
+            this.dgvPedidosConBeb = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBebidas)).BeginInit();
             this.grpBebidas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPedidosConBeb)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvBebidas
@@ -58,7 +60,7 @@
             this.dgvBebidas.AllowUserToAddRows = false;
             this.dgvBebidas.AllowUserToDeleteRows = false;
             this.dgvBebidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBebidas.Location = new System.Drawing.Point(49, 53);
+            this.dgvBebidas.Location = new System.Drawing.Point(12, 12);
             this.dgvBebidas.Name = "dgvBebidas";
             this.dgvBebidas.ReadOnly = true;
             this.dgvBebidas.RowHeadersWidth = 51;
@@ -236,9 +238,9 @@
             this.btnAgregarStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarStock.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarStock.ForeColor = System.Drawing.Color.Gold;
-            this.btnAgregarStock.Location = new System.Drawing.Point(717, 214);
+            this.btnAgregarStock.Location = new System.Drawing.Point(731, 225);
             this.btnAgregarStock.Name = "btnAgregarStock";
-            this.btnAgregarStock.Size = new System.Drawing.Size(100, 93);
+            this.btnAgregarStock.Size = new System.Drawing.Size(86, 82);
             this.btnAgregarStock.TabIndex = 5;
             this.btnAgregarStock.UseVisualStyleBackColor = true;
             this.btnAgregarStock.Click += new System.EventHandler(this.btnAgregarStock_Click);
@@ -288,11 +290,25 @@
             this.btnNuevaBebida.UseVisualStyleBackColor = true;
             this.btnNuevaBebida.Click += new System.EventHandler(this.btnNuevaBebida_Click);
             // 
+            // dgvPedidosConBeb
+            // 
+            this.dgvPedidosConBeb.AllowUserToAddRows = false;
+            this.dgvPedidosConBeb.AllowUserToDeleteRows = false;
+            this.dgvPedidosConBeb.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPedidosConBeb.Location = new System.Drawing.Point(661, 12);
+            this.dgvPedidosConBeb.Name = "dgvPedidosConBeb";
+            this.dgvPedidosConBeb.ReadOnly = true;
+            this.dgvPedidosConBeb.RowHeadersWidth = 51;
+            this.dgvPedidosConBeb.RowTemplate.Height = 24;
+            this.dgvPedidosConBeb.Size = new System.Drawing.Size(174, 185);
+            this.dgvPedidosConBeb.TabIndex = 6;
+            // 
             // frmBebidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 609);
+            this.Controls.Add(this.dgvPedidosConBeb);
             this.Controls.Add(this.btnAgregarStock);
             this.Controls.Add(this.btnEliminarBebida);
             this.Controls.Add(this.btnModificarBebida);
@@ -305,6 +321,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvBebidas)).EndInit();
             this.grpBebidas.ResumeLayout(false);
             this.grpBebidas.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPedidosConBeb)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -332,5 +349,6 @@
         private System.Windows.Forms.Label lblPresentación;
         private System.Windows.Forms.ComboBox comboTipo;
         private System.Windows.Forms.Button btnAgregarStock;
+        private System.Windows.Forms.DataGridView dgvPedidosConBeb;
     }
 }

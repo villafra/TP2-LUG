@@ -11,6 +11,7 @@ using BE;
 using BLL;
 using Calculo;
 using Estética;
+using Microsoft.VisualBasic;
 
 namespace Presentación
 { 
@@ -36,7 +37,8 @@ namespace Presentación
             try
             {
                 oBE_Empleado = (BE_Empleado)dgvEmpleados.CurrentRow.DataBoundItem;
-                oBE_Login = new BE_Login(oBE_Empleado, oBLL_Login.GenerarUsuario(oBE_Empleado), oBLL_Login.AutoGenerarPass());
+                string mail = Interaction.InputBox("Ingrese el e-Mail", "Restó");
+                oBE_Login = new BE_Login(oBE_Empleado, oBLL_Login.GenerarUsuario(oBE_Empleado), oBLL_Login.AutoGenerarPass(), mail);
             }
             catch (Exception ex)
             {
@@ -49,7 +51,7 @@ namespace Presentación
             try
             {
                 oBE_Empleado = (BE_Empleado)dgvEmpleados.CurrentRow.DataBoundItem;
-                oBE_Login = new BE_Login(Int32.Parse(txtCodigo.Text), oBE_Empleado, txtUsuario.Text, oBLL_Login.EncriptarPass(txtPass.Text), prgCantidad.Value);
+                oBE_Login = new BE_Login(Int32.Parse(txtCodigo.Text), oBE_Empleado, txtUsuario.Text, oBLL_Login.EncriptarPass(txtPass.Text),txtMail.Text, prgCantidad.Value);
             }
             catch (Exception ex)
             {
@@ -72,8 +74,8 @@ namespace Presentación
             txtUsuario.Text = oBE_Login.Usuario;
             txtPass.Text = oBE_Login.Password;
             txtLegajo.Text = oBE_Login.Empleado.Codigo.ToString();
-            txtNombre.Text = oBE_Login.Empleado.Nombre;
-            txtApellido.Text = oBE_Login.Empleado.Apellido;
+            txtNombre.Text = oBE_Login.Empleado.ToString();
+            txtMail.Text = oBE_Login.eMail;
             prgCantidad.Value = oBE_Login.CantidadIntentos;
         }
 
@@ -82,9 +84,17 @@ namespace Presentación
             try
             {
                 Nuevo();
+                if (Calculos.ValidarMail(oBE_Login.eMail))
+                {
                 oBLL_Login.Guardar(oBE_Login);
                 ActualizarListado();
                 Calculos.BorrarCampos(grpUsuarios);
+                }
+                else
+                {
+                    Calculos.MsgBox("Ingrese un Mail válido");
+                }
+
             }
             catch (Exception ex)
             {
@@ -97,10 +107,18 @@ namespace Presentación
         {
             try
             {
+                if (Calculos.ValidarMail(txtMail.Text))
+                {
                 Viejo();
                 oBLL_Login.Guardar(oBE_Login);
                 ActualizarListado();
                 Calculos.BorrarCampos(grpUsuarios);
+                }
+                else
+                {
+                    Calculos.MsgBox("Ingrese un Mail válido.");
+                }
+
             }
             catch (Exception ex)
             {
@@ -160,5 +178,6 @@ namespace Presentación
             txtPass.SelectAll();
             ingreso = true;
         }
+
     }
 }

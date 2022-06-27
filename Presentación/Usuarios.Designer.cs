@@ -38,7 +38,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtApellido = new System.Windows.Forms.TextBox();
+            this.txtMail = new System.Windows.Forms.TextBox();
             this.lblApellido = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
@@ -79,7 +79,7 @@
             this.grpUsuarios.Controls.Add(this.label2);
             this.grpUsuarios.Controls.Add(this.txtUsuario);
             this.grpUsuarios.Controls.Add(this.label1);
-            this.grpUsuarios.Controls.Add(this.txtApellido);
+            this.grpUsuarios.Controls.Add(this.txtMail);
             this.grpUsuarios.Controls.Add(this.lblApellido);
             this.grpUsuarios.Controls.Add(this.txtNombre);
             this.grpUsuarios.Controls.Add(this.lblNombre);
@@ -181,22 +181,22 @@
             this.label1.TabIndex = 25;
             this.label1.Text = "Usuario";
             // 
-            // txtApellido
+            // txtMail
             // 
-            this.txtApellido.Location = new System.Drawing.Point(407, 143);
-            this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(148, 22);
-            this.txtApellido.TabIndex = 24;
-            this.txtApellido.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtMail.Location = new System.Drawing.Point(407, 143);
+            this.txtMail.Name = "txtMail";
+            this.txtMail.Size = new System.Drawing.Size(222, 22);
+            this.txtMail.TabIndex = 24;
+            this.txtMail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblApellido
             // 
             this.lblApellido.AutoSize = true;
             this.lblApellido.Location = new System.Drawing.Point(404, 113);
             this.lblApellido.Name = "lblApellido";
-            this.lblApellido.Size = new System.Drawing.Size(57, 16);
+            this.lblApellido.Size = new System.Drawing.Size(44, 16);
             this.lblApellido.TabIndex = 23;
-            this.lblApellido.Text = "Apellido";
+            this.lblApellido.Text = "e-Mail";
             // 
             // txtNombre
             // 
@@ -211,9 +211,9 @@
             this.lblNombre.AutoSize = true;
             this.lblNombre.Location = new System.Drawing.Point(200, 113);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(56, 16);
+            this.lblNombre.Size = new System.Drawing.Size(70, 16);
             this.lblNombre.TabIndex = 21;
-            this.lblNombre.Text = "Nombre";
+            this.lblNombre.Text = "Empleado";
             // 
             // txtLegajo
             // 
@@ -347,7 +347,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtApellido;
+        private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.Label lblApellido;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label lblNombre;

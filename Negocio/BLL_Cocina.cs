@@ -18,27 +18,41 @@ namespace BLL
             oMPP_Cocina = new MPP_Cocina();
         }
 
-        public bool Baja(BE_Cocina oBEE_Cocina)
+        public bool Baja(BE_Cocina oBE_Cocina)
         {
-            throw new NotImplementedException();
+            return oMPP_Cocina.Baja(oBE_Cocina);
         }
 
-        public override int DevolverPuntuacion()
+        public override int DevolverPuntuacion(BE_Empleado Cocina)
         {
-            throw new NotImplementedException();
+            int puntuacion = oMPP_Cocina.DevolverPuntuacion(Cocina);
+            if ((Cocina as BE_Cocina).Puesto == BE_Empleado.Puesto_Cocina.Chef)
+            {
+                puntuacion += 10/2;
+            }
+           else if ((Cocina as BE_Cocina).Puesto == BE_Empleado.Puesto_Cocina.Ayudante_Cocina)
+            {
+                puntuacion += 6/2;
+            }
+            else
+            {
+                puntuacion += 4/2;
+            }
+            if (puntuacion <= 10) { return puntuacion;}
+            else { return 10; }
         }
 
-        public bool Guardar(BE_Cocina oBEE_Cocina)
+        public bool Guardar(BE_Cocina oBE_Cocina)
         {
-            throw new NotImplementedException();
+            return oMPP_Cocina.Guardar(oBE_Cocina);
         }
 
         public List<BE_Cocina> Listar()
         {
-            throw new NotImplementedException();
+            return oMPP_Cocina.Listar();
         }
 
-        public BE_Cocina ListarObjeto(BE_Cocina oBEE_Cocina)
+        public BE_Cocina ListarObjeto(BE_Cocina oBE_Cocina)
         {
             throw new NotImplementedException();
         }
