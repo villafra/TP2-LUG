@@ -34,6 +34,7 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.picLogin = new System.Windows.Forms.PictureBox();
+            this.btnCambiarPass = new System.Windows.Forms.Button();
             this.grpLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogin)).BeginInit();
             this.SuspendLayout();
@@ -73,7 +74,7 @@
             this.btnLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnLogin.FlatAppearance.BorderSize = 0;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.Location = new System.Drawing.Point(510, 272);
+            this.btnLogin.Location = new System.Drawing.Point(387, 272);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(90, 70);
             this.btnLogin.TabIndex = 3;
@@ -104,6 +105,19 @@
             this.picLogin.TabIndex = 2;
             this.picLogin.TabStop = false;
             // 
+            // btnCambiarPass
+            // 
+            this.btnCambiarPass.BackgroundImage = global::Presentación.Properties.Resources.restablecer_la_contrasena;
+            this.btnCambiarPass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCambiarPass.FlatAppearance.BorderSize = 0;
+            this.btnCambiarPass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCambiarPass.Location = new System.Drawing.Point(641, 272);
+            this.btnCambiarPass.Name = "btnCambiarPass";
+            this.btnCambiarPass.Size = new System.Drawing.Size(90, 70);
+            this.btnCambiarPass.TabIndex = 6;
+            this.btnCambiarPass.UseVisualStyleBackColor = true;
+            this.btnCambiarPass.Click += new System.EventHandler(this.btnCambiarPass_Click);
+            // 
             // frmLogin
             // 
             this.AcceptButton = this.btnLogin;
@@ -111,6 +125,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(743, 354);
+            this.Controls.Add(this.btnCambiarPass);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.picLogin);
@@ -134,5 +149,6 @@
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.GroupBox grpLogin;
+        private System.Windows.Forms.Button btnCambiarPass;
     }
 }

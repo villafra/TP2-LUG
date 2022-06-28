@@ -194,17 +194,17 @@ namespace Presentación
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmUsuarios);
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmLogin);
             if (frm != null)
             {
 
-                frm.BringToFront();
+                frm.Show();
                 return;
             }
             else
             {
-                frm = new frmUsuarios();
-                Aspecto.AbrirNuevoForm(this, frm);
+                frm = new frmLogin();
+                frm.Show();
             }
         }
 

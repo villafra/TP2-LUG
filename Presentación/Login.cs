@@ -36,8 +36,11 @@ namespace Presentación
                     if (oBLL_Login.Intentos(oBE_Login))
                     {
                         frmMenu frm = new frmMenu();
-                        this.Hide();
                         frm.Show();
+                        Calculos.BorrarCampos(grpLogin);
+                        this.Hide();
+                        
+
                     }
                     else
                     {
@@ -64,5 +67,37 @@ namespace Presentación
             Calculos.Salir();
         }
 
+        private void btnCambiarPass_Click(object sender, EventArgs e)
+        {
+            oBE_Login = oBLL_Login.Login(txtUsuario.Text);
+            if (oBE_Login != null)
+            {
+                if (oBLL_Login.CheckPass(oBE_Login, txtPass.Text))
+                {
+                    if (oBLL_Login.Intentos(oBE_Login))
+                    {
+                        CambioPass frm = new CambioPass();
+                        frm.Usuario(txtUsuario.Text);
+                        frm.Show();
+                    }
+                    else
+                    {
+                        Calculos.MsgBox("El usuario está bloqueado. Comuniquese con el Administrador");
+                    }
+
+                }
+                else
+                {
+                    Calculos.MsgBox("La contraseña es incorrecta");
+                }
+
+            }
+            else
+            {
+                Calculos.MsgBox("El usuario es inexistente");
+            }
+
+
+        }
     }
 }
