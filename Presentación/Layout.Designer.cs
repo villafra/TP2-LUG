@@ -28,165 +28,168 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.picboxPrincipal = new System.Windows.Forms.PictureBox();
-            this.dgvMesasLibres = new System.Windows.Forms.DataGridView();
-            this.dgvMesasOcupadas = new System.Windows.Forms.DataGridView();
-            this.dgvPedidosAbiertos = new System.Windows.Forms.DataGridView();
-            this.dgvBebidasActivas = new System.Windows.Forms.DataGridView();
-            this.dgvPlatosActivos = new System.Windows.Forms.DataGridView();
-            this.dgvTotalPlatos = new System.Windows.Forms.DataGridView();
-            this.dgvTotalBebidas = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxPrincipal)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMesasLibres)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMesasOcupadas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPedidosAbiertos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBebidasActivas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPlatosActivos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTotalPlatos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTotalBebidas)).BeginInit();
+            this.components = new System.ComponentModel.Container();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.repViewRestó = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.panelreport = new System.Windows.Forms.Panel();
+            this.grpReportesPedido = new System.Windows.Forms.GroupBox();
+            this.btnRecuperarReporte = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
+            this.lblFechaNacimiento = new System.Windows.Forms.Label();
+            this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
+            this.comboMozo = new System.Windows.Forms.ComboBox();
+            this.lblMozo = new System.Windows.Forms.Label();
+            this.bEReporteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panelreport.SuspendLayout();
+            this.grpReportesPedido.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bEReporteBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // picboxPrincipal
+            // repViewRestó
             // 
-            this.picboxPrincipal.Image = global::Presentación.Properties.Resources.Picture6;
-            this.picboxPrincipal.Location = new System.Drawing.Point(160, -1);
-            this.picboxPrincipal.Margin = new System.Windows.Forms.Padding(4);
-            this.picboxPrincipal.Name = "picboxPrincipal";
-            this.picboxPrincipal.Size = new System.Drawing.Size(557, 314);
-            this.picboxPrincipal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picboxPrincipal.TabIndex = 12;
-            this.picboxPrincipal.TabStop = false;
+            this.repViewRestó.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportDataSource1.Name = "Pedidos";
+            reportDataSource2.Name = "DataSet1";
+            reportDataSource2.Value = this.bEReporteBindingSource;
+            this.repViewRestó.LocalReport.DataSources.Add(reportDataSource1);
+            this.repViewRestó.LocalReport.DataSources.Add(reportDataSource2);
+            this.repViewRestó.LocalReport.ReportEmbeddedResource = "Presentación.Reporte.rdlc";
+            this.repViewRestó.Location = new System.Drawing.Point(0, 0);
+            this.repViewRestó.Name = "repViewRestó";
+            this.repViewRestó.ServerReport.BearerToken = null;
+            this.repViewRestó.Size = new System.Drawing.Size(844, 492);
+            this.repViewRestó.TabIndex = 20;
             // 
-            // dgvMesasLibres
+            // panelreport
             // 
-            this.dgvMesasLibres.AllowUserToAddRows = false;
-            this.dgvMesasLibres.AllowUserToDeleteRows = false;
-            this.dgvMesasLibres.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMesasLibres.Location = new System.Drawing.Point(12, 406);
-            this.dgvMesasLibres.Name = "dgvMesasLibres";
-            this.dgvMesasLibres.ReadOnly = true;
-            this.dgvMesasLibres.RowHeadersWidth = 51;
-            this.dgvMesasLibres.RowTemplate.Height = 24;
-            this.dgvMesasLibres.Size = new System.Drawing.Size(209, 63);
-            this.dgvMesasLibres.TabIndex = 13;
+            this.panelreport.Controls.Add(this.repViewRestó);
+            this.panelreport.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelreport.Location = new System.Drawing.Point(0, 114);
+            this.panelreport.Name = "panelreport";
+            this.panelreport.Size = new System.Drawing.Size(844, 492);
+            this.panelreport.TabIndex = 21;
             // 
-            // dgvMesasOcupadas
+            // grpReportesPedido
             // 
-            this.dgvMesasOcupadas.AllowUserToAddRows = false;
-            this.dgvMesasOcupadas.AllowUserToDeleteRows = false;
-            this.dgvMesasOcupadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMesasOcupadas.Location = new System.Drawing.Point(318, 406);
-            this.dgvMesasOcupadas.Name = "dgvMesasOcupadas";
-            this.dgvMesasOcupadas.ReadOnly = true;
-            this.dgvMesasOcupadas.RowHeadersWidth = 51;
-            this.dgvMesasOcupadas.RowTemplate.Height = 24;
-            this.dgvMesasOcupadas.Size = new System.Drawing.Size(209, 63);
-            this.dgvMesasOcupadas.TabIndex = 14;
+            this.grpReportesPedido.Controls.Add(this.btnRecuperarReporte);
+            this.grpReportesPedido.Controls.Add(this.label1);
+            this.grpReportesPedido.Controls.Add(this.dtpFechaFin);
+            this.grpReportesPedido.Controls.Add(this.lblFechaNacimiento);
+            this.grpReportesPedido.Controls.Add(this.dtpFechaInicio);
+            this.grpReportesPedido.Controls.Add(this.comboMozo);
+            this.grpReportesPedido.Controls.Add(this.lblMozo);
+            this.grpReportesPedido.Location = new System.Drawing.Point(12, 3);
+            this.grpReportesPedido.Name = "grpReportesPedido";
+            this.grpReportesPedido.Size = new System.Drawing.Size(820, 105);
+            this.grpReportesPedido.TabIndex = 22;
+            this.grpReportesPedido.TabStop = false;
+            this.grpReportesPedido.Text = "Filtrar Por";
             // 
-            // dgvPedidosAbiertos
+            // btnRecuperarReporte
             // 
-            this.dgvPedidosAbiertos.AllowUserToAddRows = false;
-            this.dgvPedidosAbiertos.AllowUserToDeleteRows = false;
-            this.dgvPedidosAbiertos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPedidosAbiertos.Location = new System.Drawing.Point(629, 406);
-            this.dgvPedidosAbiertos.Name = "dgvPedidosAbiertos";
-            this.dgvPedidosAbiertos.ReadOnly = true;
-            this.dgvPedidosAbiertos.RowHeadersWidth = 51;
-            this.dgvPedidosAbiertos.RowTemplate.Height = 24;
-            this.dgvPedidosAbiertos.Size = new System.Drawing.Size(209, 63);
-            this.dgvPedidosAbiertos.TabIndex = 15;
+            this.btnRecuperarReporte.BackgroundImage = global::Presentación.Properties.Resources.analitica;
+            this.btnRecuperarReporte.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRecuperarReporte.FlatAppearance.BorderSize = 0;
+            this.btnRecuperarReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRecuperarReporte.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRecuperarReporte.ForeColor = System.Drawing.Color.Gold;
+            this.btnRecuperarReporte.Location = new System.Drawing.Point(606, 21);
+            this.btnRecuperarReporte.Name = "btnRecuperarReporte";
+            this.btnRecuperarReporte.Size = new System.Drawing.Size(76, 62);
+            this.btnRecuperarReporte.TabIndex = 35;
+            this.btnRecuperarReporte.UseVisualStyleBackColor = true;
+            this.btnRecuperarReporte.Click += new System.EventHandler(this.btnRecuperarReporte_Click);
             // 
-            // dgvBebidasActivas
+            // label1
             // 
-            this.dgvBebidasActivas.AllowUserToAddRows = false;
-            this.dgvBebidasActivas.AllowUserToDeleteRows = false;
-            this.dgvBebidasActivas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBebidasActivas.Location = new System.Drawing.Point(519, 475);
-            this.dgvBebidasActivas.Name = "dgvBebidasActivas";
-            this.dgvBebidasActivas.ReadOnly = true;
-            this.dgvBebidasActivas.RowHeadersWidth = 51;
-            this.dgvBebidasActivas.RowTemplate.Height = 24;
-            this.dgvBebidasActivas.Size = new System.Drawing.Size(319, 119);
-            this.dgvBebidasActivas.TabIndex = 18;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(440, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 16);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "Hasta";
             // 
-            // dgvPlatosActivos
+            // dtpFechaFin
             // 
-            this.dgvPlatosActivos.AllowUserToAddRows = false;
-            this.dgvPlatosActivos.AllowUserToDeleteRows = false;
-            this.dgvPlatosActivos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPlatosActivos.Location = new System.Drawing.Point(12, 475);
-            this.dgvPlatosActivos.Name = "dgvPlatosActivos";
-            this.dgvPlatosActivos.ReadOnly = true;
-            this.dgvPlatosActivos.RowHeadersWidth = 51;
-            this.dgvPlatosActivos.RowTemplate.Height = 24;
-            this.dgvPlatosActivos.Size = new System.Drawing.Size(323, 119);
-            this.dgvPlatosActivos.TabIndex = 17;
+            this.dtpFechaFin.CustomFormat = "dd/MM/yyyy";
+            this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaFin.Location = new System.Drawing.Point(443, 61);
+            this.dtpFechaFin.Name = "dtpFechaFin";
+            this.dtpFechaFin.Size = new System.Drawing.Size(121, 22);
+            this.dtpFechaFin.TabIndex = 33;
             // 
-            // dgvTotalPlatos
+            // lblFechaNacimiento
             // 
-            this.dgvTotalPlatos.AllowUserToAddRows = false;
-            this.dgvTotalPlatos.AllowUserToDeleteRows = false;
-            this.dgvTotalPlatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTotalPlatos.Location = new System.Drawing.Point(160, 320);
-            this.dgvTotalPlatos.Name = "dgvTotalPlatos";
-            this.dgvTotalPlatos.ReadOnly = true;
-            this.dgvTotalPlatos.RowHeadersWidth = 51;
-            this.dgvTotalPlatos.RowTemplate.Height = 24;
-            this.dgvTotalPlatos.Size = new System.Drawing.Size(209, 63);
-            this.dgvTotalPlatos.TabIndex = 16;
+            this.lblFechaNacimiento.AutoSize = true;
+            this.lblFechaNacimiento.Location = new System.Drawing.Point(262, 31);
+            this.lblFechaNacimiento.Name = "lblFechaNacimiento";
+            this.lblFechaNacimiento.Size = new System.Drawing.Size(48, 16);
+            this.lblFechaNacimiento.TabIndex = 32;
+            this.lblFechaNacimiento.Text = "Desde";
             // 
-            // dgvTotalBebidas
+            // dtpFechaInicio
             // 
-            this.dgvTotalBebidas.AllowUserToAddRows = false;
-            this.dgvTotalBebidas.AllowUserToDeleteRows = false;
-            this.dgvTotalBebidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTotalBebidas.Location = new System.Drawing.Point(508, 320);
-            this.dgvTotalBebidas.Name = "dgvTotalBebidas";
-            this.dgvTotalBebidas.ReadOnly = true;
-            this.dgvTotalBebidas.RowHeadersWidth = 51;
-            this.dgvTotalBebidas.RowTemplate.Height = 24;
-            this.dgvTotalBebidas.Size = new System.Drawing.Size(209, 63);
-            this.dgvTotalBebidas.TabIndex = 19;
+            this.dtpFechaInicio.CustomFormat = "dd/MM/yyyy";
+            this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaInicio.Location = new System.Drawing.Point(260, 61);
+            this.dtpFechaInicio.Name = "dtpFechaInicio";
+            this.dtpFechaInicio.Size = new System.Drawing.Size(121, 22);
+            this.dtpFechaInicio.TabIndex = 31;
+            // 
+            // comboMozo
+            // 
+            this.comboMozo.FormattingEnabled = true;
+            this.comboMozo.Location = new System.Drawing.Point(33, 59);
+            this.comboMozo.Name = "comboMozo";
+            this.comboMozo.Size = new System.Drawing.Size(158, 24);
+            this.comboMozo.TabIndex = 30;
+            // 
+            // lblMozo
+            // 
+            this.lblMozo.AutoSize = true;
+            this.lblMozo.Location = new System.Drawing.Point(30, 31);
+            this.lblMozo.Name = "lblMozo";
+            this.lblMozo.Size = new System.Drawing.Size(40, 16);
+            this.lblMozo.TabIndex = 29;
+            this.lblMozo.Text = "Mozo";
+            // 
+            // bEReporteBindingSource
+            // 
+            this.bEReporteBindingSource.DataSource = typeof(BE.BE_Pedido);
+            this.bEReporteBindingSource.CurrentChanged += new System.EventHandler(this.bEReporteBindingSource_CurrentChanged);
             // 
             // frmLayout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(844, 606);
-            this.Controls.Add(this.dgvTotalBebidas);
-            this.Controls.Add(this.dgvBebidasActivas);
-            this.Controls.Add(this.dgvPlatosActivos);
-            this.Controls.Add(this.dgvTotalPlatos);
-            this.Controls.Add(this.dgvPedidosAbiertos);
-            this.Controls.Add(this.dgvMesasOcupadas);
-            this.Controls.Add(this.dgvMesasLibres);
-            this.Controls.Add(this.picboxPrincipal);
+            this.Controls.Add(this.grpReportesPedido);
+            this.Controls.Add(this.panelreport);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmLayout";
             this.Text = "Layout";
-            //this.Activated += new System.EventHandler(this.frmLayout_Activated);
-            //this.Load += new System.EventHandler(this.frmLayout_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.picboxPrincipal)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMesasLibres)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMesasOcupadas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPedidosAbiertos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBebidasActivas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPlatosActivos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTotalPlatos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTotalBebidas)).EndInit();
+            this.Load += new System.EventHandler(this.frmLayout_Load);
+            this.panelreport.ResumeLayout(false);
+            this.grpReportesPedido.ResumeLayout(false);
+            this.grpReportesPedido.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bEReporteBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox picboxPrincipal;
-        private System.Windows.Forms.DataGridView dgvMesasLibres;
-        private System.Windows.Forms.DataGridView dgvMesasOcupadas;
-        private System.Windows.Forms.DataGridView dgvPedidosAbiertos;
-        private System.Windows.Forms.DataGridView dgvBebidasActivas;
-        private System.Windows.Forms.DataGridView dgvPlatosActivos;
-        private System.Windows.Forms.DataGridView dgvTotalPlatos;
-        private System.Windows.Forms.DataGridView dgvTotalBebidas;
+        private Microsoft.Reporting.WinForms.ReportViewer repViewRestó;
+        private System.Windows.Forms.Panel panelreport;
+        private System.Windows.Forms.GroupBox grpReportesPedido;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dtpFechaFin;
+        private System.Windows.Forms.Label lblFechaNacimiento;
+        private System.Windows.Forms.DateTimePicker dtpFechaInicio;
+        private System.Windows.Forms.ComboBox comboMozo;
+        private System.Windows.Forms.Label lblMozo;
+        private System.Windows.Forms.Button btnRecuperarReporte;
+        private System.Windows.Forms.BindingSource bEReporteBindingSource;
     }
 }

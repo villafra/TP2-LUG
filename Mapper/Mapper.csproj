@@ -44,6 +44,7 @@
     <Compile Include="MPP_Cocina.cs" />
     <Compile Include="MPP_Login.cs" />
     <Compile Include="MPP_Pedido.cs" />
+    <Compile Include="MPP_Reporte.cs" />
     <Compile Include="MPP_Reserva.cs" />
     <Compile Include="MPP_Turno.cs" />
     <Compile Include="MPP_Bebida-Alcohólica.cs" />

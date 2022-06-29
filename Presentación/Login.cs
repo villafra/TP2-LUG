@@ -66,7 +66,10 @@ namespace Presentación
         {
             Calculos.Salir();
         }
-
+        private void btnExit_Click1(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
         private void btnCambiarPass_Click(object sender, EventArgs e)
         {
             oBE_Login = oBLL_Login.Login(txtUsuario.Text);
@@ -97,7 +100,8 @@ namespace Presentación
                 Calculos.MsgBox("El usuario es inexistente");
             }
 
-
+            
         }
+
     }
 }

@@ -149,7 +149,15 @@ namespace Calculo
             combo.Refresh();
 
         }
+        public static void DataSourceComboReporte(ComboBox combo, object refObject, string DisplayMember)
+        {
+            combo.DataSource = null;
+            combo.DataSource = refObject;
+            combo.DisplayMember = DisplayMember;
+            combo.SelectedIndex = -1;
+            combo.Refresh();
 
+        }
         public static void MsgBox(string mensaje)
         {
             MessageBox.Show(mensaje, "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
