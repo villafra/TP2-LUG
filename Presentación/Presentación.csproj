@@ -114,6 +114,12 @@
     <Compile Include="Cocina.Designer.cs">
       <DependentUpon>Cocina.cs</DependentUpon>
     </Compile>
+    <Compile Include="Informes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Informes.Designer.cs">
+      <DependentUpon>Informes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mozos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Cocina.resx">
       <DependentUpon>Cocina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Informes.resx">
+      <DependentUpon>Informes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mozos.resx">
       <DependentUpon>Mozos.cs</DependentUpon>

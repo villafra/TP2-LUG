@@ -158,7 +158,6 @@
             // bEReporteBindingSource
             // 
             this.bEReporteBindingSource.DataSource = typeof(BE.BE_Pedido);
-            this.bEReporteBindingSource.CurrentChanged += new System.EventHandler(this.bEReporteBindingSource_CurrentChanged);
             // 
             // frmLayout
             // 
@@ -170,7 +169,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmLayout";
             this.Text = "Layout";
-            this.Load += new System.EventHandler(this.frmLayout_Load);
             this.panelreport.ResumeLayout(false);
             this.grpReportesPedido.ResumeLayout(false);
             this.grpReportesPedido.PerformLayout();

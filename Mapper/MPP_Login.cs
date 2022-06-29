@@ -8,6 +8,9 @@ using Abstracción;
 using BE;
 using System.Collections;
 using System.Data;
+using System.IO;
+using System.Xml.Linq;
+using System.Xml;
 
 namespace Mapper
 {
@@ -131,6 +134,101 @@ namespace Mapper
             else
             {
                 return null;
+            }
+
+        }
+
+        public bool EscribirXML(BE_Login login)
+        {
+            try
+            {
+                if (!File.Exists("Histórico"))
+                {
+                    XmlDocument xmlDoc = new XmlDocument();
+                    xmlDoc.AppendChild(xmlDoc.CreateXmlDeclaration("1.0", Encoding.UTF8.WebName, "yes"));
+                    xmlDoc.AppendChild(xmlDoc.CreateComment("Registro de Logueo en Base de datos"));
+                    XmlElement xmlElement = default(XmlElement);
+                    xmlElement = xmlDoc.CreateElement("Logins");
+
+                    XmlElement xmlLogin = xmlDoc.CreateElement("Login");
+                    XmlAttribute id = xmlDoc.CreateAttribute("ID");
+                    id.Value = login.Codigo.ToString();
+                    xmlLogin.Attributes.Append(id);
+
+                    XmlElement xmlUsuario = xmlDoc.CreateElement("Usuario");
+                    XmlText usuario = xmlDoc.CreateTextNode(login.Usuario);
+                    xmlUsuario.AppendChild(usuario);
+
+                    XmlElement xmlPass = xmlDoc.CreateElement("Password");
+                    XmlText pass = xmlDoc.CreateTextNode(login.Password);
+                    xmlPass.AppendChild(pass);
+
+                    XmlElement xmlMail = xmlDoc.CreateElement("e-Mail");
+                    XmlText email = xmlDoc.CreateTextNode(login.eMail);
+                    xmlMail.AppendChild(email);
+
+                    XmlElement xmlIntentos = xmlDoc.CreateElement("Cant. Intentos");
+                    XmlText intentos = xmlDoc.CreateTextNode(login.CantidadIntentos.ToString());
+                    xmlIntentos.AppendChild(intentos);
+
+                    XmlElement xmlFecha = xmlDoc.CreateElement("Fecha Ingreso");
+                    XmlText fecha = xmlDoc.CreateTextNode(DateTime.Today.ToString("dd/MM/yyyy"));
+                    xmlFecha.AppendChild(fecha);
+
+                    XmlElement xmlHora = xmlDoc.CreateElement("Hora Ingreso");
+                    XmlText hora = xmlDoc.CreateTextNode(DateTime.Now.ToString("HH:mm"));
+                    xmlHora.AppendChild(hora);
+
+                    XmlElement xmlEmpleado = xmlDoc.CreateElement("Datos Empleado");
+                    XmlAttribute Codigo = xmlDoc.CreateAttribute("Codigo");
+                    Codigo.Value = login.Empleado.Codigo.ToString();
+                    xmlEmpleado.Attributes.Append(Codigo);
+
+                    XmlElement xmlNombre = xmlDoc.CreateElement("Nombre");
+                    XmlText nombre = xmlDoc.CreateTextNode(login.Empleado.Nombre);
+                    xmlNombre.AppendChild(nombre);
+
+                    XmlElement xmlApellido = xmlDoc.CreateElement("Apellido");
+                    XmlText apellido = xmlDoc.CreateTextNode(login.Empleado.Apellido);
+                    xmlApellido.AppendChild(apellido);
+
+                    XmlElement xmlTurno = xmlDoc.CreateElement("Turno");
+                    XmlText turno = xmlDoc.CreateTextNode(login.Empleado.Turno.ToString());
+                    xmlTurno.AppendChild(turno);
+
+                    xmlLogin.AppendChild(xmlEmpleado);
+                    xmlDoc.AppendChild(xmlLogin);
+
+                    xmlElement.AppendChild(xmlUsuario);
+                    return true;
+                }
+                else
+                {
+                    XDocument xmlDoc = XDocument.Load("Histórico.xml");
+                    xmlDoc.Element("Logins").Add(new XElement("Login",
+                                                 new XAttribute("ID", login.Codigo.ToString()),
+                                                 new XElement("Usuario", login.Usuario),
+                                                 new XElement("e-Mail", login.Password),
+                                                 new XElement("Cant. Intentos", login.CantidadIntentos.ToString()),
+                                                 new XElement("Fecha Ingreso", DateTime.Today.ToString("dd/MM/yyyy")),
+                                                 new XElement("Hora Ingreso", DateTime.Now.ToString("HH:mm")),
+                                                 new XElement("Datos Empleado"),
+                                                 new XAttribute("Codigo", login.Empleado.Codigo.ToString()),
+                                                 new XElement("Nombre", login.Empleado.Nombre),
+                                                 new XElement("Apellido", login.Empleado.Apellido),
+                                                 new XElement("Turno", login.Empleado.Turno.ToString())));
+                    return true;
+                }
+            }
+            catch (XmlException xml)
+            {
+                return false;
+                throw xml;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw ex;
             }
 
         }

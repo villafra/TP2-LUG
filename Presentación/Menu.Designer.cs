@@ -117,7 +117,7 @@
             this.btnInformes.Name = "btnInformes";
             this.btnInformes.Size = new System.Drawing.Size(204, 54);
             this.btnInformes.TabIndex = 14;
-            this.btnInformes.Text = "Informes";
+            this.btnInformes.Text = "Histórico Login";
             this.btnInformes.UseVisualStyleBackColor = true;
             // 
             // btnSalir
@@ -204,7 +204,7 @@
             this.toolStripMenuItem1.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(224, 28);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(213, 28);
             this.toolStripMenuItem1.Text = "Menu Principal";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -214,7 +214,7 @@
             this.toolStripMenuItem3.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripMenuItem3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(224, 28);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(213, 28);
             this.toolStripMenuItem3.Text = "Loguearse";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
@@ -224,14 +224,14 @@
             this.toolStripMenuItem2.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripMenuItem2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(224, 28);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 28);
             this.toolStripMenuItem2.Text = "Salir";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(210, 6);
             // 
             // MesasToolStripMenuItem
             // 

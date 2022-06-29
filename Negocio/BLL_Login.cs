@@ -127,5 +127,10 @@ namespace BLL
             }
 
         }
+
+        public bool EscribirXML(BE_Login login)
+        {
+            return oMPP_Login.EscribirXML(login);
+        }
     }
 }
