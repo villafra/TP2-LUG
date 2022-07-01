@@ -224,21 +224,22 @@ namespace Presentación
             }
         }
 
+        private void btnInformes_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmInformes);
+            if (frm != null)
+            {
 
-        //private void btnInformes_Click(object sender, EventArgs e)
-        //{
-        //    Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmInformes);
-        //    if (frm != null)
-        //    {
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmInformes();
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
 
-        //        frm.BringToFront();
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        frm = new frmInformes();
-        //        Aspecto.AbrirNuevoForm(this, frm);
-        //    }
-        //}
+
     }
 }

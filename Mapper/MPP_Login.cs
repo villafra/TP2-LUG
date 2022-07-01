@@ -142,7 +142,7 @@ namespace Mapper
         {
             try
             {
-                if (!File.Exists("Histórico"))
+                if (!File.Exists("Histórico.xml"))
                 {
                     XmlDocument xmlDoc = new XmlDocument();
                     xmlDoc.AppendChild(xmlDoc.CreateXmlDeclaration("1.0", Encoding.UTF8.WebName, "yes"));
@@ -158,28 +158,34 @@ namespace Mapper
                     XmlElement xmlUsuario = xmlDoc.CreateElement("Usuario");
                     XmlText usuario = xmlDoc.CreateTextNode(login.Usuario);
                     xmlUsuario.AppendChild(usuario);
+                    xmlLogin.AppendChild(xmlUsuario);
 
                     XmlElement xmlPass = xmlDoc.CreateElement("Password");
                     XmlText pass = xmlDoc.CreateTextNode(login.Password);
                     xmlPass.AppendChild(pass);
+                    xmlLogin.AppendChild(xmlPass);
 
                     XmlElement xmlMail = xmlDoc.CreateElement("e-Mail");
                     XmlText email = xmlDoc.CreateTextNode(login.eMail);
                     xmlMail.AppendChild(email);
+                    xmlLogin.AppendChild(xmlMail);
 
-                    XmlElement xmlIntentos = xmlDoc.CreateElement("Cant. Intentos");
+                    XmlElement xmlIntentos = xmlDoc.CreateElement("Cant.Intentos");
                     XmlText intentos = xmlDoc.CreateTextNode(login.CantidadIntentos.ToString());
                     xmlIntentos.AppendChild(intentos);
+                    xmlLogin.AppendChild(xmlIntentos);
 
-                    XmlElement xmlFecha = xmlDoc.CreateElement("Fecha Ingreso");
+                    XmlElement xmlFecha = xmlDoc.CreateElement("FechaIngreso");
                     XmlText fecha = xmlDoc.CreateTextNode(DateTime.Today.ToString("dd/MM/yyyy"));
                     xmlFecha.AppendChild(fecha);
+                    xmlLogin.AppendChild(xmlFecha);
 
-                    XmlElement xmlHora = xmlDoc.CreateElement("Hora Ingreso");
+                    XmlElement xmlHora = xmlDoc.CreateElement("HoraIngreso");
                     XmlText hora = xmlDoc.CreateTextNode(DateTime.Now.ToString("HH:mm"));
                     xmlHora.AppendChild(hora);
+                    xmlLogin.AppendChild(xmlHora);
 
-                    XmlElement xmlEmpleado = xmlDoc.CreateElement("Datos Empleado");
+                    XmlElement xmlEmpleado = xmlDoc.CreateElement("DatosEmpleado");
                     XmlAttribute Codigo = xmlDoc.CreateAttribute("Codigo");
                     Codigo.Value = login.Empleado.Codigo.ToString();
                     xmlEmpleado.Attributes.Append(Codigo);
@@ -187,19 +193,23 @@ namespace Mapper
                     XmlElement xmlNombre = xmlDoc.CreateElement("Nombre");
                     XmlText nombre = xmlDoc.CreateTextNode(login.Empleado.Nombre);
                     xmlNombre.AppendChild(nombre);
+                    xmlEmpleado.AppendChild(xmlNombre);
 
                     XmlElement xmlApellido = xmlDoc.CreateElement("Apellido");
                     XmlText apellido = xmlDoc.CreateTextNode(login.Empleado.Apellido);
                     xmlApellido.AppendChild(apellido);
+                    xmlEmpleado.AppendChild(xmlApellido);
 
                     XmlElement xmlTurno = xmlDoc.CreateElement("Turno");
                     XmlText turno = xmlDoc.CreateTextNode(login.Empleado.Turno.ToString());
                     xmlTurno.AppendChild(turno);
+                    xmlEmpleado.AppendChild(xmlTurno);
 
                     xmlLogin.AppendChild(xmlEmpleado);
-                    xmlDoc.AppendChild(xmlLogin);
-
-                    xmlElement.AppendChild(xmlUsuario);
+                    xmlElement.AppendChild(xmlLogin);
+                    xmlDoc.AppendChild(xmlElement);
+                
+                    xmlDoc.Save("Histórico.xml");
                     return true;
                 }
                 else
@@ -208,15 +218,17 @@ namespace Mapper
                     xmlDoc.Element("Logins").Add(new XElement("Login",
                                                  new XAttribute("ID", login.Codigo.ToString()),
                                                  new XElement("Usuario", login.Usuario),
-                                                 new XElement("e-Mail", login.Password),
-                                                 new XElement("Cant. Intentos", login.CantidadIntentos.ToString()),
-                                                 new XElement("Fecha Ingreso", DateTime.Today.ToString("dd/MM/yyyy")),
-                                                 new XElement("Hora Ingreso", DateTime.Now.ToString("HH:mm")),
-                                                 new XElement("Datos Empleado"),
+                                                 new XElement("Password", login.Password),
+                                                 new XElement("e-Mail", login.eMail),
+                                                 new XElement("Cant.Intentos", login.CantidadIntentos.ToString()),
+                                                 new XElement("FechaIngreso", DateTime.Today.ToString("dd/MM/yyyy")),
+                                                 new XElement("HoraIngreso", DateTime.Now.ToString("HH:mm")),
+                                                 new XElement("DatosEmpleado",
                                                  new XAttribute("Codigo", login.Empleado.Codigo.ToString()),
                                                  new XElement("Nombre", login.Empleado.Nombre),
                                                  new XElement("Apellido", login.Empleado.Apellido),
-                                                 new XElement("Turno", login.Empleado.Turno.ToString())));
+                                                 new XElement("Turno", login.Empleado.Turno.ToString()))));
+                    xmlDoc.Save("Histórico.xml");
                     return true;
                 }
             }
@@ -231,6 +243,123 @@ namespace Mapper
                 throw ex;
             }
 
+        }
+
+        public List<BE_Login> DevolverListado()
+        {
+            var consulta =
+                from logueo in XElement.Load("Histórico.xml").Elements("Login")
+                select new BE_Login
+                {
+                    Codigo = Convert.ToInt32(Convert.ToString(logueo.Attribute("ID").Value).Trim()),
+                    Usuario = Convert.ToString(logueo.Element("Usuario").Value).Trim(),
+                    Password = Convert.ToString(logueo.Element("Password").Value).Trim(),
+                    eMail = Convert.ToString(logueo.Element("e-Mail").Value).Trim(),
+                    CantidadIntentos = Convert.ToInt32(Convert.ToString(logueo.Element("Cant.Intentos").Value).Trim()),
+                    FechaIngreso = Convert.ToDateTime(Convert.ToString(logueo.Element("FechaIngreso").Value).Trim()),
+                    HoraIngreso = Convert.ToDateTime(Convert.ToString(logueo.Element("HoraIngreso").Value).Trim()),
+                    Empleado = new BE_Empleado
+                    {
+                        Codigo = Convert.ToInt32(Convert.ToString(logueo.Element("DatosEmpleado").Attribute("Codigo").Value.Trim())),
+                        Nombre = Convert.ToString(logueo.Element("DatosEmpleado").Element("Nombre").Value.Trim()),
+                        Apellido = Convert.ToString(logueo.Element("DatosEmpleado").Element("Apellido").Value.Trim()),
+                        Turno = new BE_Turno
+                        {
+                            NombreTurno = Convert.ToString(logueo.Element("DatosEmpleado").Element("Apellido").Value.Trim())
+                        }
+                    }
+
+                };
+            List<BE_Login> ListadeLogin = consulta.ToList<BE_Login>();
+            return ListadeLogin;
+        }
+        public List<BE_Login> DevolverListado(BE_Empleado empleado)
+        {
+            var consulta =
+                from logueo in XElement.Load("Histórico.xml").Elements("Login")
+                where Convert.ToInt32(Convert.ToString(logueo.Element("DatosEmpleado").Attribute("Codigo").Value.Trim())) == empleado.Codigo
+                select new BE_Login
+                {
+                    Codigo = Convert.ToInt32(Convert.ToString(logueo.Attribute("ID").Value).Trim()),
+                    Usuario = Convert.ToString(logueo.Element("Usuario").Value).Trim(),
+                    Password = Convert.ToString(logueo.Element("Password").Value).Trim(),
+                    eMail = Convert.ToString(logueo.Element("e-Mail").Value).Trim(),
+                    CantidadIntentos = Convert.ToInt32(Convert.ToString(logueo.Element("Cant.Intentos").Value).Trim()),
+                    FechaIngreso = Convert.ToDateTime(Convert.ToString(logueo.Element("FechaIngreso").Value).Trim()),
+                    HoraIngreso = Convert.ToDateTime(Convert.ToString(logueo.Element("HoraIngreso").Value).Trim()),
+                    Empleado = new BE_Empleado
+                    {
+                        Codigo = Convert.ToInt32(Convert.ToString(logueo.Element("DatosEmpleado").Attribute("Codigo").Value.Trim())),
+                        Nombre = Convert.ToString(logueo.Element("DatosEmpleado").Element("Nombre").Value.Trim()),
+                        Apellido = Convert.ToString(logueo.Element("DatosEmpleado").Element("Apellido").Value.Trim()),
+                        Turno = new BE_Turno
+                        {
+                            NombreTurno = Convert.ToString(logueo.Element("DatosEmpleado").Element("Apellido").Value.Trim())
+                        }
+                    }
+
+                };//Fin de consulta.
+            //paso la consulta a lista del tipo clase Juego
+            List<BE_Login> ListadeLogin = consulta.ToList<BE_Login>();
+            return ListadeLogin;
+        }
+        public List<BE_Login> DevolverListado(BE_Turno turno)
+        {
+            var consulta =
+                from logueo in XElement.Load("Histórico.xml").Elements("Login")
+                where (string)logueo.Element("DatosEmpleado").Element("Turno").Value.Trim() == turno.NombreTurno
+                select new BE_Login
+                {
+                    Codigo = Convert.ToInt32(Convert.ToString(logueo.Attribute("ID").Value).Trim()),
+                    Usuario = Convert.ToString(logueo.Element("Usuario").Value).Trim(),
+                    Password = Convert.ToString(logueo.Element("Password").Value).Trim(),
+                    eMail = Convert.ToString(logueo.Element("e-Mail").Value).Trim(),
+                    CantidadIntentos = Convert.ToInt32(Convert.ToString(logueo.Element("Cant.Intentos").Value).Trim()),
+                    FechaIngreso = Convert.ToDateTime(Convert.ToString(logueo.Element("FechaIngreso").Value).Trim()),
+                    HoraIngreso = Convert.ToDateTime(Convert.ToString(logueo.Element("HoraIngreso").Value).Trim()),
+                    Empleado = new BE_Empleado
+                    {
+                        Codigo = Convert.ToInt32(Convert.ToString(logueo.Element("DatosEmpleado").Attribute("Codigo").Value.Trim())),
+                        Nombre = Convert.ToString(logueo.Element("DatosEmpleado").Element("Nombre").Value.Trim()),
+                        Apellido = Convert.ToString(logueo.Element("DatosEmpleado").Element("Apellido").Value.Trim()),
+                        Turno = new BE_Turno
+                        {
+                            NombreTurno = Convert.ToString(logueo.Element("DatosEmpleado").Element("Turno").Value.Trim())
+                        }
+                    }
+
+                };
+            List<BE_Login> ListadeLogin = consulta.ToList<BE_Login>();
+            return ListadeLogin;
+        }
+        public List<BE_Login> DevolverListado(DateTime fecha)
+        {
+            var consulta =
+                from logueo in XElement.Load("Histórico.xml").Elements("Login")
+                where Convert.ToDateTime(Convert.ToString(logueo.Element("FechaIngreso").Value.Trim())) == fecha
+                select new BE_Login
+                {
+                    Codigo = Convert.ToInt32(Convert.ToString(logueo.Attribute("ID").Value).Trim()),
+                    Usuario = Convert.ToString(logueo.Element("Usuario").Value).Trim(),
+                    Password = Convert.ToString(logueo.Element("Password").Value).Trim(),
+                    eMail = Convert.ToString(logueo.Element("e-Mail").Value).Trim(),
+                    CantidadIntentos = Convert.ToInt32(Convert.ToString(logueo.Element("Cant.Intentos").Value).Trim()),
+                    FechaIngreso = Convert.ToDateTime(Convert.ToString(logueo.Element("FechaIngreso").Value).Trim()),
+                    HoraIngreso = Convert.ToDateTime(Convert.ToString(logueo.Element("HoraIngreso").Value).Trim()),
+                    Empleado = new BE_Empleado
+                    {
+                        Codigo = Convert.ToInt32(Convert.ToString(logueo.Element("DatosEmpleado").Attribute("Codigo").Value.Trim())),
+                        Nombre = Convert.ToString(logueo.Element("DatosEmpleado").Element("Nombre").Value.Trim()),
+                        Apellido = Convert.ToString(logueo.Element("DatosEmpleado").Element("Apellido").Value.Trim()),
+                        Turno = new BE_Turno
+                        {
+                            NombreTurno = Convert.ToString(logueo.Element("DatosEmpleado").Element("Turno").Value.Trim())
+                        }
+                    }
+
+                };
+            List<BE_Login> ListadeLogin = consulta.ToList<BE_Login>();
+            return ListadeLogin;
         }
 
         private BE_Empleado TraerUserID(Hashtable hashtable)

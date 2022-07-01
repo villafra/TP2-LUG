@@ -119,6 +119,7 @@
             this.btnInformes.TabIndex = 14;
             this.btnInformes.Text = "Histórico Login";
             this.btnInformes.UseVisualStyleBackColor = true;
+            this.btnInformes.Click += new System.EventHandler(this.btnInformes_Click);
             // 
             // btnSalir
             // 

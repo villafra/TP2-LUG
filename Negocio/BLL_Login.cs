@@ -24,7 +24,7 @@ namespace BLL
 
         public bool Guardar(BE_Login login)
         {
-           return oMPP_Login.Guardar(login);
+            return oMPP_Login.Guardar(login);
         }
 
         public List<BE_Login> Listar()
@@ -55,30 +55,30 @@ namespace BLL
             }
             else
             {
-            nombre = empleado.Nombre.Substring(0,3).ToLower();
+                nombre = empleado.Nombre.Substring(0, 3).ToLower();
             }
             if (empleado.Apellido.Length < 5)
             {
-                apellido = empleado.Apellido.Substring(0,empleado.Apellido.Length).ToLower();
+                apellido = empleado.Apellido.Substring(0, empleado.Apellido.Length).ToLower();
             }
             else
             {
-                apellido = empleado.Apellido.Substring(0, 5).ToLower() ;
+                apellido = empleado.Apellido.Substring(0, 5).ToLower();
             }
             return apellido.PadRight(5, '1') + nombre.PadRight(3, '1');
         }
         public string AutoGenerarPass()
         {
             Random rand = new Random();
-            string pass=null;
-            for (int i =0; i<13; i++)
+            string pass = null;
+            for (int i = 0; i < 13; i++)
             {
                 pass = pass + rand.Next(0, 9).ToString();
             }
             return EncriptarPass(pass);
         }
 
-        public bool ResetCounter (BE_Login oBE_Login)
+        public bool ResetCounter(BE_Login oBE_Login)
         {
             int aux = oBE_Login.CantidadIntentos;
             oBE_Login.CantidadIntentos = 0;
@@ -91,7 +91,7 @@ namespace BLL
                 oBE_Login.CantidadIntentos = aux;
                 return false;
             }
-            
+
         }
         public bool Intentos(BE_Login oBE_Login)
         {
@@ -131,6 +131,22 @@ namespace BLL
         public bool EscribirXML(BE_Login login)
         {
             return oMPP_Login.EscribirXML(login);
+        }
+        public List<BE_Login> DevolverListado()
+        {
+            return oMPP_Login.DevolverListado();
+        }
+        public List<BE_Login> DevolverListado(BE_Empleado empleado)
+        {
+            return oMPP_Login.DevolverListado(empleado);
+        }
+        public List<BE_Login> DevolverListado(BE_Turno turno)
+        {
+            return oMPP_Login.DevolverListado(turno);
+        }
+        public List<BE_Login> DevolverListado(DateTime fecha)
+        {
+            return oMPP_Login.DevolverListado(fecha);
         }
     }
 }

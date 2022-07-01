@@ -35,12 +35,11 @@ namespace Presentación
                 {
                     if (oBLL_Login.Intentos(oBE_Login))
                     {
+                        oBLL_Login.EscribirXML(oBE_Login);
                         frmMenu frm = new frmMenu();
                         frm.Show();
                         Calculos.BorrarCampos(grpLogin);
                         this.Hide();
-                        
-
                     }
                     else
                     {
