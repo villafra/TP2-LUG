@@ -509,6 +509,25 @@ namespace Estética
             }
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
+
+        public static void DGVLogins(DataGridView dgv)
+        {
+            dgv.Columns[0].Visible = false;
+            dgv.Columns[1].HeaderText = "Empleado";
+            dgv.Columns[2].HeaderText = "Usuario";
+            dgv.Columns[3].Visible = false;
+            dgv.Columns[4].HeaderText = "e-Mail";
+            dgv.Columns[5].HeaderText = "Cant. Intentos";
+            dgv.Columns[6].HeaderText = "Fecha Ingreso";
+            dgv.Columns[7].HeaderText = "Hora Ingreso";
+            dgv.Columns[7].DefaultCellStyle.Format = "HH:mm";
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
         #endregion
 
 

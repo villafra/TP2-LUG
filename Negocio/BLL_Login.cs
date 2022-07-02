@@ -148,5 +148,9 @@ namespace BLL
         {
             return oMPP_Login.DevolverListado(fecha);
         }
+        public List<BE_Login> DevolverListado(DateTime fechainicio, DateTime fechafin)
+        {
+            return oMPP_Login.DevolverListado(fechainicio, fechafin);
+        }
     }
 }

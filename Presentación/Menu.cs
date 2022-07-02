@@ -34,7 +34,7 @@ namespace Presentación
 
         private void btnLayout_Click(object sender, EventArgs e)
         {
-            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmLayout);
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmReportes);
             if (frm != null)
             {
                 frm.BringToFront();
@@ -42,7 +42,7 @@ namespace Presentación
             }
             else
             {
-                frm = new frmLayout();
+                frm = new frmReportes();
                 Aspecto.AbrirNuevoForm(this, frm);
             }
 

@@ -66,6 +66,7 @@
             this.ListaImagenes.Images.SetKeyName(3, "logout.png");
             this.ListaImagenes.Images.SetKeyName(4, "restaurant.png");
             this.ListaImagenes.Images.SetKeyName(5, "Picture2.png");
+            this.ListaImagenes.Images.SetKeyName(6, "analitica.png");
             // 
             // panelMenuIzq
             // 
@@ -147,14 +148,14 @@
             // 
             // btnLayout
             // 
-            this.btnLayout.ImageIndex = 4;
+            this.btnLayout.ImageIndex = 6;
             this.btnLayout.ImageList = this.ListaImagenes;
             this.btnLayout.Location = new System.Drawing.Point(26, 209);
             this.btnLayout.Margin = new System.Windows.Forms.Padding(4);
             this.btnLayout.Name = "btnLayout";
             this.btnLayout.Size = new System.Drawing.Size(204, 54);
             this.btnLayout.TabIndex = 6;
-            this.btnLayout.Text = "Layout";
+            this.btnLayout.Text = "Reportes";
             this.btnLayout.UseVisualStyleBackColor = true;
             this.btnLayout.Click += new System.EventHandler(this.btnLayout_Click);
             // 

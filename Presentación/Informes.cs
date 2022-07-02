@@ -17,7 +17,6 @@ namespace Presentación
     public partial class frmInformes : Form
     {
         BLL_Login oBLL_Login;
-        BE_Login oBE_Login;
         BLL_Turno oBLL_Turno;
         BLL_Mozo oBLL_Mozo;
         public frmInformes()
@@ -27,59 +26,74 @@ namespace Presentación
             oBLL_Turno = new BLL_Turno();
             oBLL_Mozo = new BLL_Mozo();
             Calculos.DataSourceCombo(comboTurno, oBLL_Turno.Listar(), "NombreTurno");
-            Calculos.DataSourceCombo(ComboEmpleado, oBLL_Mozo.Listartodo(), "Empleado");
+            Calculos.DataSourceCombo(ComboEmpleado, oBLL_Mozo.Listartodo(), null);
             ActualizarListado();
             Aspecto.FormatearDGV(dgvHistórico);
             Aspecto.FormatearGRP(grpFiltrar);
         }
 
-        private void Nuevo()
-        {
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-        private void Viejo()
-        {
-            try
-            {
-               
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            
-        }
+      
 
         private void ActualizarListado()
         {
             Calculos.RefreshGrilla(dgvHistórico, oBLL_Login.DevolverListado());
-            //Aspecto.DGVMozos(dgvHistórico);
+            Aspecto.DGVLogins(dgvHistórico);
         }
        
-        private void dgvMozos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-               
-                
-            }
-            catch { }
-        }
-
         private void btnBuscarXML_Click(object sender, EventArgs e)
         {
-            //Calculos.RefreshGrilla(dgvHistórico, oBLL_Login.DevolverListado((ComboEmpleado.SelectedItem as BE_Empleado)));
-            //Calculos.RefreshGrilla(dgvHistórico, oBLL_Login.DevolverListado((comboTurno.SelectedItem as BE_Turno)));
-            Calculos.RefreshGrilla(dgvHistórico, oBLL_Login.DevolverListado(dtpFechaIngreso.Value.Date));
+            ElegirQuery();
+            
+        }
+
+        private void ElegirQuery()
+        {
+
+            if (chkFecha.Checked)
+            {
+                if (dtpFechaInicio.Value.Date == dtpFechaFin.Value.Date)
+                {
+                    Calculos.RefreshGrilla(dgvHistórico, oBLL_Login.DevolverListado(dtpFechaInicio.Value.Date));
+                }
+                else
+                {
+                    Calculos.RefreshGrilla(dgvHistórico, oBLL_Login.DevolverListado(dtpFechaInicio.Value.Date, dtpFechaFin.Value.Date));
+                }
+            }
+            else
+            {
+                if (comboTurno.Text == "" && ComboEmpleado.Text != "")
+                {
+                    Calculos.RefreshGrilla(dgvHistórico, oBLL_Login.DevolverListado((ComboEmpleado.SelectedItem as BE_Empleado)));
+                }
+                else if (ComboEmpleado.Text == "" && comboTurno.Text != "")
+                {
+                    Calculos.RefreshGrilla(dgvHistórico, oBLL_Login.DevolverListado((comboTurno.SelectedItem as BE_Turno)));
+                }
+                else if (comboTurno.Text == "" && ComboEmpleado.Text == "")
+                {
+                    Calculos.RefreshGrilla(dgvHistórico, oBLL_Login.DevolverListado());
+                }
+                else
+                {
+                    Calculos.MsgBox("Por favor ingrese sólo un filtro por vez.");
+                }
+            }
+            Aspecto.DGVLogins(dgvHistórico);
+        }
+
+        private void chkFecha_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkFecha.Checked)
+            {
+                comboTurno.Enabled = false;
+                ComboEmpleado.Enabled = false;
+            }
+            else
+            {
+                comboTurno.Enabled = true;
+                ComboEmpleado.Enabled = true;
+            }
         }
     }
 }

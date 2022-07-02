@@ -10,21 +10,24 @@ using System.Windows.Forms;
 using BLL;
 using BE;
 using Calculo;
+using Estética;
 
 namespace Presentación
 {
-    public partial class frmLayout : Form
+    public partial class frmReportes : Form
     {
         BLL_Reporte oBLL_Reporte;
         BE_Reporte oBE_Reporte;
         BLL_Mozo oBLL_Mozo;
-        public frmLayout()
+        public frmReportes()
         {
             InitializeComponent();
             oBLL_Reporte = new BLL_Reporte();
             oBE_Reporte = new BE_Reporte();
             oBLL_Mozo = new BLL_Mozo();
+            Aspecto.FormatearGRP(grpReportesPedido);
             Calculos.DataSourceComboReporte(comboMozo, oBLL_Mozo.Listar(),null);
+            
         }
 
         private void btnRecuperarReporte_Click(object sender, EventArgs e)
@@ -53,5 +56,9 @@ namespace Presentación
             }   
         }
 
+        private void frmReportes_Load(object sender, EventArgs e)
+        {
+            dtpFechaFin.Value = DateTime.Today.AddDays(1);
+        }
     }
 }

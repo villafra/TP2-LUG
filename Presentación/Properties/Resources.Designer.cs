@@ -153,6 +153,16 @@ namespace Presentación.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap escaneo_dactilar {
+            get {
+                object obj = ResourceManager.GetObject("escaneo-dactilar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap espiritu {
             get {
                 object obj = ResourceManager.GetObject("espiritu", resourceCulture);

@@ -361,6 +361,35 @@ namespace Mapper
             List<BE_Login> ListadeLogin = consulta.ToList<BE_Login>();
             return ListadeLogin;
         }
+        public List<BE_Login> DevolverListado(DateTime fechainicio, DateTime fechafin)
+        {
+            var consulta =
+                from logueo in XElement.Load("Histórico.xml").Elements("Login")
+                where Convert.ToDateTime(Convert.ToString(logueo.Element("FechaIngreso").Value.Trim())) >= fechainicio && Convert.ToDateTime(Convert.ToString(logueo.Element("FechaIngreso").Value.Trim()))<= fechafin
+                select new BE_Login
+                {
+                    Codigo = Convert.ToInt32(Convert.ToString(logueo.Attribute("ID").Value).Trim()),
+                    Usuario = Convert.ToString(logueo.Element("Usuario").Value).Trim(),
+                    Password = Convert.ToString(logueo.Element("Password").Value).Trim(),
+                    eMail = Convert.ToString(logueo.Element("e-Mail").Value).Trim(),
+                    CantidadIntentos = Convert.ToInt32(Convert.ToString(logueo.Element("Cant.Intentos").Value).Trim()),
+                    FechaIngreso = Convert.ToDateTime(Convert.ToString(logueo.Element("FechaIngreso").Value).Trim()),
+                    HoraIngreso = Convert.ToDateTime(Convert.ToString(logueo.Element("HoraIngreso").Value).Trim()),
+                    Empleado = new BE_Empleado
+                    {
+                        Codigo = Convert.ToInt32(Convert.ToString(logueo.Element("DatosEmpleado").Attribute("Codigo").Value.Trim())),
+                        Nombre = Convert.ToString(logueo.Element("DatosEmpleado").Element("Nombre").Value.Trim()),
+                        Apellido = Convert.ToString(logueo.Element("DatosEmpleado").Element("Apellido").Value.Trim()),
+                        Turno = new BE_Turno
+                        {
+                            NombreTurno = Convert.ToString(logueo.Element("DatosEmpleado").Element("Turno").Value.Trim())
+                        }
+                    }
+
+                };
+            List<BE_Login> ListadeLogin = consulta.ToList<BE_Login>();
+            return ListadeLogin;
+        }
 
         private BE_Empleado TraerUserID(Hashtable hashtable)
         {

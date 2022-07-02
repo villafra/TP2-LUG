@@ -1,6 +1,6 @@
 ﻿namespace Presentación
 {
-    partial class frmLayout
+    partial class frmReportes
     {
         /// <summary>
         /// Required designer variable.
@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.bEReporteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.repViewRestó = new Microsoft.Reporting.WinForms.ReportViewer();
             this.panelreport = new System.Windows.Forms.Panel();
             this.grpReportesPedido = new System.Windows.Forms.GroupBox();
@@ -41,16 +42,24 @@
             this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.comboMozo = new System.Windows.Forms.ComboBox();
             this.lblMozo = new System.Windows.Forms.Label();
-            this.bEReporteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.bEReporteBindingSource)).BeginInit();
             this.panelreport.SuspendLayout();
             this.grpReportesPedido.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bEReporteBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // bEReporteBindingSource
+            // 
+            this.bEReporteBindingSource.DataSource = typeof(BE.BE_Pedido);
             // 
             // repViewRestó
             // 
+            this.repViewRestó.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.repViewRestó.BackgroundImage = global::Presentación.Properties.Resources.Picture3;
+            this.repViewRestó.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.repViewRestó.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.repViewRestó.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             reportDataSource1.Name = "Pedidos";
+            reportDataSource1.Value = null;
             reportDataSource2.Name = "DataSet1";
             reportDataSource2.Value = this.bEReporteBindingSource;
             this.repViewRestó.LocalReport.DataSources.Add(reportDataSource1);
@@ -95,7 +104,7 @@
             this.btnRecuperarReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRecuperarReporte.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRecuperarReporte.ForeColor = System.Drawing.Color.Gold;
-            this.btnRecuperarReporte.Location = new System.Drawing.Point(606, 21);
+            this.btnRecuperarReporte.Location = new System.Drawing.Point(699, 21);
             this.btnRecuperarReporte.Name = "btnRecuperarReporte";
             this.btnRecuperarReporte.Size = new System.Drawing.Size(76, 62);
             this.btnRecuperarReporte.TabIndex = 35;
@@ -105,7 +114,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(440, 31);
+            this.label1.Location = new System.Drawing.Point(499, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 16);
             this.label1.TabIndex = 34;
@@ -115,7 +124,7 @@
             // 
             this.dtpFechaFin.CustomFormat = "dd/MM/yyyy";
             this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaFin.Location = new System.Drawing.Point(443, 61);
+            this.dtpFechaFin.Location = new System.Drawing.Point(502, 61);
             this.dtpFechaFin.Name = "dtpFechaFin";
             this.dtpFechaFin.Size = new System.Drawing.Size(121, 22);
             this.dtpFechaFin.TabIndex = 33;
@@ -123,7 +132,7 @@
             // lblFechaNacimiento
             // 
             this.lblFechaNacimiento.AutoSize = true;
-            this.lblFechaNacimiento.Location = new System.Drawing.Point(262, 31);
+            this.lblFechaNacimiento.Location = new System.Drawing.Point(321, 31);
             this.lblFechaNacimiento.Name = "lblFechaNacimiento";
             this.lblFechaNacimiento.Size = new System.Drawing.Size(48, 16);
             this.lblFechaNacimiento.TabIndex = 32;
@@ -133,7 +142,7 @@
             // 
             this.dtpFechaInicio.CustomFormat = "dd/MM/yyyy";
             this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaInicio.Location = new System.Drawing.Point(260, 61);
+            this.dtpFechaInicio.Location = new System.Drawing.Point(319, 61);
             this.dtpFechaInicio.Name = "dtpFechaInicio";
             this.dtpFechaInicio.Size = new System.Drawing.Size(121, 22);
             this.dtpFechaInicio.TabIndex = 31;
@@ -143,7 +152,7 @@
             this.comboMozo.FormattingEnabled = true;
             this.comboMozo.Location = new System.Drawing.Point(33, 59);
             this.comboMozo.Name = "comboMozo";
-            this.comboMozo.Size = new System.Drawing.Size(158, 24);
+            this.comboMozo.Size = new System.Drawing.Size(219, 24);
             this.comboMozo.TabIndex = 30;
             // 
             // lblMozo
@@ -155,11 +164,7 @@
             this.lblMozo.TabIndex = 29;
             this.lblMozo.Text = "Mozo";
             // 
-            // bEReporteBindingSource
-            // 
-            this.bEReporteBindingSource.DataSource = typeof(BE.BE_Pedido);
-            // 
-            // frmLayout
+            // frmReportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -167,12 +172,13 @@
             this.Controls.Add(this.grpReportesPedido);
             this.Controls.Add(this.panelreport);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmLayout";
+            this.Name = "frmReportes";
             this.Text = "Layout";
+            this.Load += new System.EventHandler(this.frmReportes_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.bEReporteBindingSource)).EndInit();
             this.panelreport.ResumeLayout(false);
             this.grpReportesPedido.ResumeLayout(false);
             this.grpReportesPedido.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bEReporteBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
