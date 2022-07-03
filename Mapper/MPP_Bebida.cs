@@ -38,9 +38,9 @@ namespace Mapper
         public bool ExisteActivo(BE_Bebida oBE_Bebida)
         {
             Hashtable hash = new Hashtable();
-            hash.Add("@Codigo_Turno", oBE_Bebida.Codigo);
+            hash.Add("@Codigo_Bebida", oBE_Bebida.Codigo);
             Acceso = new ClsDataBase();
-            return Acceso.Scalar("53 - Existe_Bebida_Activo", hash);
+            return Acceso.Scalar("64 - Existe_Bebida_Activo", hash);
         }
 
         public bool Guardar(BE_Bebida Bebida)

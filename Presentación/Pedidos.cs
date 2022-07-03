@@ -74,11 +74,23 @@ namespace Presentación
             try
             {
                 oBE_Pedido = (BE_Pedido)dgvPedidos.SelectedRows[0].DataBoundItem;
-                oBLL_Pedido.CalcularMonto(oBE_Pedido);
-                oBLL_Pedido.Guardar(oBE_Pedido);
+                if (oBLL_Pedido.CalcularMonto(oBE_Pedido))
+                {
+                    if (oBLL_Pedido.Guardar(oBE_Pedido))
+                    {
+                        Calculos.MsgBox("El pedido N°" + oBE_Pedido.Codigo +" Con un monto de $" + oBE_Pedido.Monto +" ha sido cerrado");
+                    }
+                    else
+                    {
+                        Calculos.MsgBox("No pudo cerrarse el pedido N°" + oBE_Pedido.Codigo + ". Intente nuevamente");
+                    }
+                }   
+            }
+            catch (Exception ex){ Calculos.MsgBox(ex.Message); }
+            finally
+            {
                 ActualizarListado();
             }
-            catch { }
         }
 
         private void btnCancelarPedido_Click(object sender, EventArgs e)
@@ -88,28 +100,49 @@ namespace Presentación
                 oBE_Pedido = (BE_Pedido)dgvPedidos.SelectedRows[0].DataBoundItem;
                 if (Calculos.EstaSeguro("Cancelar Pedido", oBE_Pedido.Codigo, oBE_Pedido.ToString()))
                 {
-                    oBLL_Pedido.Baja(oBE_Pedido);
-                    ActualizarListado();
-                }
-
-                
+                    if (oBLL_Pedido.Baja(oBE_Pedido))
+                    {
+                        Calculos.MsgBox("El pedido N°" + oBE_Pedido.Codigo + " ha sido cancelado.\n No puede volver a abrirse.");
+                    }
+                    else
+                    {
+                        Calculos.MsgBox("No pudo cancelarse el pedido N°" + oBE_Pedido.Codigo + ". Intente nuevamente");
+                    }
+                }   
             }
-            catch { }
+            catch(Exception ex) { Calculos.MsgBox(ex.Message); }
+            finally { ActualizarListado(); }
+
         }
 
         private void btnActualizarCosto_Click(object sender, EventArgs e)
         {
+            Calculos.MsgBox("Recalculando Monto");
             try
             {
                 oBE_Pedido = (BE_Pedido)dgvPedidos.SelectedRows[0].DataBoundItem;
-                oBLL_Pedido.CalcularMonto(oBE_Pedido);
-                ActualizarListado();
+                if (oBLL_Pedido.CalcularMonto(oBE_Pedido))
+                {
+                    Calculos.MsgBox("El monto del pedido N°" + oBE_Pedido.Codigo + " ha sido calculado satisfactoriamente.");
+                }
+                else
+                {
+                    Calculos.MsgBox("No pudo calcularse el monto del pedido N°" + oBE_Pedido.Codigo + ". Intente nuevamente");
+                }
+                
             }
-            catch
+            catch (Exception ex)
             {
-
+                Calculos.MsgBox(ex.Message);
             }
+            finally { ActualizarListado(); }
 
         }
+
+        private void frmPedidos_Activated(object sender, EventArgs e)
+        {
+            ActualizarListado();
+        }
+
     }
 }

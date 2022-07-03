@@ -11,7 +11,7 @@ using Mapper;
 
 namespace BLL
 {
-    public class BLL_Mozo : BLL_Empleado,IGestionable<BE_Mozo>
+    public class BLL_Mozo : BLL_Empleado,IGestionable<BE_Mozo>, IValidable<BE_Mozo>
     {
         MPP_Mozo oMPP_Mozo;
 
@@ -28,6 +28,16 @@ namespace BLL
         public override int DevolverPuntuacion(BE_Empleado Mozo)
         {
             return oMPP_Mozo.DevolverPuntuacion(Mozo);
+        }
+
+        public bool Existe(BE_Mozo oBE_Mozo)
+        {
+            return oMPP_Mozo.Existe(oBE_Mozo);
+        }
+
+        public bool ExisteActivo(BE_Mozo oBE_Mozo)
+        {
+            return oMPP_Mozo.ExisteActivo(oBE_Mozo);
         }
 
         public bool Guardar(BE_Mozo oBE_Mozo)

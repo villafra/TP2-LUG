@@ -93,9 +93,24 @@ namespace Presentación
             try
             {
                 Nuevo();
-                oBLL_Turno.Guardar(oBE_Turno);
-                ActualizarListado();
-                Calculos.BorrarCampos(grpTurnos);
+                if (!oBLL_Turno.Existe(oBE_Turno))
+                {
+                    if (oBLL_Turno.Guardar(oBE_Turno))
+                    {
+                        ActualizarListado();
+                        Calculos.BorrarCampos(grpTurnos);
+                        Calculos.MsgBoxAlta(oBE_Turno.NombreTurno);
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxNoAlta(oBE_Turno.NombreTurno);
+                    }
+                    
+                }
+                else
+                {
+                    Calculos.MsgBoxSiExiste(oBE_Turno.NombreTurno);
+                }
             }
             catch (Exception ex)
             {
@@ -109,9 +124,25 @@ namespace Presentación
             try
             {
                 Viejo();
-                oBLL_Turno.Guardar(oBE_Turno);
-                ActualizarListado();
-                Calculos.BorrarCampos(grpTurnos);
+                if (!oBLL_Turno.Existe(oBE_Turno))
+                {
+                    if (oBLL_Turno.Guardar(oBE_Turno))
+                    {
+                        ActualizarListado();
+                        Calculos.BorrarCampos(grpTurnos);
+                        Calculos.MsgBoxMod(oBE_Turno.NombreTurno);
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxNoMod(oBE_Turno.NombreTurno);
+                    }
+                    
+                }
+                else
+                {
+                    Calculos.MsgBoxSiExiste(oBE_Turno.NombreTurno);
+                }
+
             }
             catch (Exception ex)
             {
@@ -123,16 +154,25 @@ namespace Presentación
         private void btnEliminarTurno_Click(object sender, EventArgs e)
         {
             Viejo();
-            if (Calculos.EstaSeguro("Eliminar", oBE_Turno.Codigo, oBE_Turno.ToString()))
+            if (Calculos.EstaSeguro("Eliminar", oBE_Turno.Codigo, oBE_Turno.NombreTurno))
             {
-                if (oBLL_Turno.Baja(oBE_Turno) == false)
+                if (!oBLL_Turno.ExisteActivo(oBE_Turno))
                 {
-                    Calculos.MsgBox("No se puede dar de baja un turno con Mozos Asignados");
+                    if (oBLL_Turno.Baja(oBE_Turno))
+                    {
+                        ActualizarListado();
+                        Calculos.BorrarCampos(grpTurnos);
+                        Calculos.MsgBoxBaja(oBE_Turno.NombreTurno);
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxNoAlta(oBE_Turno.NombreTurno);
+                    }
+                    
                 }
                 else
                 {
-                    ActualizarListado();
-                    Calculos.BorrarCampos(grpTurnos);
+                    Calculos.MsgBoxBajaNegativa(oBE_Turno.NombreTurno);
                 }
 
             }
@@ -141,6 +181,11 @@ namespace Presentación
         private void txtNombreTurno_KeyPress(object sender, KeyPressEventArgs e)
         {
             Calculos.ValidarLetras(e);
+        }
+
+        private void frmTurnos_Activated(object sender, EventArgs e)
+        {
+            ActualizarListado();
         }
     }
 }

@@ -47,67 +47,99 @@ namespace Presentación
         {
             oBE_Mesa = (BE_Mesa)dgvMesasDisponibles.SelectedRows[0].DataBoundItem;
             oBE_Reserva = (BE_Reserva)dgvReservas.SelectedRows[0].DataBoundItem;
-            if (oBE_Reserva.MesaReservada == null)
+            try
             {
-                if (oBE_Reserva.CantidadDeComensales <= oBE_Mesa.Capacidad)
+                if (oBE_Reserva.MesaReservada == null)
                 {
-                    if (oBLL_Reserva.Guardar(oBE_Reserva, oBE_Mesa))
+                    if (oBE_Reserva.CantidadDeComensales <= oBE_Mesa.Capacidad)
                     {
-                        oBE_Reserva.MesaReservada = oBE_Mesa;
-                        ActualizarListado();
+                        if (oBLL_Reserva.Guardar(oBE_Reserva, oBE_Mesa))
+                        {
+                            oBE_Reserva.MesaReservada = oBE_Mesa;
+                            Calculos.MsgBox("Se le ha asignado la mesa " + oBE_Mesa.ID_Mesa + " a la reserva N°" + oBE_Reserva.Codigo);
+                        }
+                        else
+                        {
+                            Calculos.MsgBox("No pudo asignarse la mesa " + oBE_Mesa.ID_Mesa + " a la reserva N°" + oBE_Reserva.Codigo + "\nIntente nuevamente");
+                        }
+
+                    }
+                    else
+                    {
+                        Calculos.MsgBox("La Cantidad de Comensales supera la\ncapacidad máxima de la mesa elegida");
                     }
 
                 }
                 else
                 {
-                    Calculos.MsgBox("La Cantidad de Comensales supera la\ncapacidad máxima de la mesa elegida");
+                    Calculos.MsgBox("La Reserva ya tiene una mesa asignada");
                 }
-
             }
-            else
-            {
-                Calculos.MsgBox("La Reserva ya tiene una mesa asignada");
-            }
+            catch(Exception ex) { Calculos.MsgBox(ex.Message); }
+            finally { ActualizarListado(); }
         }
 
         private void btnEditarMesa_Click(object sender, EventArgs e)
         {
             oBE_Mesa = (BE_Mesa)dgvMesasDisponibles.SelectedRows[0].DataBoundItem;
             oBE_Reserva = (BE_Reserva)dgvReservas.SelectedRows[0].DataBoundItem;
-            if (oBE_Reserva.MesaReservada != null)
+            try
             {
-                if (oBE_Reserva.CantidadDeComensales <= oBE_Mesa.Capacidad)
+                if (oBE_Reserva.MesaReservada != null)
                 {
-                    if (oBLL_Reserva.Modificar(oBE_Reserva, oBE_Mesa))
+                    if (oBE_Reserva.CantidadDeComensales <= oBE_Mesa.Capacidad)
                     {
-                        oBE_Reserva.MesaReservada = oBE_Mesa;
-                        ActualizarListado();
+                        if (oBLL_Reserva.Modificar(oBE_Reserva, oBE_Mesa))
+                        {
+                            oBE_Reserva.MesaReservada = oBE_Mesa;
+                            Calculos.MsgBox("Se le ha asignado la mesa " + oBE_Mesa.ID_Mesa + " a la reserva N°" + oBE_Reserva.Codigo);
+                        }
+                        else
+                        {
+                            Calculos.MsgBox("No pudo asignarse la mesa " + oBE_Mesa.ID_Mesa + " a la reserva N°" + oBE_Reserva.Codigo + "\nIntente nuevamente");
+                        }
                     }
-
+                    else
+                    {
+                        Calculos.MsgBox("La Cantidad de Comensales supera la\ncapacidad máxima de la mesa elegida");
+                    }
                 }
                 else
                 {
-                    Calculos.MsgBox("La Cantidad de Comensales supera la\ncapacidad máxima de la mesa elegida");
+                    Calculos.MsgBox("La Reserva no tiene ninguna mesa asignada para modificar.");
                 }
             }
-            else
-            {
-                Calculos.MsgBox("La Reserva no tiene ninguna mesa asignada para modificar.");
-            }
+            catch (Exception ex) { Calculos.MsgBox(ex.Message); }
+            finally { ActualizarListado(); }
         }
 
         private void btnCancelarReserva_Click(object sender, EventArgs e)
         {
             oBE_Reserva = (BE_Reserva)dgvReservas.SelectedRows[0].DataBoundItem;
-            if (Calculos.EstaSeguro("Cancelar Reserva", oBE_Reserva.Codigo, oBE_Reserva.ToString()))
+            try
             {
-                if (!oBLL_Reserva.Baja(oBE_Reserva)) 
+                if (Calculos.EstaSeguro("Cancelar Reserva", oBE_Reserva.Codigo, oBE_Reserva.FechaReserva.ToString("dd/MM/yyyy")))
                 {
-                    Calculos.MsgBox("No se puede cancelar una reserva ya recibida");
+                    if (!oBLL_Reserva.Baja(oBE_Reserva))
+                    {
+                        Calculos.MsgBox("No se puede cancelar una reserva ya recibida");
+                    }
                 }
-                
+            }
+            catch (Exception ex)
+            {
+
+                Calculos.MsgBox(ex.Message);
+            }
+            finally
+            {
                 ActualizarListado();
             }
+        }
+
+        private void frmReservas_Activated(object sender, EventArgs e)
+        {
+            ActualizarListado();
         }
     }
 }

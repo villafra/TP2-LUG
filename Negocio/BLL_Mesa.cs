@@ -9,7 +9,7 @@ using Mapper;
 
 namespace BLL
 {
-    public class BLL_Mesa : IGestionable<BE_Mesa>
+    public class BLL_Mesa : IGestionable<BE_Mesa>, IValidable<BE_Mesa>
     {
         MPP_Mesa oMPP_Mesa;
 
@@ -20,6 +20,16 @@ namespace BLL
         public bool Baja(BE_Mesa oBE_Mesa)
         {
             return oMPP_Mesa.Baja(oBE_Mesa);
+        }
+
+        public bool Existe(BE_Mesa oBE_Mesa)
+        {
+            return oMPP_Mesa.Existe(oBE_Mesa);
+        }
+
+        public bool ExisteActivo(BE_Mesa oBE_Mesa)
+        {
+            return oMPP_Mesa.ExisteActivo(oBE_Mesa);
         }
 
         public bool Guardar(BE_Mesa oBE_Mesa)

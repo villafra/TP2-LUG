@@ -259,6 +259,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmTurnos";
             this.Text = "Mesas";
+            this.Activated += new System.EventHandler(this.frmTurnos_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTurnos)).EndInit();
             this.grpTurnos.ResumeLayout(false);
             this.grpTurnos.PerformLayout();

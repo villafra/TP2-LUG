@@ -12,19 +12,18 @@ using System.Data.SqlClient;
 
 namespace Mapper
 {
-    public class MPP_Mesa : IGestionable<BE_Mesa>
+    public class MPP_Mesa : IGestionable<BE_Mesa>, IValidable<BE_Mesa>
     {
         ClsDataBase Acceso;
         Hashtable hashtable;
 
         public bool Baja(BE_Mesa oBE_Mesa)
         { 
-            if (!ExisteMesaActiva(oBE_Mesa))
+            if (!ExisteActivo(oBE_Mesa))
             {
                 hashtable = new Hashtable();
                 string query = "20 - Baja_Mesa";
                 hashtable.Add("@Codigo", oBE_Mesa.Codigo);
-                Acceso = new ClsDataBase();
                 return Acceso.Escribir(query, hashtable);
             }
             else
@@ -48,7 +47,7 @@ namespace Mapper
             hashtable.Add("@Ocupacion", Mesa.CantidadComensales);
             hashtable.Add("@Status",Mesa.Status.ToString());
 
-            if (!ExisteMesa(Mesa))
+            if (!Existe(Mesa))
             {
                 Acceso = new ClsDataBase();
                 return Acceso.Escribir(query,hashtable);
@@ -56,11 +55,11 @@ namespace Mapper
             else { return false; }
         }
 
-        public bool ExisteMesa(BE_Mesa Mesa)
+        public bool Existe(BE_Mesa Mesa)
         {
             Hashtable hash = new Hashtable();
             SqlParameter sqlParameter = new SqlParameter();
-
+            Acceso = new ClsDataBase();
             if (Mesa.Codigo == 0)
             {
                 hash.Add("@ID_Mesa", Mesa.ID_Mesa);
@@ -68,7 +67,22 @@ namespace Mapper
             }
             else
             {
-                return false;
+                hash.Add("@ID_Mesa", Mesa.ID_Mesa);
+                DataTable Dt = Acceso.DevolverListado("40 - Existe_Mesa", hash);
+
+                if (Dt.Rows.Count > 0)
+                {
+                    int codigo = 0;
+                    foreach (DataRow row in Dt.Rows)
+                    {
+                        codigo = Convert.ToInt32(row[0].ToString());
+                    }
+                    return !(codigo == Mesa.Codigo);
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
         public List<BE_Mesa> Listar()
@@ -129,11 +143,11 @@ namespace Mapper
         {
             throw new NotImplementedException();
         }
-        public bool ExisteMesaActiva(BE_Mesa oBE_Mesa)
+        public bool ExisteActivo(BE_Mesa oBE_Mesa)
         {
             Hashtable hash = new Hashtable();
             SqlParameter sqlParameter = new SqlParameter();
-
+            Acceso = new ClsDataBase();
             string query = "41 - Mesa_Activa";
             hash.Add("@Codigo", oBE_Mesa.Codigo);
             return Acceso.Scalar(query, hash);

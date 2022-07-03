@@ -21,7 +21,6 @@ namespace Mapper
                 Hashtable hashtable = new Hashtable();
                 string query = "31 - Baja_Plato";
                 hashtable.Add("@Codigo", oBE_Plato.Codigo);
-                Acceso = new ClsDataBase();
                 return Acceso.Escribir(query, hashtable);
             }
             else
@@ -48,7 +47,6 @@ namespace Mapper
 
             if (!Existe(Plato))
             {
-                Acceso = new ClsDataBase();
                 return Acceso.Escribir(query, hashtable);
             }
             else { return false; }
@@ -147,6 +145,7 @@ namespace Mapper
 
         public bool Existe(BE_Plato Plato)
         {
+            Acceso = new ClsDataBase();
             Hashtable hash = new Hashtable();
             if (Plato.Codigo == 0)
             {
@@ -155,7 +154,23 @@ namespace Mapper
             }
             else
             {
-                return false;
+                hash.Add("@Nombre", Plato.Nombre);
+                DataTable Dt = Acceso.DevolverListado("50 - Existe_Plato", hash);
+
+                if (Dt.Rows.Count > 0)
+                {
+                    int codigo = 0;
+                    foreach (DataRow row in Dt.Rows)
+                    {
+                        codigo = Convert.ToInt32(row[0].ToString());
+                    }
+                    return !(codigo == Plato.Codigo);
+                }
+                else
+                {
+                    return false;
+                }
+
             }
 
         }
@@ -164,6 +179,7 @@ namespace Mapper
         {
             Hashtable hash = new Hashtable();
             hash.Add("@Codigo_Plato", Plato.Codigo);
+            Acceso = new ClsDataBase();
             return Acceso.Scalar("49 - Existe_Plato_Activo", hash);
         }
     }

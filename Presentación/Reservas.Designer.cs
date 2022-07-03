@@ -151,6 +151,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmReservas";
             this.Text = "Reservas";
+            this.Activated += new System.EventHandler(this.frmReservas_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMesasDisponibles)).EndInit();
             this.ResumeLayout(false);

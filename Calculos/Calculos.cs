@@ -149,6 +149,9 @@ namespace Calculo
             combo.Refresh();
 
         }
+
+       
+
         public static void DataSourceComboReporte(ComboBox combo, object refObject, string DisplayMember)
         {
             combo.DataSource = null;
@@ -158,11 +161,47 @@ namespace Calculo
             combo.Refresh();
 
         }
+        public static void MsgBoxSiExiste(string nombre)
+        {
+            MessageBox.Show(nombre + " ya existe en la base de datos.", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+        public static void MsgBoxSiExisteDNI(string nombre)
+        {
+            MessageBox.Show("El DNI ya existe en la base de datos y no perteneces a " + nombre + ".", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+        public static void MsgBoxNoAlta(string nombre)
+        {
+            MessageBox.Show("No se pudo dar de alta el objeto (" + nombre + "). Intente nuevamente.", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+        public static void MsgBoxNoMod(string nombre)
+        {
+            MessageBox.Show("No se pudo modificar el objeto (" + nombre + "). Intente nuevamente.", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+        public static void MsgBoxNoBaja(string nombre)
+        {
+            MessageBox.Show("No se pudo dar de baja el objeto (" + nombre + "). Intente nuevamente.", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
         public static void MsgBox(string mensaje)
         {
             MessageBox.Show(mensaje, "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
-
+        public static void MsgBoxAlta(string nombre)
+        {
+            MessageBox.Show(nombre + " ha sido agregado a la base de datos.", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+        public static void MsgBoxMod(string nombre)
+        {
+            MessageBox.Show(nombre + " se ha modificado con exito.", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+        public static void MsgBoxBaja(string nombre)
+        {
+            MessageBox.Show(nombre + " ha sido eliminado de la base de datos.", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+        public static void MsgBoxBajaNegativa(string nombre)
+        {
+            MessageBox.Show("No se puede dar de baja un objeto activo (" + nombre + ")." , "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
         public static void Salir()
         {
             System.Windows.Forms.Application.Exit();

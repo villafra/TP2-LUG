@@ -86,9 +86,23 @@ namespace Presentación
                 Nuevo();
                 if (Calculos.ValidarMail(oBE_Login.eMail))
                 {
-                oBLL_Login.Guardar(oBE_Login);
-                ActualizarListado();
-                Calculos.BorrarCampos(grpUsuarios);
+                    if (!oBLL_Login.Existe(oBE_Login))
+                    {
+                        if (oBLL_Login.Guardar(oBE_Login))
+                        {
+                            Calculos.BorrarCampos(grpUsuarios);
+                            Calculos.MsgBoxAlta(oBE_Login.Usuario);
+                        }
+                        else
+                        {
+                            Calculos.MsgBoxNoAlta(oBE_Login.Usuario);
+                        }
+                        
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxSiExiste(oBE_Login.Usuario);
+                    }
                 }
                 else
                 {
@@ -101,6 +115,10 @@ namespace Presentación
 
                 Calculos.MsgBox(ex.Message);
             }
+            finally
+            {
+                ActualizarListado();
+            }
         }
 
         private void btnEditUser_Click(object sender, EventArgs e)
@@ -109,10 +127,24 @@ namespace Presentación
             {
                 if (Calculos.ValidarMail(txtMail.Text))
                 {
-                Viejo();
-                oBLL_Login.Guardar(oBE_Login);
-                ActualizarListado();
-                Calculos.BorrarCampos(grpUsuarios);
+                    Viejo();
+                    if (!oBLL_Login.Existe(oBE_Login))
+                    {
+                        if (oBLL_Login.Guardar(oBE_Login))
+                        {
+                            Calculos.BorrarCampos(grpUsuarios);
+                            Calculos.MsgBoxMod(oBE_Login.Usuario);
+                        }
+                        else
+                        {
+                            Calculos.MsgBoxNoMod(oBE_Login.Usuario);
+                        }
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxSiExiste(oBE_Login.Usuario);
+                    }
+
                 }
                 else
                 {
@@ -125,24 +157,48 @@ namespace Presentación
 
                 Calculos.MsgBox(ex.Message);
             }
+            finally
+            {
+                ActualizarListado();
+            }
         }
 
         private void btnEliminarUser_Click(object sender, EventArgs e)
         {
-            Viejo();
-            if (Calculos.EstaSeguro("Eliminar", oBE_Login.Codigo, oBE_Login.ToString()))
+            try
             {
-                if (oBLL_Login.Baja(oBE_Login) == false)
+                Viejo();
+                if (Calculos.EstaSeguro("Eliminar", oBE_Login.Codigo, oBE_Login.Usuario))
                 {
-                    Calculos.MsgBox("No se puede dar de baja un usuario si el empleado esta activo");
+                    if (!oBLL_Login.ExisteActivo(oBE_Login))
+                    {
+                        if (oBLL_Login.Baja(oBE_Login))
+                        {
+                            Calculos.BorrarCampos(grpUsuarios);
+                            Calculos.MsgBoxBaja(oBE_Login.Usuario);
+                        }
+                        else
+                        {
+                            Calculos.MsgBoxNoBaja(oBE_Login.Usuario);
+                        }
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxBajaNegativa(oBE_Login.Usuario);
+                    }
                 }
-                else
-                {
-                    ActualizarListado();
-                    Calculos.BorrarCampos(grpUsuarios);
-                }
-
             }
+
+            catch (Exception ex)
+            {
+                Calculos.MsgBox(ex.Message);
+            }
+            finally
+            {
+                ActualizarListado();
+            }
+            
+
         }
 
         private void dgvEmpleados_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -152,8 +208,11 @@ namespace Presentación
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            oBLL_Login.ResetCounter(oBE_Login);
-            prgCantidad.Value = oBE_Login.CantidadIntentos;
+            if (oBLL_Login.ResetCounter(oBE_Login))
+            {
+                prgCantidad.Value = oBE_Login.CantidadIntentos;
+            }
+            
         }
 
         private void btnSeePass_Click(object sender, EventArgs e)
@@ -179,5 +238,9 @@ namespace Presentación
             ingreso = true;
         }
 
+        private void frmUsuarios_Activated(object sender, EventArgs e)
+        {
+            ActualizarListado();
+        }
     }
 }

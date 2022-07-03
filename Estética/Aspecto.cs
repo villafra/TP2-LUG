@@ -478,8 +478,10 @@ namespace Estética
             dgv.Columns[1].Visible = false;
             dgv.Columns[4].HeaderText = "e-Mail";
             dgv.Columns[5].Visible = false;
-           
-           
+            dgv.Columns[6].Visible = false;
+            dgv.Columns[7].Visible = false;
+
+
             foreach (DataGridViewColumn columns in dgv.Columns)
             {
                 columns.SortMode = DataGridViewColumnSortMode.NotSortable;

@@ -25,6 +25,7 @@ namespace Mapper
 
         public bool Existe(BE_Cocina Cocina)
         {
+            Acceso = new ClsDataBase();
             Hashtable hash = new Hashtable();
             if (Cocina.Codigo == 0)
             {
@@ -33,7 +34,9 @@ namespace Mapper
             }
             else
             {
-                return false;
+                hash.Add("@Codigo", Cocina.Codigo);
+                hash.Add("@DNI", Cocina.DNI);
+                return Acceso.Scalar("65 - Existe_DNI", hash);
             }
         }
 
@@ -62,7 +65,6 @@ namespace Mapper
 
             if (!Existe(Cocina))
             {
-                Acceso = new ClsDataBase();
                 return Acceso.Escribir(query, hashtable);
             }
             else { return false; }

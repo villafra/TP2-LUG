@@ -6,19 +6,19 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.4873cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.96567cm</Width>
+              <Width>2.95297cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.24485cm</Width>
+              <Width>3.23215cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.4873cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>4.47697cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -42,7 +42,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox42</rd:DefaultName>
@@ -76,7 +78,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox44</rd:DefaultName>
@@ -110,7 +114,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox46</rd:DefaultName>
@@ -144,7 +150,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox48</rd:DefaultName>
@@ -178,7 +186,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox50</rd:DefaultName>
@@ -210,10 +220,16 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Codigo.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Nirmala UI</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>#9656c0</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Codigo</rd:DefaultName>
@@ -240,10 +256,16 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=CDate(Fields!FechaHoradeInicio.Value).ToShortDateString</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Nirmala UI</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>#9656c0</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>FechaHoradeInicio</rd:DefaultName>
@@ -270,10 +292,16 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=CDate(Fields!FechaHoradeInicio.Value).ToShortTimeString</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Nirmala UI</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>#9656c0</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>FechaHoradeInicio1</rd:DefaultName>
@@ -300,10 +328,18 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Monto.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Nirmala UI</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>'$' 0.00;('$' 0.00);'-'</Format>
+                                <Color>#9656c0</Color>
+                                <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Monto</rd:DefaultName>
@@ -330,10 +366,16 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Observaciones.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Nirmala UI</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>#9656c0</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Observaciones</rd:DefaultName>
@@ -375,9 +417,9 @@
         </TablixRowHierarchy>
         <DataSetName>Pedidos</DataSetName>
         <Top>0.96633cm</Top>
-        <Left>1.52601cm</Left>
+        <Left>0.56293cm</Left>
         <Height>1.2cm</Height>
-        <Width>13.71052cm</Width>
+        <Width>15.63669cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -394,7 +436,7 @@
       <BackgroundColor>#2e3349</BackgroundColor>
     </Style>
   </Body>
-  <Width>6.59942in</Width>
+  <Width>6.59943in</Width>
   <Page>
     <PageHeader>
       <Height>2.2002cm</Height>
@@ -483,8 +525,12 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>="Página " &amp;Globals!PageNumber</Value>
-                  <Style />
+                  <Value>="Página " &amp; Globals!PageNumber &amp; " - de " &amp; Globals!TotalPages</Value>
+                  <Style>
+                    <FontFamily>Nirmala UI</FontFamily>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>#007ef9</Color>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -494,9 +540,9 @@
           </Paragraphs>
           <rd:DefaultName>PageNumber</rd:DefaultName>
           <Top>0.17639cm</Top>
-          <Left>8.35068cm</Left>
+          <Left>12.23065cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.5cm</Width>
+          <Width>3.96897cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -507,15 +553,18 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
-        <Textbox Name="OverallTotalPages">
-          <CanGrow>true</CanGrow>
+        <Textbox Name="PageNumber2">
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>="De " &amp;Globals!OverallTotalPages</Value>
-                  <Style />
+                  <Value>=Globals!ExecutionTime</Value>
+                  <Style>
+                    <FontFamily>Nirmala UI</FontFamily>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>#007ef9</Color>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -523,12 +572,47 @@
               </Style>
             </Paragraph>
           </Paragraphs>
-          <rd:DefaultName>OverallTotalPages</rd:DefaultName>
+          <rd:DefaultName>PageNumber</rd:DefaultName>
           <Top>0.17639cm</Top>
-          <Left>11.31402cm</Left>
+          <Left>0.56293cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.5cm</Width>
+          <Width>4.47697cm</Width>
           <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="PageNumber3">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=User!UserID</Value>
+                  <Style>
+                    <FontFamily>Nirmala UI</FontFamily>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>#007ef9</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>PageNumber</rd:DefaultName>
+          <Top>0.17639cm</Top>
+          <Left>6.14279cm</Left>
+          <Height>0.6cm</Height>
+          <Width>4.47697cm</Width>
+          <ZIndex>2</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>

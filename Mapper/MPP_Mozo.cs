@@ -252,7 +252,9 @@ namespace Mapper
             }
             else
             {
-                return false;
+                hash.Add("@Codigo", Mozo.Codigo);
+                hash.Add("@DNI", Mozo.DNI);
+                return Acceso.Scalar("65 - Existe_DNI", hash);
             }
         }
         public bool ExisteActivo(BE_Mozo Mozo)

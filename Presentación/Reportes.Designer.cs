@@ -55,7 +55,7 @@
             // 
             this.repViewRestó.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.repViewRestó.BackgroundImage = global::Presentación.Properties.Resources.Picture3;
-            this.repViewRestó.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.repViewRestó.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.repViewRestó.Dock = System.Windows.Forms.DockStyle.Fill;
             this.repViewRestó.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             reportDataSource1.Name = "Pedidos";
@@ -73,6 +73,8 @@
             // 
             // panelreport
             // 
+            this.panelreport.BackgroundImage = global::Presentación.Properties.Resources.Picture3;
+            this.panelreport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panelreport.Controls.Add(this.repViewRestó);
             this.panelreport.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelreport.Location = new System.Drawing.Point(0, 114);
@@ -168,6 +170,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(844, 606);
             this.Controls.Add(this.grpReportesPedido);
             this.Controls.Add(this.panelreport);

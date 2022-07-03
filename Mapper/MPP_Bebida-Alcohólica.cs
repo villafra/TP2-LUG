@@ -21,7 +21,6 @@ namespace Mapper
                 Hashtable hashtable = new Hashtable();
                 string query = "08 - Baja_Bebida";
                 hashtable.Add("@Codigo", oBE_Bebida.Codigo);
-                Acceso = new ClsDataBase();
                 return Acceso.Escribir(query, hashtable);
             }
             else
@@ -68,8 +67,9 @@ namespace Mapper
         public bool ExisteActivo(BE_Bebida_Alcohólica oBE_Bebida)
         {
             Hashtable hash = new Hashtable();
-            hash.Add("@Codigo_Turno", oBE_Bebida.Codigo);
-            return Acceso.Scalar("53 - Existe_Bebida_Activo", hash);
+            hash.Add("@Codigo_Bebida", oBE_Bebida.Codigo);
+            Acceso = new ClsDataBase();
+            return Acceso.Scalar("64 - Existe_Bebida_Activo", hash);
         }
     }
 }

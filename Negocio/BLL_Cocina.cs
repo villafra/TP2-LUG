@@ -9,7 +9,7 @@ using Abstracción;
 
 namespace BLL
 {
-    public class BLL_Cocina : BLL_Empleado, IGestionable<BE_Cocina>
+    public class BLL_Cocina : BLL_Empleado, IGestionable<BE_Cocina>, IValidable<BE_Cocina>
     {
         MPP_Cocina oMPP_Cocina;
 
@@ -40,6 +40,16 @@ namespace BLL
             }
             if (puntuacion <= 10) { return puntuacion;}
             else { return 10; }
+        }
+
+        public bool Existe(BE_Cocina oBE_Cocina)
+        {
+            return oMPP_Cocina.Existe(oBE_Cocina);
+        }
+
+        public bool ExisteActivo(BE_Cocina oBE_Cocina)
+        {
+            return oMPP_Cocina.ExisteActivo(oBE_Cocina);
         }
 
         public bool Guardar(BE_Cocina oBE_Cocina)

@@ -90,14 +90,31 @@ namespace Presentación
             try
             {
                 Nuevo();
-                oBLL_Mesa.Guardar(oBE_Mesa);
-                ActualizarListado();
-                Calculos.BorrarCampos(grpMesas);
+                if (!oBLL_Mesa.Existe(oBE_Mesa))
+                {
+                    if (oBLL_Mesa.Guardar(oBE_Mesa))
+                    {
+                        Calculos.BorrarCampos(grpMesas);
+                        Calculos.MsgBoxAlta(oBE_Mesa.ID_Mesa);
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxNoAlta(oBE_Mesa.ID_Mesa);
+                    }
+                }
+                else
+                {
+                    Calculos.MsgBoxSiExiste(oBE_Mesa.ID_Mesa);
+                }
             }
             catch (Exception ex)
             {
 
                 Calculos.MsgBox(ex.Message);
+            }
+            finally
+            {
+                ActualizarListado();
             }
         }
 
@@ -106,33 +123,69 @@ namespace Presentación
             try
             {
                 Viejo();
-                oBLL_Mesa.Guardar(oBE_Mesa);
-                ActualizarListado();
-                Calculos.BorrarCampos(grpMesas);
+                if (!oBLL_Mesa.Existe(oBE_Mesa))
+                {
+                    if (oBLL_Mesa.Guardar(oBE_Mesa))
+                    {
+                        Calculos.BorrarCampos(grpMesas);
+                        Calculos.MsgBoxMod(oBE_Mesa.ID_Mesa);
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxNoMod(oBE_Mesa.ID_Mesa);
+                    }
+                }
+                else
+                {
+                    Calculos.MsgBoxSiExiste(oBE_Mesa.ID_Mesa);
+                }
             }
             catch (Exception ex)
             {
 
                 Calculos.MsgBox(ex.Message);
             }
+            finally
+            {
+                ActualizarListado();
+            }
         }
 
         private void btnEliminarMesa_Click(object sender, EventArgs e)
         {
             Viejo();
-            if (Calculos.EstaSeguro("Eliminar", oBE_Mesa.Codigo, oBE_Mesa.ToString()))
+            try
             {
-                if (oBLL_Mesa.Baja(oBE_Mesa) == false)
+                if (Calculos.EstaSeguro("Eliminar", oBE_Mesa.Codigo, oBE_Mesa.ID_Mesa))
                 {
-                    Calculos.MsgBox("No se puede dar de baja una mesa activa");
-                }
-                else
-                {
-                    ActualizarListado();
-                    Calculos.BorrarCampos(grpMesas);
-                }
+                    if (!oBLL_Mesa.ExisteActivo(oBE_Mesa))
+                    {
+                        if (oBLL_Mesa.Baja(oBE_Mesa))
+                        {
+                            Calculos.BorrarCampos(grpMesas);
+                            Calculos.MsgBoxBaja(oBE_Mesa.ID_Mesa);
+                        }
+                        else
+                        {
+                            Calculos.MsgBoxNoBaja(oBE_Mesa.ID_Mesa);
+                        }
 
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxBajaNegativa(oBE_Mesa.ID_Mesa);
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                Calculos.MsgBox(ex.Message);
+            }
+            finally
+            {
+                ActualizarListado();
+            }
+            
         }
 
         private void dgvMesas_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -166,6 +219,11 @@ namespace Presentación
         private void txtCapacidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             Calculos.ValidarEntero(e);
+        }
+
+        private void frmMesas_Activated(object sender, EventArgs e)
+        {
+            ActualizarListado();
         }
     }
 }

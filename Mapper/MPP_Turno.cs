@@ -21,7 +21,6 @@ namespace Mapper
                 Hashtable hashtable = new Hashtable();
                 string query = "39 - Baja_Turno";
                 hashtable.Add("@Codigo", oBE_Turno.Codigo);
-                Acceso = new ClsDataBase();
                 return Acceso.Escribir(query, hashtable);
             }
             else
@@ -46,7 +45,6 @@ namespace Mapper
 
             if (!Existe(Turno))
             {
-                Acceso = new ClsDataBase();
                 return Acceso.Escribir(query, hashtable);
             }
             else { return false; }
@@ -100,21 +98,39 @@ namespace Mapper
         }
         public bool Existe(BE_Turno Turno)
         {
+            Acceso = new ClsDataBase();
             Hashtable hash = new Hashtable();
             if (Turno.Codigo == 0)
             {
                 hash.Add("@Nombre", Turno.NombreTurno);
-                return Acceso.Scalar("43 - Existe_Turno", hash);
+                return Acceso.Scalar("47 - Existe_Turno", hash);
             }
             else
             {
-                return false;
+                hash.Add("@Nombre", Turno.NombreTurno);
+                DataTable Dt = Acceso.DevolverListado("47 - Existe_Turno", hash);
+                if (Dt.Rows.Count > 0)
+                {
+                    int codigo=0;
+                    foreach (DataRow row in Dt.Rows)
+                    {
+                        codigo = Convert.ToInt32(row[0].ToString());
+                    }
+                    return !(codigo == Turno.Codigo);
+                   
+                }
+                else
+                {
+                    return false;
+                }
+                    
             }
         }
             public bool ExisteActivo(BE_Turno Turno)
         {
             Hashtable hash = new Hashtable();
             hash.Add("@Codigo_Turno", Turno.Codigo);
+            Acceso = new ClsDataBase();
             return Acceso.Scalar("46 - Existe_Turno_Activo", hash);
         }
     }

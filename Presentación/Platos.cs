@@ -104,14 +104,33 @@ namespace Presentación
             try
             {
                 Nuevo();
-                oBLL_Plato.Guardar(oBE_Plato);
-                ActualizarListado();
-                Calculos.BorrarCampos(grpPlatos);
+                if (!oBLL_Plato.Existe(oBE_Plato))
+                {
+                    if (oBLL_Plato.Guardar(oBE_Plato))
+                    {
+                        Calculos.BorrarCampos(grpPlatos);
+                        Calculos.MsgBoxAlta(oBE_Plato.Nombre);
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxNoAlta(oBE_Plato.Nombre);
+                    }
+                }
+                else
+                {
+                    Calculos.MsgBoxSiExiste(oBE_Plato.Nombre);
+                }
+                
+                
             }
             catch (Exception ex)
             {
 
                 Calculos.MsgBox(ex.Message);
+            }
+            finally
+            {
+                ActualizarListado();
             }
         }
 
@@ -120,32 +139,68 @@ namespace Presentación
             try
             {
                 Viejo();
-                oBLL_Plato.Guardar(oBE_Plato);
-                ActualizarListado();
-                Calculos.BorrarCampos(grpPlatos);
+                if (!oBLL_Plato.Existe(oBE_Plato))
+                {
+                    if (oBLL_Plato.Guardar(oBE_Plato))
+                    {
+                        Calculos.BorrarCampos(grpPlatos);
+                        Calculos.MsgBoxMod(oBE_Plato.Nombre);
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxNoMod(oBE_Plato.Nombre);
+                    }
+                }
+                else
+                {
+                    Calculos.MsgBoxSiExiste(oBE_Plato.Nombre);
+                }
+                
             }
             catch (Exception ex)
             {
 
                 Calculos.MsgBox(ex.Message);
             }
+            finally
+            {
+                ActualizarListado();
+            }
         }
 
         private void btnEliminarPlato_Click(object sender, EventArgs e)
         {
             Viejo();
-            if (Calculos.EstaSeguro("Eliminar", oBE_Plato.Codigo, oBE_Plato.ToString()))
+            try
             {
-                if (oBLL_Plato.Baja(oBE_Plato) == false)
+                if (Calculos.EstaSeguro("Eliminar", oBE_Plato.Codigo, oBE_Plato.Nombre))
                 {
-                    Calculos.MsgBox("No se puede dar de baja un plato dentro de un pedido activo");
-                }
-                else
-                {
-                    ActualizarListado();
-                    Calculos.BorrarCampos(grpPlatos);
-                }
+                    if (!oBLL_Plato.ExisteActivo(oBE_Plato))
+                    {
+                        if (oBLL_Plato.Baja(oBE_Plato))
+                        {
+                            Calculos.BorrarCampos(grpPlatos);
+                            Calculos.MsgBoxBaja(oBE_Plato.Nombre);
+                        }
+                        else
+                        {
+                            Calculos.MsgBoxNoBaja(oBE_Plato.Nombre);
+                        }
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxBajaNegativa(oBE_Plato.Nombre);
 
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Calculos.MsgBox(ex.Message);
+            }
+            finally
+            {
+                ActualizarListado();
             }
         }
 
@@ -166,7 +221,7 @@ namespace Presentación
                     Calculos.MsgBox("Stock Agregado");
                 }
             }
-            catch { }
+            catch (Exception ex){ Calculos.MsgBox(ex.Message); }
             finally
             {
                 ActualizarListado();
@@ -181,6 +236,11 @@ namespace Presentación
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             Calculos.ValidarLetras(e);
+        }
+
+        private void frmPlatos_Activated(object sender, EventArgs e)
+        {
+            ActualizarListado();
         }
     }
 }

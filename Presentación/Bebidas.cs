@@ -122,13 +122,29 @@ namespace Presentación
                     Nuevo();
                     if (comboTipo.SelectedIndex < 3)
                     {
-                        oBLL_Bebida.Guardar(oBE_Bebida);
+                        if (oBLL_Bebida.Guardar(oBE_Bebida))
+                        {
+                            Calculos.MsgBoxAlta(oBE_Bebida.Nombre);
+                        }
+                        else
+                        {
+                            Calculos.MsgBoxNoAlta(oBE_Bebida.Nombre);
+                        }
+                        
                     }
                     else
                     {
                         if (Calculos.ValidarDecimal(txtABV.Text))
                         {
-                            oBLL_Bebida_Alcohólica.Guardar(oBE_Bebida_Alcohólica);
+                            if (oBLL_Bebida_Alcohólica.Guardar(oBE_Bebida_Alcohólica))
+                            {
+                                Calculos.MsgBoxAlta(oBE_Bebida_Alcohólica.Nombre);
+                            }
+                            else
+                            {
+                                Calculos.MsgBoxNoAlta(oBE_Bebida_Alcohólica.Nombre);
+                            }
+                            
                         }
                         else { Calculos.MsgBox("El campo ABV no tiene el formato correcto"); }
                        
@@ -159,9 +175,17 @@ namespace Presentación
                 {
                     if (Calculos.ValidarDecimal(oBE_Bebida.Presentación.ToString()) && Calculos.ValidarDecimal(oBE_Bebida.CostoUnitario.ToString()))
                     {
-                        oBLL_Bebida.Guardar(oBE_Bebida);
-                        ActualizarListado();
-                        Calculos.BorrarCampos(grpBebidas);
+                        if (oBLL_Bebida.Guardar(oBE_Bebida))
+                        {
+                            ActualizarListado();
+                            Calculos.BorrarCampos(grpBebidas);
+                            Calculos.MsgBoxMod(oBE_Bebida.Nombre);
+                        }
+                        else
+                        {
+                            Calculos.MsgBoxNoMod(oBE_Bebida.Nombre);
+                        }
+                       
                     }
                     else
                     {
@@ -172,9 +196,17 @@ namespace Presentación
                 {
                     if (Calculos.ValidarDecimal(oBE_Bebida_Alcohólica.Presentación.ToString()) && Calculos.ValidarDecimal(oBE_Bebida_Alcohólica.CostoUnitario.ToString()) && Calculos.ValidarDecimal(oBE_Bebida_Alcohólica.GraduaciónAlcoholica.ToString()))
                     {
-                        oBLL_Bebida_Alcohólica.Guardar(oBE_Bebida_Alcohólica);
-                        ActualizarListado();
-                        Calculos.BorrarCampos(grpBebidas);
+                        if (oBLL_Bebida_Alcohólica.Guardar(oBE_Bebida_Alcohólica))
+                        {
+                            ActualizarListado();
+                            Calculos.BorrarCampos(grpBebidas);
+                            Calculos.MsgBoxMod(oBE_Bebida_Alcohólica.Nombre);
+                        }
+                        else
+                        {
+                            Calculos.MsgBoxNoMod(oBE_Bebida_Alcohólica.Nombre);
+                        }
+                        
                     }
                     else
                     {
@@ -196,20 +228,51 @@ namespace Presentación
             Viejo();
             if (txtABV.Text == "")
             {
-                if (Calculos.EstaSeguro("Eliminar", oBE_Bebida.Codigo, oBE_Bebida.ToString()))
+                if (Calculos.EstaSeguro("Eliminar", oBE_Bebida.Codigo, oBE_Bebida.Nombre))
                 {
-                    oBLL_Bebida.Baja(oBE_Bebida);
-                    ActualizarListado();
-                    Calculos.BorrarCampos(grpBebidas);
+                    if (!oBLL_Bebida.ExisteActivo(oBE_Bebida))
+                    {
+                        if (oBLL_Bebida.Baja(oBE_Bebida))
+                        {
+                            ActualizarListado();
+                            Calculos.BorrarCampos(grpBebidas);
+                            Calculos.MsgBoxBaja(oBE_Bebida.Nombre);
+                        }
+                        else
+                        {
+                            Calculos.MsgBoxNoBaja(oBE_Bebida.Nombre);
+                        }
+                        
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxBajaNegativa(oBE_Bebida.Nombre);
+                    }
+
                 }
             }
             else
             {
-                if (Calculos.EstaSeguro("Eliminar", oBE_Bebida_Alcohólica.Codigo, oBE_Bebida_Alcohólica.ToString()))
+                if (Calculos.EstaSeguro("Eliminar", oBE_Bebida_Alcohólica.Codigo, oBE_Bebida_Alcohólica.Nombre))
                 {
-                    oBLL_Bebida_Alcohólica.Baja(oBE_Bebida_Alcohólica);
-                    ActualizarListado();
-                    Calculos.BorrarCampos(grpBebidas);
+                    if (!oBLL_Bebida_Alcohólica.ExisteActivo(oBE_Bebida_Alcohólica))
+                    {
+                        if (oBLL_Bebida_Alcohólica.Baja(oBE_Bebida_Alcohólica))
+                        {
+                            ActualizarListado();
+                            Calculos.BorrarCampos(grpBebidas);
+                            Calculos.MsgBoxBaja(oBE_Bebida_Alcohólica.Nombre);
+                        }
+                        else
+                        {
+                            Calculos.MsgBoxNoBaja(oBE_Bebida_Alcohólica.Nombre);
+                        }
+                        
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxBajaNegativa(oBE_Bebida_Alcohólica.Nombre);
+                    }
                 }
             }
         }
@@ -268,8 +331,16 @@ namespace Presentación
                         {
                             numero = Int32.TryParse(Interaction.InputBox("Ingrese Cantidad a Agregar", "Agregar Stock"), out Cantidad);
                         }
-                        (oBE_Bebida as BE_Bebida_Alcohólica).AgregarStock(Cantidad);
-                        oBLL_Bebida_Alcohólica.Guardar((oBE_Bebida as BE_Bebida_Alcohólica));
+                        if (Cantidad < prgCantidad.Maximum)
+                        {
+                            (oBE_Bebida as BE_Bebida_Alcohólica).AgregarStock(Cantidad);
+                            oBLL_Bebida_Alcohólica.Guardar((oBE_Bebida as BE_Bebida_Alcohólica));
+                        }
+                        else
+                        {
+                            Calculos.MsgBox("La máxima cantidad permitida para bebidas es de " + prgCantidad.Maximum.ToString());
+                        }
+
 
                     }
                 }
@@ -283,8 +354,16 @@ namespace Presentación
                         {
                             numero = Int32.TryParse(Interaction.InputBox("Ingrese Cantidad a Agregar", "Agregar Stock"), out Cantidad);
                         }
-                        oBE_Bebida.AgregarStock(Cantidad);
-                        oBLL_Bebida.Guardar(oBE_Bebida);     
+                        if (Cantidad < prgCantidad.Maximum)
+                        {
+                            oBE_Bebida.AgregarStock(Cantidad);
+                            oBLL_Bebida.Guardar(oBE_Bebida);
+                        }
+                        else
+                        {
+                            Calculos.MsgBox("La máxima cantidad permitida para bebidas es de " + prgCantidad.Maximum.ToString());
+                        }
+                          
                     }
                 }
                 Calculos.MsgBox("Stock Agregado");
@@ -309,6 +388,11 @@ namespace Presentación
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
             Calculos.ValidarNumeros(e);
+        }
+
+        private void frmBebidas_Activated(object sender, EventArgs e)
+        {
+            ActualizarListado();
         }
     }
 }

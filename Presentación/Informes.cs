@@ -95,5 +95,10 @@ namespace Presentación
                 ComboEmpleado.Enabled = true;
             }
         }
+
+        private void frmInformes_Activated(object sender, EventArgs e)
+        {
+            ActualizarListado();
+        }
     }
 }

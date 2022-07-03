@@ -90,9 +90,24 @@ namespace Presentación
                 Nuevo();
                 if (Calculos.LargoDNI(oBE_Cocina.DNI.ToString())&&Calculos.ValidarNombrePersonal(oBE_Cocina.Nombre)&&Calculos.ValidarApellido(oBE_Cocina.Apellido))
                 {
-                    oBLL_Cocina.Guardar(oBE_Cocina);
-                    ActualizarListado();
-                    Calculos.BorrarCampos(grpCocina);
+                    if (!oBLL_Cocina.Existe(oBE_Cocina))
+                    {
+                        if (oBLL_Cocina.Guardar(oBE_Cocina))
+                        {
+                            ActualizarListado();
+                            Calculos.BorrarCampos(grpCocina);
+                            Calculos.MsgBoxAlta(oBE_Cocina.ToString());
+                        }
+                        else
+                        {
+                            Calculos.MsgBoxNoAlta(oBE_Cocina.ToString());
+                        }
+                        
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxNoAlta(oBE_Cocina.ToString());
+                    }
                 }
                 else
                 {
@@ -112,15 +127,30 @@ namespace Presentación
             try
             {
                 Viejo();
-                oBLL_Cocina.Guardar(oBE_Cocina);
-                ActualizarListado();
-                Calculos.BorrarCampos(grpCocina);
+                if (!oBLL_Cocina.Existe(oBE_Cocina))
+                {
+                    if (oBLL_Cocina.Guardar(oBE_Cocina))
+                    {
+                        Calculos.BorrarCampos(grpCocina);
+                        Calculos.MsgBoxMod(oBE_Cocina.ToString());
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxNoMod(oBE_Cocina.ToString());
+                    }
+                    
+                }
+                else
+                {
+                    Calculos.MsgBoxSiExisteDNI(oBE_Cocina.ToString());
+                }
             }
             catch (Exception ex)
             {
 
                 Calculos.MsgBox(ex.Message);
             }
+            finally { ActualizarListado(); }
         }
 
         private void dgvCocina_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -149,15 +179,27 @@ namespace Presentación
             Viejo();
             if (Calculos.EstaSeguro("Eliminar", oBE_Cocina.Codigo, oBE_Cocina.ToString()))
             {
-                oBLL_Cocina.Baja(oBE_Cocina);
-                ActualizarListado();
-                Calculos.BorrarCampos(grpCocina);
+                if (oBLL_Cocina.Baja(oBE_Cocina))
+                {
+                    ActualizarListado();
+                    Calculos.BorrarCampos(grpCocina);
+                    Calculos.MsgBoxBaja(oBE_Cocina.ToString());
+                }
+                else
+                {
+                    Calculos.MsgBoxNoBaja(oBE_Cocina.ToString());
+                }
             }
         }
 
         private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
         {
             Calculos.ValidarEntero(e);
+        }
+
+        private void frmCocina_Activated(object sender, EventArgs e)
+        {
+            ActualizarListado();
         }
     }
 }

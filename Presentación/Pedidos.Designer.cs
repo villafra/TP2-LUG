@@ -200,6 +200,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPedidos";
             this.Text = "Pedidos";
+            this.Activated += new System.EventHandler(this.frmPedidos_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlatos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBebidas)).EndInit();

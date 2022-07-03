@@ -9,7 +9,7 @@ using Mapper;
 
 namespace BLL
 {
-    public class BLL_Turno : IGestionable<BE_Turno>
+    public class BLL_Turno : IGestionable<BE_Turno>, IValidable<BE_Turno>
     {
         MPP_Turno oMPP_Turno;
 
@@ -41,6 +41,16 @@ namespace BLL
         public BE_Turno ListarObjeto(BE_Turno oBE_Turno)
         {
             return oMPP_Turno.ListarObjeto(oBE_Turno);  
+        }
+
+        public bool Existe(BE_Turno oBE_Turno)
+        {
+            return oMPP_Turno.Existe(oBE_Turno);
+        }
+
+        public bool ExisteActivo(BE_Turno oBE_Turno)
+        {
+            return oMPP_Turno.ExisteActivo(oBE_Turno);
         }
     }
 }

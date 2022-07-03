@@ -24,7 +24,6 @@ namespace Mapper
                 Hashtable hashtable = new Hashtable();
                 string query = "03 - Eliminar_User_Login";
                 hashtable.Add("@Codigo", oBE_Login.Codigo);
-                Acceso = new ClsDataBase();
                 return Acceso.Escribir(query, hashtable);
             }
             else
@@ -35,6 +34,7 @@ namespace Mapper
 
         public bool Existe(BE_Login oBE_Login)
         {
+            Acceso = new ClsDataBase();
             Hashtable hash = new Hashtable();
             if (oBE_Login.Codigo == 0)
             {
@@ -49,6 +49,7 @@ namespace Mapper
 
         public bool ExisteActivo(BE_Login oBE_Login)
         {
+            Acceso = new ClsDataBase();
             Hashtable hash = new Hashtable();
             hash.Add("@Codigo", oBE_Login.Empleado.Codigo);
             return Acceso.Scalar("53 - Existe_Empleado_Activo", hash);
@@ -64,6 +65,7 @@ namespace Mapper
                 query = "02 - Modificar_User_Login";
                 hashtable.Add("@Codigo", oBE_Login.Codigo);
             }
+            hashtable.Add("@Codigo_Empleado", oBE_Login.Empleado.Codigo);
             hashtable.Add("@Nombre", oBE_Login.Usuario);
             hashtable.Add("@Pass", oBE_Login.Password);
             hashtable.Add("eMail", oBE_Login.eMail);
@@ -71,7 +73,6 @@ namespace Mapper
 
             if (!Existe(oBE_Login))
             {
-                Acceso = new ClsDataBase();
                 return Acceso.Escribir(query, hashtable);
             }
             else { return false; }
@@ -244,7 +245,6 @@ namespace Mapper
             }
 
         }
-
         public List<BE_Login> DevolverListado()
         {
             var consulta =

@@ -10,7 +10,7 @@ using Security;
 
 namespace BLL
 {
-    public class BLL_Login : IGestionable<BE_Login>
+    public class BLL_Login : IGestionable<BE_Login>, IValidable<BE_Login>
     {
         MPP_Login oMPP_Login;
         public BLL_Login()
@@ -80,18 +80,24 @@ namespace BLL
 
         public bool ResetCounter(BE_Login oBE_Login)
         {
-            int aux = oBE_Login.CantidadIntentos;
-            oBE_Login.CantidadIntentos = 0;
-            if (Guardar(oBE_Login))
+            if (oBE_Login != null)
             {
-                return true;
+                int aux = oBE_Login.CantidadIntentos;
+                oBE_Login.CantidadIntentos = 0;
+                if (Guardar(oBE_Login))
+                {
+                    return true;
+                }
+                else
+                {
+                    oBE_Login.CantidadIntentos = aux;
+                    return false;
+                }
             }
             else
             {
-                oBE_Login.CantidadIntentos = aux;
                 return false;
             }
-
         }
         public bool Intentos(BE_Login oBE_Login)
         {
@@ -151,6 +157,16 @@ namespace BLL
         public List<BE_Login> DevolverListado(DateTime fechainicio, DateTime fechafin)
         {
             return oMPP_Login.DevolverListado(fechainicio, fechafin);
+        }
+
+        public bool Existe(BE_Login login)
+        {
+            return oMPP_Login.Existe(login);
+        }
+
+        public bool ExisteActivo(BE_Login login)
+        {
+            return oMPP_Login.ExisteActivo(login);
         }
     }
 }

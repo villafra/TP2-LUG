@@ -9,7 +9,7 @@ using Mapper;
 
 namespace BLL
 {
-    public class BLL_Plato : IGestionable<BE_Plato>
+    public class BLL_Plato : IGestionable<BE_Plato>,IValidable<BE_Plato>
     {
         MPP_Plato oMPP_Plato;
 
@@ -43,6 +43,16 @@ namespace BLL
         public BE_Plato ListarObjeto(BE_Plato oBE_Plato)
         {
             throw new NotImplementedException();
+        }
+
+        public bool Existe(BE_Plato oBE_Plato)
+        {
+            return oMPP_Plato.Existe(oBE_Plato);
+        }
+
+        public bool ExisteActivo(BE_Plato oBE_Plato)
+        {
+            return oMPP_Plato.ExisteActivo(oBE_Plato);
         }
     }
 }

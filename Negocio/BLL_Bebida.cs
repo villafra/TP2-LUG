@@ -9,7 +9,7 @@ using Mapper;
 
 namespace BLL
 {
-    public class BLL_Bebida : IGestionable<BE_Bebida>
+    public class BLL_Bebida : IGestionable<BE_Bebida>, IValidable<BE_Bebida>
     {
         MPP_Bebida oMPP_Bebida;
 
@@ -38,6 +38,15 @@ namespace BLL
         public BE_Bebida ListarObjeto(BE_Bebida oBE_Bebida)
         {
             return oMPP_Bebida.ListarObjeto(oBE_Bebida);
+        }
+        public bool ExisteActivo(BE_Bebida oBE_Bebida)
+        {
+            return oMPP_Bebida.ExisteActivo(oBE_Bebida);
+        }
+
+        public bool Existe(BE_Bebida Objeto)
+        {
+            throw new NotImplementedException();
         }
     }
 }

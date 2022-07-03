@@ -324,6 +324,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPlatos";
             this.Text = "Mesas";
+            this.Activated += new System.EventHandler(this.frmPlatos_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlatos)).EndInit();
             this.grpPlatos.ResumeLayout(false);
             this.grpPlatos.PerformLayout();

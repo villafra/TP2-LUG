@@ -65,7 +65,7 @@
             this.dgvBebidas.ReadOnly = true;
             this.dgvBebidas.RowHeadersWidth = 51;
             this.dgvBebidas.RowTemplate.Height = 24;
-            this.dgvBebidas.Size = new System.Drawing.Size(612, 254);
+            this.dgvBebidas.Size = new System.Drawing.Size(643, 295);
             this.dgvBebidas.TabIndex = 0;
             this.dgvBebidas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBebidas_CellContentClick);
             // 
@@ -300,7 +300,7 @@
             this.dgvPedidosConBeb.ReadOnly = true;
             this.dgvPedidosConBeb.RowHeadersWidth = 51;
             this.dgvPedidosConBeb.RowTemplate.Height = 24;
-            this.dgvPedidosConBeb.Size = new System.Drawing.Size(174, 185);
+            this.dgvPedidosConBeb.Size = new System.Drawing.Size(174, 207);
             this.dgvPedidosConBeb.TabIndex = 6;
             // 
             // frmBebidas
@@ -318,6 +318,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmBebidas";
             this.Text = "Mesas";
+            this.Activated += new System.EventHandler(this.frmBebidas_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBebidas)).EndInit();
             this.grpBebidas.ResumeLayout(false);
             this.grpBebidas.PerformLayout();

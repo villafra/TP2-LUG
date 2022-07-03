@@ -265,6 +265,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmMesas";
             this.Text = "Mesas";
+            this.Activated += new System.EventHandler(this.frmMesas_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMesas)).EndInit();
             this.grpMesas.ResumeLayout(false);
             this.grpMesas.PerformLayout();

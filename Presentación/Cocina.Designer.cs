@@ -111,9 +111,9 @@
             this.lblPuesto.AutoSize = true;
             this.lblPuesto.Location = new System.Drawing.Point(614, 113);
             this.lblPuesto.Name = "lblPuesto";
-            this.lblPuesto.Size = new System.Drawing.Size(42, 16);
+            this.lblPuesto.Size = new System.Drawing.Size(49, 16);
             this.lblPuesto.TabIndex = 29;
-            this.lblPuesto.Text = "Turno";
+            this.lblPuesto.Text = "Puesto";
             // 
             // label1
             // 
@@ -324,6 +324,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmCocina";
             this.Text = "Mesas";
+            this.Activated += new System.EventHandler(this.frmCocina_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCocina)).EndInit();
             this.grpCocina.ResumeLayout(false);
             this.grpCocina.PerformLayout();

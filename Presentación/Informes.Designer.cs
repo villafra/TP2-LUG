@@ -30,6 +30,7 @@
         {
             this.dgvHistórico = new System.Windows.Forms.DataGridView();
             this.grpFiltrar = new System.Windows.Forms.GroupBox();
+            this.chkFecha = new System.Windows.Forms.CheckBox();
             this.ComboEmpleado = new System.Windows.Forms.ComboBox();
             this.btnBuscarXML = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,7 +40,6 @@
             this.comboTurno = new System.Windows.Forms.ComboBox();
             this.lblTurno = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.chkFecha = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistórico)).BeginInit();
             this.grpFiltrar.SuspendLayout();
             this.SuspendLayout();
@@ -75,6 +75,17 @@
             this.grpFiltrar.TabIndex = 1;
             this.grpFiltrar.TabStop = false;
             this.grpFiltrar.Text = "Filtrar Por";
+            // 
+            // chkFecha
+            // 
+            this.chkFecha.AutoSize = true;
+            this.chkFecha.Location = new System.Drawing.Point(307, 82);
+            this.chkFecha.Name = "chkFecha";
+            this.chkFecha.Size = new System.Drawing.Size(169, 20);
+            this.chkFecha.TabIndex = 30;
+            this.chkFecha.Text = "Usar Rango de Fechas";
+            this.chkFecha.UseVisualStyleBackColor = true;
+            this.chkFecha.CheckedChanged += new System.EventHandler(this.chkFecha_CheckedChanged);
             // 
             // ComboEmpleado
             // 
@@ -161,17 +172,6 @@
             this.lblNombre.TabIndex = 15;
             this.lblNombre.Text = "Empleado";
             // 
-            // chkFecha
-            // 
-            this.chkFecha.AutoSize = true;
-            this.chkFecha.Location = new System.Drawing.Point(307, 82);
-            this.chkFecha.Name = "chkFecha";
-            this.chkFecha.Size = new System.Drawing.Size(169, 20);
-            this.chkFecha.TabIndex = 30;
-            this.chkFecha.Text = "Usar Rango de Fechas";
-            this.chkFecha.UseVisualStyleBackColor = true;
-            this.chkFecha.CheckedChanged += new System.EventHandler(this.chkFecha_CheckedChanged);
-            // 
             // frmInformes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -182,6 +182,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmInformes";
             this.Text = "Mesas";
+            this.Activated += new System.EventHandler(this.frmInformes_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistórico)).EndInit();
             this.grpFiltrar.ResumeLayout(false);
             this.grpFiltrar.PerformLayout();

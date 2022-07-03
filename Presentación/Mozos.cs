@@ -88,9 +88,24 @@ namespace Presentación
                 Nuevo();
                 if (Calculos.LargoDNI(oBE_Mozo.DNI.ToString())&&Calculos.ValidarNombrePersonal(oBE_Mozo.Nombre)&&Calculos.ValidarApellido(oBE_Mozo.Apellido))
                 {
-                    oBLL_Mozo.Guardar(oBE_Mozo);
-                    ActualizarListado();
-                    Calculos.BorrarCampos(grpMozos);
+                   if (!oBLL_Mozo.Existe(oBE_Mozo))
+                    {
+                        if (oBLL_Mozo.Guardar(oBE_Mozo))
+                        {
+                            ActualizarListado();
+                            Calculos.BorrarCampos(grpMozos);
+                            Calculos.MsgBoxAlta(oBE_Mozo.ToString());
+                        }
+                        else
+                        {
+                            Calculos.MsgBoxNoAlta(oBE_Mozo.ToString());
+                        }
+                        
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxSiExisteDNI(oBE_Mozo.ToString());
+                    }
                 }
                 else
                 {
@@ -110,9 +125,24 @@ namespace Presentación
             try
             {
                 Viejo();
-                oBLL_Mozo.Guardar(oBE_Mozo);
-                ActualizarListado();
-                Calculos.BorrarCampos(grpMozos);
+                if (!oBLL_Mozo.Existe(oBE_Mozo))
+                {
+                    if (oBLL_Mozo.Guardar(oBE_Mozo))
+                    {
+                        ActualizarListado();
+                        Calculos.BorrarCampos(grpMozos);
+                        Calculos.MsgBoxMod(oBE_Mozo.ToString());
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxNoMod(oBE_Mozo.ToString());
+                    }
+                    
+                }
+                else
+                {
+                    Calculos.MsgBoxSiExisteDNI(oBE_Mozo.ToString());
+                }
             }
             catch (Exception ex)
             {
@@ -146,15 +176,35 @@ namespace Presentación
             Viejo();
             if (Calculos.EstaSeguro("Eliminar", oBE_Mozo.Codigo, oBE_Mozo.ToString()))
             {
-                oBLL_Mozo.Baja(oBE_Mozo);
-                ActualizarListado();
-                Calculos.BorrarCampos(grpMozos);
+                if (!oBLL_Mozo.ExisteActivo(oBE_Mozo))
+                {
+                    if (oBLL_Mozo.Baja(oBE_Mozo))
+                    {
+                        ActualizarListado();
+                        Calculos.BorrarCampos(grpMozos);
+                        Calculos.MsgBoxBaja(oBE_Mozo.ToString());
+                    }
+                    else
+                    {
+                        Calculos.MsgBoxNoBaja(oBE_Mozo.ToString());
+                    }
+                    
+                }
+                else
+                {
+                    Calculos.MsgBoxBajaNegativa(oBE_Mozo.ToString());
+                }
             }
         }
 
         private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
         {
             Calculos.ValidarEntero(e);
+        }
+
+        private void frmMozos_Activated(object sender, EventArgs e)
+        {
+            ActualizarListado();
         }
     }
 }
