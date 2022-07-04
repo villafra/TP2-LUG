@@ -119,6 +119,7 @@
             this.txtPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPass.UseSystemPasswordChar = true;
             this.txtPass.Click += new System.EventHandler(this.txtPass_Click);
+            this.txtPass.TextChanged += new System.EventHandler(this.txtPass_TextChanged);
             this.txtPass.Enter += new System.EventHandler(this.txtPass_Enter);
             // 
             // label2

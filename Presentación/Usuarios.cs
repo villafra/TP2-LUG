@@ -21,6 +21,7 @@ namespace Presentación
         BE_Login oBE_Login;
         BE_Empleado oBE_Empleado;
         BLL_Mozo oBLL_Mozo;
+        private bool cambiopass;
         public frmUsuarios()
         {
             InitializeComponent();
@@ -51,7 +52,14 @@ namespace Presentación
             try
             {
                 oBE_Empleado = (BE_Empleado)dgvEmpleados.CurrentRow.DataBoundItem;
-                oBE_Login = new BE_Login(Int32.Parse(txtCodigo.Text), oBE_Empleado, txtUsuario.Text, oBLL_Login.EncriptarPass(txtPass.Text),txtMail.Text, prgCantidad.Value);
+                if (cambiopass)
+                {
+                    oBE_Login = new BE_Login(Int32.Parse(txtCodigo.Text), oBE_Empleado, txtUsuario.Text, oBLL_Login.EncriptarPass(txtPass.Text), txtMail.Text, prgCantidad.Value);
+                }
+                else
+                {
+                    oBE_Login = new BE_Login(Int32.Parse(txtCodigo.Text), oBE_Empleado, txtUsuario.Text, txtPass.Text, txtMail.Text, prgCantidad.Value);
+                }              
             }
             catch (Exception ex)
             {
@@ -77,6 +85,7 @@ namespace Presentación
             txtNombre.Text = oBE_Login.Empleado.ToString();
             txtMail.Text = oBE_Login.eMail;
             prgCantidad.Value = oBE_Login.CantidadIntentos;
+            cambiopass = false;
         }
 
         private void btnNuevoUser_Click(object sender, EventArgs e)
@@ -241,6 +250,11 @@ namespace Presentación
         private void frmUsuarios_Activated(object sender, EventArgs e)
         {
             ActualizarListado();
+        }
+
+        private void txtPass_TextChanged(object sender, EventArgs e)
+        {
+            cambiopass = true;
         }
     }
 }

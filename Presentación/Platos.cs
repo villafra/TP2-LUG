@@ -91,7 +91,7 @@ namespace Presentación
                 txtCosto.Text = oBE_Plato.CostoUnitario.ToString();
                 txtStock.Text = oBE_Plato.Stock.ToString();
                 double promedio = oBLL_Plato.PromedioPlatoEnPedido(oBE_Plato);
-                lblCantidad.Text = promedio.ToString() + "%";
+                lblCantidad.Text = Math.Round(promedio,0).ToString() + "%";
                 prgFrecuencia.Value = Convert.ToInt32(Math.Round(promedio, 0));
                 Calculos.RefreshGrilla(dgvPedidosConPlat, oBLL_Pedido.PlatoEnPedidos(oBE_Plato));
                 Aspecto.DGVPedidosXPlatos(dgvPedidosConPlat);
